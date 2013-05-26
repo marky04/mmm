@@ -26,9 +26,11 @@
 	function HomeAjaxLoader()
 	{
 		//var link = 'http://localhost/ci_donaiya/index.php/page/edit';
-		//var link = 'http://donaiya.nextus.asia';		
+		//var link = 'http://donaiya.nextus.asia';
+		//var link = 'test.json';
+		var link = ''http://donaiya.nextus.asia/test.json'';
 		
-		if(localStorage && localStorage.getItem('cars'))
+		if(window.localStorage && window.localStorage.getItem('car'))
 		{
 			alert('tazki is available');
 			data = JSON.parse(localStorage.getItem('car'));
@@ -37,9 +39,9 @@
 		}
 		else
 		{
-			$.getJSON('http://donaiya.nextus.asia/test.json', function(data)
+			$.getJSON(link, function(data)
 			{alert('run ajax');
-				if(localStorage)
+				if(window.localStorage)
 				{
 					localStorage.setItem( 'car', JSON.stringify(data) );
 				}				
