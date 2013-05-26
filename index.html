@@ -5,8 +5,8 @@
   <title>Backbone.js Todos</title>
   <link rel="stylesheet" href="todos.css" />
 </head>
-<body>
-<div id="todoapp">
+<body style="position:relative;">
+<div id="todoapp" style="position:absolute; top:0; right:-500px; width:100%; height:500px;">
 	<header>
 		<h1>Todos</h1>
 	</header>
@@ -17,6 +17,7 @@
 	</footer>
 </div>
 <script src="js/jquery.js"></script>
+<script src="js/jquery.easing.min.js"></script>
 <!--script src="js/json2.js"></script>
 <script src="js/underscore.js"></script>
 <script src="js/backbone.js"></script>
@@ -32,8 +33,14 @@
 		
 		if(window.localStorage && window.localStorage.getItem('car'))
 		{
-			alert('tazki is available');
+			//alert('tazki is available');
+			$('#todoapp').animate(
+			{
+				right:0
+			}, 600);
 			data = JSON.parse(localStorage.getItem('car'));
+			
+				
 			$('header h1').html(data['tab_name']);
 			$('section').html(data['page_description']);
 		}
