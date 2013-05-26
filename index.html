@@ -1,45 +1,64 @@
-<!doctype html>
-<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-	<title></title>
-	<meta name="description" content="">
-	<meta name="author" content="">
-
-	<meta name="viewport" content="width=device-width,initial-scale=1">
-
-	<link rel="stylesheet" href="css/styles.css">
-
-	<script data-main="js/main" src="js/libs/require/require.js"></script>
+  <meta charset="utf-8">
+  <title>Backbone.js Todos</title>
+  <link rel="stylesheet" href="todos.css" />
 </head>
 <body>
-
-<div id="container">
-  <div id="logo">
-    <h1>Modular Backbone</h1>
-  </div>
-
-  <div class="menu navbar">
-    <div class="navbar-inner">
-      <ul class="nav">
-        <li><a href="#" >Home</a></li>
-        <li ><a href="#/projects" >Projects</a></li>
-        <li><a href="#/users">Contributors</a></li>
-      </ul>
-    </div>
-  </div>
-
-
-  <div id="page">
-    Loading....
-  </div>
-  <div id="footer"></div>
-</div> 
-
+<div id="todoapp">
+	<header>
+		<h1>Todos</h1>
+	</header>
+	<section></section>
+	<footer>
+		<a id="clear-completed">Clear completed</a>
+		<div id="todo-count"></div>
+	</footer>
+</div>
+<script src="js/jquery.js"></script>
+<!--script src="js/json2.js"></script>
+<script src="js/underscore.js"></script>
+<script src="js/backbone.js"></script>
+<script src="js/backbone.localStorage.js"></script-->
+<script type="text/javascript">
+	HomeAjaxLoader();
+	function HomeAjaxLoader()
+	{
+		//var link = 'http://localhost/ci_donaiya/index.php/page/edit';
+		//var link = 'http://donaiya.nextus.asia';		
+		
+		if(localStorage && localStorage.getItem('cars'))
+		{
+			alert('tazki is available');
+			data = JSON.parse(localStorage.getItem('car'));
+			$('header h1').html(data['tab_name']);
+			$('section').html(data['page_description']);
+		}
+		else
+		{
+			$.getJSON('http://donaiya.nextus.asia/test.json', function(data)
+			{alert('run ajax');
+				if(localStorage)
+				{
+					localStorage.setItem( 'car', JSON.stringify(data) );
+				}				
+				
+				console.log( JSON.parse( localStorage.getItem( 'car' ) ) );
+				$('header h1').html(data['tab_name']);
+				$('section').html(data['page_description']);
+				
+				/* var items = [];
+				$.each(data, function(key, val) {
+				items.push('<li id="' + key + '">' + val + '</li>');
+				});
+				$('<ul/>', {
+				'class': 'my-new-list',
+				html: items.join('')
+				}).appendTo('body');*/
+			});
+		}
+	}
+</script>
 </body>
 </html>
