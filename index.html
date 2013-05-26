@@ -3,18 +3,25 @@
 <head>
   <meta charset="utf-8">
   <title>Backbone.js Todos</title>
-  <link rel="stylesheet" href="todos.css" />
 </head>
-<body style="position:relative;">
-<div id="todoapp" style="position:absolute; top:0; right:-500px; width:100%; height:500px;">
-	<header>
-		<h1>Todos</h1>
-	</header>
-	<section></section>
-	<footer>
-		<a id="clear-completed">Clear completed</a>
-		<div id="todo-count"></div>
-	</footer>
+<body>
+<div style="overflow:hidden; position:relative; border:1px solid #000; width:500px; height:500px; margin:0 auto;">
+	<div id="todoapp" style="position:absolute; top:0; right:-500px; background:#fff; width:500px; height:500px;">
+		<header>
+			<h1>Todos</h1>
+			<button onClick="HomeAjaxLoader('http://donaiya.nextus.asia/home.json', 'home', 'todoapp');">Home</button>
+			<button onClick="HomeAjaxLoader('http://donaiya.nextus.asia/about.json', 'about', 'about');">About</button>
+		</header>
+		<section></section>
+	</div>
+	<div id="about" style="position:absolute; top:0; right:-500px; background:#fff; width:500px; height:500px;">
+		<header>
+			<h1>Todos</h1>
+			<button onClick="HomeAjaxLoader('http://donaiya.nextus.asia/home.json', 'home', 'todoapp');">Home</button>
+			<button onClick="HomeAjaxLoader('http://donaiya.nextus.asia/about.json', 'about', 'about');">About</button>
+		</header>
+		<section></section>
+	</div>
 </div>
 <script src="js/jquery.js"></script>
 <script src="js/jquery.easing.min.js"></script>
@@ -23,24 +30,24 @@
 <script src="js/backbone.js"></script>
 <script src="js/backbone.localStorage.js"></script-->
 <script type="text/javascript">
-	HomeAjaxLoader();
-	function HomeAjaxLoader()
+	HomeAjaxLoader('http://donaiya.nextus.asia/home.json', 'home', 'todoapp');
+	function HomeAjaxLoader(link, storageName, holder)
 	{
 		//var link = 'http://localhost/ci_donaiya/index.php/page/edit';
 		//var link = 'http://donaiya.nextus.asia';
-		//var link = 'test.json';
-		var link = 'http://donaiya.nextus.asia/test.json';
-		
-		if(window.localStorage && window.localStorage.getItem('car'))
+		//var link = 'home.json';
+		//var link = 'http://donaiya.nextus.asia/home.json';
+
+		if(window.localStorage && window.localStorage.getItem(storageName))
 		{
 			//alert('tazki is available');
-			$('#todoapp').animate(
+			data = JSON.parse(localStorage.getItem(storageName));
+
+			$('#' + holder).animate(
 			{
 				right:0
-			}, 3000, 'easeOutQuint');
-			data = JSON.parse(localStorage.getItem('car'));
-			
-				
+			}, 'slow');
+
 			$('header h1').html(data['tab_name']);
 			$('section').html(data['page_description']);
 		}
@@ -50,13 +57,18 @@
 			{alert('run ajax');
 				if(window.localStorage)
 				{
-					localStorage.setItem( 'car', JSON.stringify(data) );
-				}				
-				
-				console.log( JSON.parse( localStorage.getItem( 'car' ) ) );
+					localStorage.setItem( storageName, JSON.stringify(data) );
+				}
+
+				$('#' + holder).animate(
+				{
+					right:0
+				}, 'slow');
+
+				console.log( JSON.parse( localStorage.getItem(storageName) ) );
 				$('header h1').html(data['tab_name']);
 				$('section').html(data['page_description']);
-				
+
 				/* var items = [];
 				$.each(data, function(key, val) {
 				items.push('<li id="' + key + '">' + val + '</li>');
