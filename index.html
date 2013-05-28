@@ -1,85 +1,110 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-  <meta charset="utf-8">
-  <title>Backbone.js Todos</title>
+	<meta charset="utf-8">
+	<title>Cover Flow</title>
+	<link rel="stylesheet" href="coverflow.css"/>
 </head>
 <body>
-<div style="overflow:hidden; position:relative; border:1px solid #000; width:500px; height:500px; margin:0 auto;">
-	<div id="todoapp" style="position:absolute; top:0; right:-500px; background:#fff; width:500px; height:500px;">
-		<header>
-			<h1>Todos</h1>
-			<button onClick="HomeAjaxLoader('http://donaiya.nextus.asia/home.json', 'home', 'todoapp');">Home</button>
-			<button onClick="HomeAjaxLoader('http://donaiya.nextus.asia/about.json', 'about', 'about');">About</button>
-		</header>
-		<section></section>
-	</div>
-	<div id="about" style="position:absolute; top:0; right:-500px; background:#fff; width:500px; height:500px;">
-		<header>
-			<h1>Todos</h1>
-			<button onClick="HomeAjaxLoader('http://donaiya.nextus.asia/home.json', 'home', 'todoapp');">Home</button>
-			<button onClick="HomeAjaxLoader('http://donaiya.nextus.asia/about.json', 'about', 'about');">About</button>
-		</header>
-		<section></section>
-	</div>
-</div>
-<script src="js/jquery.js"></script>
-<script src="js/jquery.easing.min.js"></script>
-<!--script src="js/json2.js"></script>
-<script src="js/underscore.js"></script>
-<script src="js/backbone.js"></script>
-<script src="js/backbone.localStorage.js"></script-->
-<script type="text/javascript">
-	HomeAjaxLoader('http://donaiya.nextus.asia/home.json', 'home', 'todoapp');
-	function HomeAjaxLoader(link, storageName, holder)
-	{
-		//var link = 'http://localhost/ci_donaiya/index.php/page/edit';
-		//var link = 'http://donaiya.nextus.asia';
-		//var link = 'home.json';
-		//var link = 'http://donaiya.nextus.asia/home.json';
+	<div id="container"></div>
+	<script src="coverflow.js"></script>
+	<script src="jquery.js"></script>
+	<script src="jquery.swipe.js"></script>
+	<script>
+		function reset() {
 
-		if(window.localStorage && window.localStorage.getItem(storageName))
-		{
-			//alert('tazki is available');
-			data = JSON.parse(localStorage.getItem(storageName));
+			var replacement = document.createElement('div');
+			replacement.id = "container";
 
-			$('#' + holder).animate(
-			{
-				right:0
-			}, 'slow');
+			var el = document.getElementById('container');
+			el.parentNode.replaceChild(replacement, el);
+			
+			//$('#container').coverflow({
+			coverflow('container').setup({
+				item: 1,
+				//mode: "flash",
+				//backgroundcolor: '009900',
+				//backgroundopacity: 0,
+				//wmode: 'transparent',
+				//gradientcolor: 'ff0000',
+				//showduration: true,
+				//playlist: "playlist.json",
+				//playlist: "http://api.flickr.com/services/feeds/groups_pool.gne?id=807213@N20&format=json&jsoncallback=?",
+				//route: {
+				// 	playlist: "items",
+				// 	image: "media.m"
+				//},
+				playlist: [
+					{
+						"title": "snow-motion",
+						"description": "what a massive and unbelievable winter we're having!",
+						"image": "http://d3el35u4qe4frz.cloudfront.net/eawtAP1q-720.jpg",
+						"link": "http://www.google.com/",
+						"duration": "183"
+					},
+					{
+						"title": "driving rain",
+						"description": "",
+						"image": "http://d3el35u4qe4frz.cloudfront.net/njZMLMwy-720.jpg",
+						"duration": "782"
+					},
+					{
+						"title": "winter brook",
+						"description": "",
+						"image": "http://d3el35u4qe4frz.cloudfront.net/Vg7cPUdl-720.jpg"
+					}
+				],
+				coverwidth: 180,
+				coverheight: 150,
+				fixedsize: true,
+				textoffset: 50
+			})
+			.on('ready', function() {
 
-			$('header h1').html(data['tab_name']);
-			$('section').html(data['page_description']);
-		}
-		else
-		{
-			$.getJSON(link, function(data)
-			{alert('run ajax');
-				if(window.localStorage)
-				{
-					localStorage.setItem( storageName, JSON.stringify(data) );
-				}
-
-				$('#' + holder).animate(
-				{
-					right:0
-				}, 'slow');
-
-				console.log( JSON.parse( localStorage.getItem(storageName) ) );
-				$('header h1').html(data['tab_name']);
-				$('section').html(data['page_description']);
-
-				/* var items = [];
-				$.each(data, function(key, val) {
-				items.push('<li id="' + key + '">' + val + '</li>');
+				this.on('focus', function(index) {
+					document.getElementById('focusindex').innerHTML = index;
 				});
-				$('<ul/>', {
-				'class': 'my-new-list',
-				html: items.join('')
-				}).appendTo('body');*/
+				
+				this.on('click', function(index, link) {
+					document.getElementById('clickindex').innerHTML = index;
+					console.log(link);
+				});
 			});
 		}
-	}
+
+		reset();
+	</script>
+
+<div style="width:480px;">
+	<div style="float:right;">Focused: <b id="focusindex">0</b> | Clicked: <b id="clickindex">0</b></div>
+	<p>
+		<a href="javascript:;" onclick="coverflow().left();">Left</a> - <a href="javascript:;" onclick="coverflow().right();">Right</a>
+	</p>
+	<p>
+		<a href="javascript:;" onclick="coverflow().prev();">Previous</a> - <a href="javascript:;" onclick="coverflow().next();">Next</a>
+	</p>
+	<p>
+		<input id="toval" value="0" size="1"> <a href="javascript:;" onclick="coverflow().to(document.getElementById('toval').value);">To</a>
+	</p>
+</div>
+
+<button onclick="reset();">Reset</button>
+
+<script type="text/javascript">
+onLoad();
+function onLoad()
+{
+	$('#container').touchSwipeLeft(function()
+	{
+		coverflow().next();
+	});
+
+	$('#container').touchSwipeRight(function()
+	{
+		coverflow().prev();
+	});
+}
 </script>
+
 </body>
 </html>
