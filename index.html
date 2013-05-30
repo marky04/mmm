@@ -1,110 +1,146 @@
-<!doctype html>
+<!DOCTYPE HTML>
 <html>
-<head>
-	<meta charset="utf-8">
-	<title>Cover Flow</title>
-	<link rel="stylesheet" href="coverflow.css"/>
-</head>
-<body>
-	<div id="container"></div>
-	<script src="coverflow.js"></script>
-	<script src="jquery.js"></script>
-	<script src="jquery.swipe.js"></script>
-	<script>
-		function reset() {
-
-			var replacement = document.createElement('div');
-			replacement.id = "container";
-
-			var el = document.getElementById('container');
-			el.parentNode.replaceChild(replacement, el);
-			
-			//$('#container').coverflow({
-			coverflow('container').setup({
-				item: 1,
-				//mode: "flash",
-				//backgroundcolor: '009900',
-				//backgroundopacity: 0,
-				//wmode: 'transparent',
-				//gradientcolor: 'ff0000',
-				//showduration: true,
-				//playlist: "playlist.json",
-				//playlist: "http://api.flickr.com/services/feeds/groups_pool.gne?id=807213@N20&format=json&jsoncallback=?",
-				//route: {
-				// 	playlist: "items",
-				// 	image: "media.m"
-				//},
-				playlist: [
+    <head>
+        <title>com.PhoneGap.c2dm</title>
+    </head>
+    <body>
+        
+        <!--<script type="text/javascript" charset="utf-8" src="cordova-2.2.0.js"></script>-->
+        <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+        <script type="text/javascript" charset="utf-8" src="jquery_1.5.2.min.js"></script>
+        <script type="text/javascript" src="PushNotification.js"></script>
+        
+        <script type="text/javascript">
+            var pushNotification;
+            
+            function onDeviceReady() {
+                $("#app-status-ul").append('<li>deviceready event received</li>');
+                
+				document.addEventListener("backbutton", function(e)
+				{
+                	$("#app-status-ul").append('<li>backbutton event received</li>');
+  					
+      				if( $("#home").length > 0)
 					{
-						"title": "",
-						"description": "",
-						"image": "http://d3el35u4qe4frz.cloudfront.net/eawtAP1q-720.jpg",
-						"link": "http://www.google.com/",
-						"duration": "183"
-					},
-					{
-						"title": "",
-						"description": "",
-						"image": "http://d3el35u4qe4frz.cloudfront.net/njZMLMwy-720.jpg",
-						"duration": "782"
-					},
-					{
-						"title": "",
-						"description": "",
-						"image": "http://d3el35u4qe4frz.cloudfront.net/Vg7cPUdl-720.jpg"
+						// call this to get a new token each time. don't call it to reuse existing token.
+						//pushNotification.unregister(successHandler, errorHandler);
+						e.preventDefault();
+						navigator.app.exitApp();
 					}
-				],
-				coverwidth: 180,
-				coverheight: 150,
-				fixedsize: false,
-				textoffset: 50
-			})
-			.on('ready', function() {
+					else
+					{
+						navigator.app.backHistory();
+					}
+				}, false);
+			
+				try 
+				{ 
+                	pushNotification = window.plugins.pushNotification;
+                	if (device.platform == 'android' || device.platform == 'Android') {
+						$("#app-status-ul").append('<li>registering android</li>');
+                    	pushNotification.register(successHandler, errorHandler, {"senderID":"661780372179","ecb":"onNotificationGCM"});		// required!
+					} else {
+						$("#app-status-ul").append('<li>registering iOS</li>');
+                    	pushNotification.register(tokenHandler, errorHandler, {"badge":"true","sound":"true","alert":"true","ecb":"onNotificationAPN"});	// required!
+                	}
+                }
+				catch(err) 
+				{ 
+					txt="There was an error on this page.\n\n"; 
+					txt+="Error description: " + err.message + "\n\n"; 
+					alert(txt); 
+				} 
+            }
+            
+            // handle APNS notifications for iOS
+            function onNotificationAPN(e) {
+                if (e.alert) {
+                     $("#app-status-ul").append('<li>push-notification: ' + e.alert + '</li>');
+                     navigator.notification.alert(e.alert);
+                }
+                    
+                if (e.sound) {
+                    var snd = new Media(e.sound);
+                    snd.play();
+                }
+                
+                if (e.badge) {
+                    pushNotification.setApplicationIconBadgeNumber(successHandler, e.badge);
+                }
+            }
+            
+            // handle GCM notifications for Android
+            function onNotificationGCM(e) {
+                $("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
+                
+                switch( e.event )
+                {
+                    case 'registered':
+					if ( e.regid.length > 0 )
+					{
+						$("#app-status-ul").append('<li>REGISTERED -> REGID:' + e.regid + "</li>");
+						// Your GCM push server needs to know the regID before it can push to this device
+						// here is where you might want to send it the regID for later use.
+						console.log("regID = " + e.regID);
+					}
+                    break;
+                    
+                    case 'message':
+                    	// if this flag is set, this notification happened while we were in the foreground.
+                    	// you might want to play a sound to get the user's attention, throw up a dialog, etc.
+                    	if (e.foreground)
+                    	{
+							$("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
+							
+							// if the notification contains a soundname, play it.
+							var my_media = new Media("/android_asset/www/"+e.soundname);
+							my_media.play();
+						}
+						else
+						{	// otherwise we were launched because the user touched a notification in the notification tray.
+							if (e.coldstart)
+								$("#app-status-ul").append('<li>--COLDSTART NOTIFICATION--' + '</li>');
+							else
+							$("#app-status-ul").append('<li>--BACKGROUND NOTIFICATION--' + '</li>');
+						}
+							
+						$("#app-status-ul").append('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
+						$("#app-status-ul").append('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
+                    break;
+                    
+                    case 'error':
+						$("#app-status-ul").append('<li>ERROR -> MSG:' + e.msg + '</li>');
+                    break;
+                    
+                    default:
+						$("#app-status-ul").append('<li>EVENT -> Unknown, an event was received and we do not know what it is</li>');
+                    break;
+                }
+            }
+            
+            function tokenHandler (result) {
+                $("#app-status-ul").append('<li>token: '+ result +'</li>');
+                // Your iOS push server needs to know the token before it can push to this device
+                // here is where you might want to send it the token for later use.
+            }
+			
+            function successHandler (result) {
+                $("#app-status-ul").append('<li>success:'+ result +'</li>');
+            }
+            
+            function errorHandler (error) {
+                $("#app-status-ul").append('<li>error:'+ error +'</li>');
+            }
+            
+			document.addEventListener('deviceready', onDeviceReady, true);
 
-				this.on('focus', function(index) {
-					document.getElementById('focusindex').innerHTML = index;
-				});
-				
-				this.on('click', function(index, link) {
-					document.getElementById('clickindex').innerHTML = index;
-					console.log(link);
-				});
-			});
-		}
-
-		reset();
-	</script>
-
-<div style="width:480px; display:none;">
-	<div style="float:right;">Focused: <b id="focusindex">0</b> | Clicked: <b id="clickindex">0</b></div>
-	<p>
-		<a href="javascript:;" onclick="coverflow().left();">Left</a> - <a href="javascript:;" onclick="coverflow().right();">Right</a>
-	</p>
-	<p>
-		<a href="javascript:;" onclick="coverflow().prev();">Previous</a> - <a href="javascript:;" onclick="coverflow().next();">Next</a>
-	</p>
-	<p>
-		<input id="toval" value="0" size="1"> <a href="javascript:;" onclick="coverflow().to(document.getElementById('toval').value);">To</a>
-	</p>
-</div>
-
-<button onclick="reset();" style="display:none;">Reset</button>
-
-<script type="text/javascript">
-onLoad();
-function onLoad()
-{
-	$('#container').touchSwipeLeft(function()
-	{
-		coverflow().next();
-	});
-
-	$('#container').touchSwipeRight(function()
-	{
-		coverflow().prev();
-	});
-}
-</script>
-
-</body>
+         </script>
+		<div id="home">
+			<div id="app-status-div">
+				<ul id="app-status-ul">
+					<li>Cordova PushNotification Plugin Demo</li>
+				</ul>
+			</div>
+		</div>
+    </body>
 </html>
