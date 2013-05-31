@@ -10,11 +10,7 @@
         <script type="text/javascript" charset="utf-8" src="jquery_1.5.2.min.js"></script>
         <script type="text/javascript">
 		// An example of how to use the PhoneGap / Cordova plugin described in this post [[ http://blog.evantahler.com/phonegap-and-push-notifications ]] to get an iOs device token
-		/*document.addEventListener("deviceready", function(){
-			getDeviceToken();
-			
-		}*/
-		getDeviceToken();
+		document.addEventListener("deviceready", getDeviceToken, false);
 		function getDeviceToken(){alert('just alert');
 			if(typeof device != "undefined" && typeof cordova == "object"){
 				var getToken = function(types, success, fail)
