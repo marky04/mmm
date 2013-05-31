@@ -5,13 +5,14 @@
     </head>
     <body>
 
-        <!--<script type="text/javascript" charset="utf-8" src="cordova-2.2.0.js"></script>-->
         <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+        <script type="text/javascript" charset="utf-8" src="cordova-2.5.0.js"></script>
         <script type="text/javascript" charset="utf-8" src="jquery_1.5.2.min.js"></script>
         <script type="text/javascript">
 		// An example of how to use the PhoneGap / Cordova plugin described in this post [[ http://blog.evantahler.com/phonegap-and-push-notifications ]] to get an iOs device token
 		document.addEventListener("deviceready", function(){
 			getDeviceToken();
+			alert('just alert');
 		}
 		 
 		getDeviceToken = function(){
@@ -24,8 +25,8 @@
 					alert(token + ' taz');
 					return token;
 				}, function(e){
-				console.log("cannot get device token: "+e);
-				return false;
+					console.log("cannot get device token: "+e);
+					return false;
 				});
 			}else{
 				// console.log("device not ready, or not a native app");
