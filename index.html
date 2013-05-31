@@ -17,18 +17,22 @@
 		getDeviceToken();
 		function getDeviceToken(){alert('just alert');
 			if(typeof device != "undefined" && typeof cordova == "object"){
-				var getToken = function(types, success, fail){
-				cordova.exec(success, fail, "PushToken", "getToken", types);
+				var getToken = function(types, success, fail)
+				{
+					cordova.exec(success, fail, "PushToken", "getToken", types);
 				}
+				alert(getToken + ' tazki');
 				getToken(["getToken"], function(token){
 					device.token = token;
 					alert(token + ' taz');
 					return token;
 				}, function(e){
+					alert('cannot get device token ' + e);
 					console.log("cannot get device token: "+e);
 					return false;
 				});
 			}else{
+				alert('device not ready, or not a native app');
 				// console.log("device not ready, or not a native app");
 				return false;
 			}
