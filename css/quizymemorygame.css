@@ -55,7 +55,7 @@
 
 /* styles for the game summary */
 #quizy-game-summary {
-  width:300px;
+  width:275px;
   height:120px;
   position:absolute;
   z-index:1001;
@@ -67,7 +67,7 @@
 }
 
 #quizy-game-summary div{
-  width:75px;
+  width:68px;
   float:left;
   padding:10px 0 10px 20px;
   color:#fff;
