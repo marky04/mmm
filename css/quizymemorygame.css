@@ -11,8 +11,8 @@
 
 /* styles of the card to show */
 .quizy-memorygame .mgcard-show{
-  width:156px;
-  height:156px;
+  width:67px;
+  height:67px;
   background:url('../img/mg-mcard.png');
 }
 
