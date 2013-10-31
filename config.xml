@@ -14,8 +14,6 @@
         Singapore Nextus Lte. Ptd.
     </author>
 
-    <gap:plugin name="GenericPush" /> <!-- latest release -->
-
 	<!--
         Enable individual API permissions by defining each here.
         The 'device' permission is required for the 'deviceready' event.
