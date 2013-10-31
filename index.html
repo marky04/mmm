@@ -1,191 +1,96 @@
-<!DOCTYPE HTML>
-<html>
-    <head>
-        <title>com.PhoneGap.c2dm</title>
-    </head>
-    <body>
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>jQuery memory card / concentration / pairs game</title>
+  <meta name="description" content="Quizy jquery plugin for creating memory game (concentration gaim, pairs game)">
+  <meta name="keywords" content="jquery plugin, memory game, concentration, pairs game, javascript, jquery" />
 
-        <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
-        <script type="text/javascript" charset="utf-8" src="cordova-2.5.0.js"></script>
-        <script type="text/javascript" charset="utf-8" src="jquery_1.5.2.min.js"></script>
-        <script type="text/javascript">
-		// An example of how to use the PhoneGap / Cordova plugin described in this post [[ http://blog.evantahler.com/phonegap-and-push-notifications ]] to get an iOs device token
-		document.addEventListener("deviceready", getDeviceToken, false);
-		function getDeviceToken(){alert('just alert');
-			if(typeof device != "undefined" && typeof cordova == "object"){
-				var getToken = function(types, success, fail)
-				{
-					cordova.exec(success, fail, "PushToken", "getToken", types);
-				}
-				alert(getToken + ' tazki');
-				getToken(["getToken"], function(token){
-					device.token = token;
-					alert(token + ' taz');
-					return token;
-				}, function(e){
-					alert('cannot get device token ' + e);
-					console.log("cannot get device token: "+e);
-					return false;
-				});
-			}else{
-				alert('device not ready, or not a native app');
-				// console.log("device not ready, or not a native app");
-				return false;
-			}
-		}
-		 
-		getLastPushMessage = function(){
-			if(typeof device != "undefined" && typeof cordova == "object"){
-				var getMessageFromIos = function(types, success, fail){
-				cordova.exec(success, fail, "LastPushMessage", "getLastPushMessage", types);
-				}
-				getMessageFromIos(["getLastPushMessage"], function(message){
-				message = unescape(message);
-				return message;
-				}, function(e){
-				console.log("cannot get last message: "+e);
-				return false;
-				});
-			}else{
-				// console.log("device not ready, or not a native app");
-				return false;
-			}
-		}
-		</script>
-        <!--script type="text/javascript" src="PushNotification.js"></script>
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/quizymemorygame.css">
+  
+  <style>
+    body{
+      font-family:Helvetica, Arial, Verdana;
+    }
+    
+    #tutorial-memorygame{
+      margin:auto;
+      width:780px;
+    }
+    
+    .text-style1{
+      font-size:14pt;
+      color:#56605f;
+      font-weight:normal;
+      text-shadow: 1px 1px 1px #fff;
+      margin:0;
+      line-height:24pt;
+    }
+    
+  </style>
 
-        <script type="text/javascript">
-            var pushNotification;
+</head>
+<body>
+  
+  <h1>QuizY jQuery memory plugin</h1>
+  
+  <div id="main" role="main">
+    
+    <div id="tutorial-memorygame" class="quizy-memorygame">
+      <ul>
+          <li class="match1">
+            <img src="img/flag-Bulgaria.png">
+          </li>
+          <li class="match2">
+            <img src="img/flag-Cuba.png">
+          </li>
+          <li class="match3">
+            <img src="img/flag-Sweden.png">
+          </li>
+          <li class="match4">
+            <img src="img/flag-NewZealand.png">
+          </li>
+          <li class="match5">
+            <img src="img/flag-Uruguay.png">
+          </li>
+          <li class="match6">
+            <img src="img/flag-Tunisia.png">
+          </li>
+          <li class="match1">
+            <br><br><br><p class="text-style1">Bulgaria</p>
+          </li>
+          <li class="match2">
+            <br><br><br><p class="text-style1">Cuba</p>
+          </li>
+          <li class="match3">
+            <br><br><br><p class="text-style1">Sweden</p>
+          </li>
+          <li class="match4">
+            <br><br><br><p class="text-style1">New<br>Zealand</p>
+          </li>
+          <li class="match5">
+            <br><br><br><p class="text-style1">Uruguay</p>
+          </li>
+          <li class="match6">
+            <br><br><br><p class="text-style1">Tunisia</p>
+          </li>
+      </ul>
+    </div>
+    
+    <div>Flag icons for this demo - by <a href="http://www.gosquared.com/liquidicity/archives/1493" target="_blank">James Gill</a></div>
 
-            function onDeviceReady() {
-                $("#app-status-ul").append('<li>deviceready event received</li>');
 
-				document.addEventListener("backbutton", function(e)
-				{
-                	$("#app-status-ul").append('<li>backbutton event received</li>');
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/jquery-1.7.1.min.js"><\/script>')</script>
+  <script src="js/jquery-ui-1.8.17.custom.min.js"></script>
+  
+  <script src="js/jquery.flip.min.js"></script>
+  <script src="js/jquery.quizymemorygame.js"></script>
+  
+  <script>
+    $('#tutorial-memorygame').quizyMemoryGame({itemWidth: 156, itemHeight: 156, itemsMargin:40, colCount:4, animType:'flip' , flipAnim:'tb', animSpeed:250, resultIcons:true });
+  </script>
 
-      				if( $("#home").length > 0)
-					{
-						// call this to get a new token each time. don't call it to reuse existing token.
-						//pushNotification.unregister(successHandler, errorHandler);
-						e.preventDefault();
-						navigator.app.exitApp();
-					}
-					else
-					{
-						navigator.app.backHistory();
-					}
-				}, false);
-
-				try
-				{
-                	pushNotification = window.plugins.pushNotification;
-                	if (device.platform == 'android' || device.platform == 'Android') {
-						$("#app-status-ul").append('<li>registering android</li>');
-                    	pushNotification.register(successHandler, errorHandler, {"senderID":"606537433987","ecb":"onNotificationGCM"});		// required!
-					} else {
-						$("#app-status-ul").append('<li>registering iOS</li>');
-                    	pushNotification.register(tokenHandler, errorHandler, {"badge":"true","sound":"true","alert":"true","ecb":"onNotificationAPN"});	// required!
-                	}
-                }
-				catch(err)
-				{
-					txt="There was an error on this page.\n\n";
-					txt+="Error description: " + err.message + "\n\n";
-					alert(txt);
-				}
-            }
-
-            // handle APNS notifications for iOS
-            function onNotificationAPN(e) {
-                if (e.alert) {
-                     $("#app-status-ul").append('<li>push-notification: ' + e.alert + '</li>');
-                     navigator.notification.alert(e.alert);
-                }
-
-                if (e.sound) {
-                    var snd = new Media(e.sound);
-                    snd.play();
-                }
-
-                if (e.badge) {
-                    pushNotification.setApplicationIconBadgeNumber(successHandler, e.badge);
-                }
-            }
-
-            // handle GCM notifications for Android
-            function onNotificationGCM(e) {
-                $("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
-
-                switch( e.event )
-                {
-                    case 'registered':
-					if ( e.regid.length > 0 )
-					{
-						$("#app-status-ul").append('<li>REGISTERED -> REGID:' + e.regid + "</li>");
-						alert(e.regid + ' taz');
-						// Your GCM push server needs to know the regID before it can push to this device
-						// here is where you might want to send it the regID for later use.
-						console.log("regID = " + e.regID);
-					}
-                    break;
-
-                    case 'message':
-                    	// if this flag is set, this notification happened while we were in the foreground.
-                    	// you might want to play a sound to get the user's attention, throw up a dialog, etc.
-                    	if (e.foreground)
-                    	{
-							$("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
-
-							// if the notification contains a soundname, play it.
-							var my_media = new Media("/android_asset/www/"+e.soundname);
-							my_media.play();
-						}
-						else
-						{	// otherwise we were launched because the user touched a notification in the notification tray.
-							if (e.coldstart)
-								$("#app-status-ul").append('<li>--COLDSTART NOTIFICATION--' + '</li>');
-							else
-							$("#app-status-ul").append('<li>--BACKGROUND NOTIFICATION--' + '</li>');
-						}
-
-						$("#app-status-ul").append('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
-						$("#app-status-ul").append('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
-                    break;
-
-                    case 'error':
-						$("#app-status-ul").append('<li>ERROR -> MSG:' + e.msg + '</li>');
-                    break;
-
-                    default:
-						$("#app-status-ul").append('<li>EVENT -> Unknown, an event was received and we do not know what it is</li>');
-                    break;
-                }
-            }
-
-            function tokenHandler (result) {
-                $("#app-status-ul").append('<li>token: '+ result +'</li>');
-                // Your iOS push server needs to know the token before it can push to this device
-                // here is where you might want to send it the token for later use.
-            }
-
-            function successHandler (result) {
-                $("#app-status-ul").append('<li>success:'+ result +'</li>');
-            }
-
-            function errorHandler (error) {
-                $("#app-status-ul").append('<li>error:'+ error +'</li>');
-            }
-
-			document.addEventListener('deviceready', onDeviceReady, true);
-
-         </script-->
-		<div id="home">
-			<div id="app-status-div">
-				<ul id="app-status-ul">
-					<li>Cordova PushNotification Plugin Demo mark</li>
-				</ul>
-			</div>
-		</div>
-    </body>
+</body>
 </html>
