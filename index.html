@@ -17,7 +17,7 @@ body{
 
 #tutorial-memorygame{
   margin:auto;
-  width:320px;
+  width:305px;
 }
 
 .text-style1{
@@ -29,10 +29,35 @@ body{
   line-height:18pt;
   padding-top:8px;
 }
+
+.title-holder{
+	display:block;	
+	border-bottom:1px solid #333;
+	height:20px;
+	margin-bottom:10px;
+	padding-bottom:10px;
+	font-size:100%;
+}
+.title-holder .title{
+	float:left;
+	margin:0;
+	font-weight:bold;
+}
+.score-holder{
+	float:right;
+	font-size:90%;
+	line-height:24px;
+}
 </style>
 </head>
 <body>
-<h1>Memory Game App</h1>
+<div class="title-holder">
+	<div class="title">Memory Game</div>
+	<div class="score-holder">
+		<span>Score:</span>
+		<span id="points">0</span>
+	</div>
+</div>
 <div id="main" role="main">
 	<div id="tutorial-memorygame" class="quizy-memorygame">
 		<ul>
