@@ -58,6 +58,7 @@ body{
 		<span id="points">0</span>
 	</div>
 </div>
+<div id="test">taz</div>
 <div id="main" role="main">
 	<div id="tutorial-memorygame" class="quizy-memorygame">
 		<ul>
@@ -159,17 +160,17 @@ function queryDB(tx)
 function querySuccess(tx, results)
 {
 	var len = results.rows.length;
-	console.log("DEMO table: " + len + " rows found.");
+	$('#test').append("DEMO table: " + len + " rows found.");
 	for (var i=0; i<len; i++)
 	{
-		console.log("Row = " + i + " ID = " + results.rows.item(i).id + " Data =  " + results.rows.item(i).data);
+		$('#test').append("Row = " + i + " ID = " + results.rows.item(i).id + " Data =  " + results.rows.item(i).data);
 	}
 }
 
 // Transaction error callback
 function errorCB(err)
 {
-	console.log("Error processing SQL: "+err.code);
+	$('#test').append("Error processing SQL: "+err.code);
 }
 
 // Transaction success callback
