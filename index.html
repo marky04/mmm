@@ -177,6 +177,7 @@ function successCB()
 {
 	var db = window.openDatabase("Database", "1.0", "Cordova Demo", 200000);
 	db.transaction(queryDB, errorCB);
+	alert("tazki success!");
 }
 
 // device APIs are available
