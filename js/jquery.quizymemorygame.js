@@ -124,7 +124,7 @@ if(!Array.indexOf)
 						// if game summary is set, adds the info to it and shows it.
 						if(opts.gameSummary)
 						{
-							$('div#quizy-game-summary').children('div#gs-column-score').html(numTotalClicks + '<br />tazki' + totalPoints);
+							$('div#quizy-game-summary').children('div#gs-column-score').html('Your Score: ' + $('span#points').html() + 'points');
 							
 							$('div#quizy-game-summary').children('div#gs-column2').html(numSeconds+'<br>'+opts.textSummaryTime);
 							$('div#quizy-game-summary').children('div#gs-column3').html(numTotalClicks+'<br>'+opts.textSummaryClicks);
@@ -373,6 +373,10 @@ if(!Array.indexOf)
 				'<div id="gs-column2"></div>' +
 				'<div id="gs-column3"></div>' +
 				'<div id="gs-column-score"></div>' +
+				'<div id="gs-column-input">' +
+					'<input type="text" id="score_rank_name" placeholder="Enter your Name" />' +
+					'<input type="button" id="score_rank_add" value="Save" onClick="addScore()" />' +
+				'</div>' +
 			'</div>');
 			
 			// positions the summary div in the middle of the div wrapper
@@ -384,9 +388,9 @@ if(!Array.indexOf)
 			$('div#quizy-game-summary').css({top:yMid+'px',left:xMid+'px'});
 			
 			// adds a click event to the summary div to be removed on click
-			$('div#quizy-game-summary').click(function()
+			$('#score_rank_add').click(function()
 			{
-				$(this).remove();
+				$('div#quizy-game-summary').remove();
 			});
 		}
 
