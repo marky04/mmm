@@ -1,6 +1,7 @@
 function closeOverlay()
 {
-	$('#overlay-holder').fadeOut();
+	$('#overlay-holder').fadeOut('fast');
+	$('#tutorial-memorygame').fadeIn();
 }
 
 function playAgain()

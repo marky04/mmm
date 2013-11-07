@@ -12,27 +12,10 @@
 <link rel="stylesheet" href="css/quizymemorygame.css">
 <link rel="stylesheet" href="css/style.css">
 <style>
-body{
-  font-family:Helvetica, Arial, Verdana;
-}
 #main{
 	position:relative;
     width: 305px;
 	margin: auto;
-}
-#tutorial-memorygame{
-  width:305px;
-  margin:auto;
-}
-
-.text-style1{
-  font-size:12pt;
-  color:#56605f;
-  font-weight:normal;
-  text-shadow: 1px 1px 1px #fff;
-  margin:0;
-  line-height:18pt;
-  padding-top:8px;
 }
 
 .title-holder{
@@ -58,9 +41,13 @@ button.maincss3button{
 	width:250px;
 	margin-left:26px;
 }
+#tutorial-memorygame{
+	display:none;
+}
 </style>
 </head>
 <body>
+<div id="debug"></div>
 <div class="title-holder">
 	<a href="index.html">
 		<button type="button" name="" value="" class="backcss3button"><</button>
@@ -160,13 +147,13 @@ $('#tutorial-memorygame').quizyMemoryGame({itemWidth: 67, itemHeight: 67, itemsM
 // Transaction error callback
 function errorCB(err)
 {
-	$('body').append('<div id="debug">').html('Error processing SQL: ' + err.code);
+	$('#debug').html('Error processing SQL: ' + err.code);
 }
 
 // Transaction success callback
 function successCB()
 {
-	$('body').append('<div id="debug">').html('Local Database Connection Success');
+	$('#debug').html('Local Database Connection Success');
 }
 
 function addScore()

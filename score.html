@@ -10,26 +10,8 @@
 <meta name="MobileOptimized" content="320">
 <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 <link rel="stylesheet" href="css/quizymemorygame.css">
+<link rel="stylesheet" href="css/style.css">
 <style>
-body{
-  font-family:Helvetica, Arial, Verdana;
-}
-
-#tutorial-memorygame{
-  margin:auto;
-  width:305px;
-}
-
-.text-style1{
-  font-size:12pt;
-  color:#56605f;
-  font-weight:normal;
-  text-shadow: 1px 1px 1px #fff;
-  margin:0;
-  line-height:18pt;
-  padding-top:8px;
-}
-
 .title-holder{
 	display:block;	
 	border-bottom:1px solid #333;
@@ -48,23 +30,10 @@ body{
 	font-size:90%;
 	line-height:24px;
 }
-#quizy-game-summary #gs-column2,
-#quizy-game-summary #gs-column3{
-	display:none;
-}
-#quizy-game-summary #gs-column-score{
-	width:100%;
-	padding:5px 0;
-	font-size:14px;
-}
-#quizy-game-summary #gs-column-input{
-	width:100%;
-	padding:5px 0;
-	font-size:14px;
-}
 </style>
 </head>
 <body>
+<div id="debug"></div>
 <div class="title-holder">
 	<div class="title">Memory Game</div>
 	<div class="score-holder">
@@ -143,13 +112,6 @@ body{
 <script>window.jQuery || document.write('<script src="js/jquery-1.7.1.min.js"><\/script>')</script>
 <script src="js/jquery-ui-1.8.17.custom.min.js"></script>
 
-<script src="js/jquery.flip.min.js"></script>
-<script src="js/jquery.quizymemorygame.js"></script>
-
-<script type="text/javascript">
-$('#tutorial-memorygame').quizyMemoryGame({itemWidth: 67, itemHeight: 67, itemsMargin:10, colCount:2, animType:'flip' , flipAnim:'tb', animSpeed:250, resultIcons:true });
-</script>
-
 <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 <script type="text/javascript" charset="utf-8">
 // Wait for device API libraries to load
@@ -184,7 +146,7 @@ function querySuccess(tx, results)
 // Transaction error callback
 function errorCB(err)
 {
-	$('body').append('<div id="debug">').html('Local Database Connection Success');
+	$('#debug').html('Local Database Connection Success');
 }
 
 // Transaction success callback
@@ -192,7 +154,7 @@ function successCB()
 {
 	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
 	db.transaction(queryDB, errorCB);
-	$('body').append('<div id="debug">').html('Local Database Connection Success');
+	$('#debug').html('Local Database Connection Success');
 }
 </script>
 </body>

@@ -1,3 +1,22 @@
+body{
+  font-family:Helvetica, Arial, Verdana;
+}
+a{
+	text-decoration:none;
+}
+#tutorial-memorygame{
+  margin:auto;
+  width:305px;
+}
+.text-style1{
+  font-size:12pt;
+  color:#56605f;
+  font-weight:normal;
+  text-shadow: 1px 1px 1px #fff;
+  margin:0;
+  line-height:18pt;
+  padding-top:8px;
+}
 #quizy-game-summary #gs-column2,
 #quizy-game-summary #gs-column3{
 	display:none;
@@ -25,10 +44,6 @@
   padding-top:100px;
   position:absolute;
   z-index:1001;
-  background: #ccc;
-  box-shadow: rgba(0,0,0,0.7) 0 0 4px, inset 0 0 20px rgba(0, 0, 0, 0.4);;
-  border:1px solid #ccc;
-  cursor:pointer;
   display:block;
 }
 
