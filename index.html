@@ -158,7 +158,8 @@ document.addEventListener("deviceready", onDeviceReady, false);
 // Populate the database
 function createScoreRanksTable(tx)
 {
-	tx.executeSql('CREATE TABLE IF NOT EXISTS score_ranks (id AUTO_INCREMENT, name, score)');
+	tx.executeSql('DROP TABLE IF EXISTS score_ranks');
+	tx.executeSql('CREATE TABLE IF NOT EXISTS score_ranks (name, score)');
 }
 
 // Query the database
@@ -174,7 +175,7 @@ function querySuccess(tx, results)
 	var strRows = 'Score Ranks table: ' + resultCount + ' rows found. <br />';
 	for (var i = 0; i < resultCount; i++)
 	{
-		strRows += 'Row = ' + i + ' ID = ' + results.rows.item(i).id + ' Name =  ' + results.rows.item(i).name  + ' Score =  ' + results.rows.item(i).score + '<br />';
+		strRows += 'Row = ' + i + ' Name =  ' + results.rows.item(i).name  + ' Score =  ' + results.rows.item(i).score + '<br />';
 	}
 	
 	$('#test').html(strRows);
@@ -211,11 +212,7 @@ function addScore()
 
 function insertScore(tx)
 {
-	/*tx.executeSql('INSERT INTO score_ranks (id, name, score) VALUES (1, "Mhean", 55)');
-	tx.executeSql('INSERT INTO score_ranks (id, name, score) VALUES (2, "Tazki", 21)');
-	tx.executeSql('INSERT INTO score_ranks (id, name, score) VALUES (3, "Mark", 78)');
-	tx.executeSql('INSERT INTO score_ranks (id, name, score) VALUES (4, "Mark", 88)');*/
-	tx.executeSql('INSERT INTO score_ranks (id, name, score) VALUES ("", "' + $('#score_rank_name').val() + '", ' + $('span#points').html() + ')');
+	tx.executeSql('INSERT INTO score_ranks (id, name, score) VALUES ("' + $('#score_rank_name').val() + '", ' + $('span#points').html() + ')');
 }
 
 </script>
