@@ -49,6 +49,7 @@ body{
 </style>
 </head>
 <body>
+<div id="debug"></div>
 <div class="title-holder">
 	<div class="title">Memory Game</div>
 </div>
@@ -91,13 +92,13 @@ function createScoreRanksTable(tx)
 // Transaction error callback
 function errorCB(err)
 {
-	$('body').append('<div id="debug"></div>').html('Error processing SQL: ' + err.code);
+	$('#debug').html('Error processing SQL: ' + err.code);
 }
 
 // Transaction success callback
 function successCB()
 {
-	$('body').append('<div id="debug"></div>').html('Local Database Connection Success');
+	$('#debug').html('Local Database Connection Success');
 }
 </script>
 </body>
