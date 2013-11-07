@@ -91,13 +91,13 @@ function createScoreRanksTable(tx)
 // Transaction error callback
 function errorCB(err)
 {
-	$('body').append('<div id="debug">').html('Error processing SQL: ' + err.code);
+	$('body').append('<div id="debug"></div>').html('Error processing SQL: ' + err.code);
 }
 
 // Transaction success callback
 function successCB()
 {
-	$('body').append('<div id="debug">').html('Local Database Connection Success');
+	$('body').append('<div id="debug"></div>').html('Local Database Connection Success');
 }
 </script>
 </body>
