@@ -30,18 +30,53 @@
 	font-size:90%;
 	line-height:24px;
 }
+.score-table{
+	border:1px solid #333;
+	border-right:none;
+	border-bottom:none;
+}
+.score-table th,
+.score-table td{
+	border-right:1px solid #333;
+	border-bottom:1px solid #333;
+	padding:10px;
+}
 </style>
 </head>
 <body>
 <div id="debug"></div>
 <div class="title-holder">
+	<a href="index.html">
+		<button type="button" name="" value="" class="backcss3button"><</button>
+	</a>
 	<div class="title">Memory Game</div>
 	<div class="score-holder">
 		Score List
 	</div>
 </div>
-<div id="test">taz</div>
-<div id="main" role="main"></div>
+<div id="main">
+	<table class="score-table" border="0" cellpadding="0" cellspacing="0">
+		<thead>
+			<tr>
+				<th>Rank</th>
+				<th width="200">Name</th>
+				<th>Score</th>
+			</tr>
+		</thead>
+		<tbody id="score_content">
+			<tr>
+				<td align="center">1</td>
+				<td>Name</td>
+				<td align="center">30</td>
+			</tr>
+			<tr>
+				<td align="center">1</td>
+				<td>mhean</td>
+				<td align="center">30</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/jquery-1.7.1.min.js"><\/script>')</script>
 <script src="js/jquery-ui-1.8.17.custom.min.js"></script>
@@ -74,13 +109,18 @@ function queryDB(tx)
 function querySuccess(tx, results)
 {
 	var resultCount = results.rows.length;
-	var strRows = 'Score Ranks table: ' + resultCount + ' rows found. <br />';
+	var strRows = '';
 	for (var i = 0; i < resultCount; i++)
 	{
-		strRows += 'Row = ' + (i + 1) + ' Name =  ' + results.rows.item(i).name  + ' Score =  ' + results.rows.item(i).score + '<br />';
+		strRows += '<tr>' +
+			'<td align="center">' + (i + 1) + '</td>' +
+			'<td>' + results.rows.item(i).name + '</td>' +
+			'<td align="center">' + results.rows.item(i).score + '</td>' +
+		'</tr>';
+		//strRows += (i + 1) + ' ' + results.rows.item(i).name  + ' ' + results.rows.item(i).score + '<br />';
 	}
 	
-	$('#test').html(strRows);
+	$('#score_content').html(strRows);
 }
 
 // Transaction error callback
@@ -94,7 +134,7 @@ function successCB()
 {
 	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
 	db.transaction(queryDB, errorCB);
-	$('#debug').html('Local Database Connection Success');
+	//$('#debug').html('Local Database Connection Success');
 }
 </script>
 </body>

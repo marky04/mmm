@@ -4,6 +4,11 @@ body{
 a{
 	text-decoration:none;
 }
+#main{
+	position:relative;
+    width: 305px;
+	margin: auto;
+}
 #tutorial-memorygame{
   margin:auto;
   width:305px;
