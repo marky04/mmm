@@ -90,13 +90,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady()
 {
 	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
-	db.transaction(createScoreRanksTable, errorCB, successCB);
-}
-
-// Create score_ranks table
-function createScoreRanksTable(tx)
-{
-	tx.executeSql('CREATE TABLE IF NOT EXISTS score_ranks (name, score, difficulty)');
+	successCB();
 }
 
 // Query the database

@@ -138,22 +138,6 @@ $('#tutorial-memorygame').quizyMemoryGame({itemWidth: 67, itemHeight: 67, itemsM
 
 <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 <script type="text/javascript" charset="utf-8">
-// Wait for device API libraries to load
-document.addEventListener("deviceready", onDeviceReady, false);
-
-// device APIs are available
-function onDeviceReady()
-{
-	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
-	db.transaction(createScoreRanksTable, errorCB, successCB);
-}
-
-// Create score_ranks table
-function createScoreRanksTable(tx)
-{
-	tx.executeSql('CREATE TABLE IF NOT EXISTS score_ranks (name, score, difficulty)');
-}
-
 // Transaction error callback
 function errorCB(err)
 {
