@@ -139,7 +139,6 @@ body{
 		</ul>
 	</div>
 </div>
-<input type="button" onClick="addScore();" value="Add Score" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/jquery-1.7.1.min.js"><\/script>')</script>
 <script src="js/jquery-ui-1.8.17.custom.min.js"></script>
@@ -157,10 +156,9 @@ $('#tutorial-memorygame').quizyMemoryGame({itemWidth: 67, itemHeight: 67, itemsM
 document.addEventListener("deviceready", onDeviceReady, false);
 
 // Populate the database
-function populateDB(tx)
+function createScoreRanksTable(tx)
 {
-	tx.executeSql('DROP TABLE IF EXISTS score_ranks');
-	tx.executeSql('CREATE TABLE IF NOT EXISTS score_ranks (id unique, name, score)');
+	tx.executeSql('CREATE TABLE IF NOT EXISTS score_ranks (id AUTO_INCREMENT, name, score)');
 }
 
 // Query the database
@@ -173,7 +171,7 @@ function queryDB(tx)
 function querySuccess(tx, results)
 {
 	var resultCount = results.rows.length;
-	var strRows = 'Score Ranks table: " + resultCount + " rows found. <br />';
+	var strRows = 'Score Ranks table: ' + resultCount + ' rows found. <br />';
 	for (var i = 0; i < resultCount; i++)
 	{
 		strRows += 'Row = ' + i + ' ID = ' + results.rows.item(i).id + ' Name =  ' + results.rows.item(i).name  + ' Score =  ' + results.rows.item(i).score + '<br />';
@@ -200,7 +198,7 @@ function successCB()
 function onDeviceReady()
 {
 	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
-	db.transaction(populateDB, errorCB, successCB);
+	db.transaction(createScoreRanksTable, errorCB, successCB);
 }
 
 
@@ -213,10 +211,10 @@ function addScore()
 
 function insertScore(tx)
 {
-	tx.executeSql('INSERT INTO score_ranks (id, name, score) VALUES (1, "Mhean", 55)');
+	/*tx.executeSql('INSERT INTO score_ranks (id, name, score) VALUES (1, "Mhean", 55)');
 	tx.executeSql('INSERT INTO score_ranks (id, name, score) VALUES (2, "Tazki", 21)');
 	tx.executeSql('INSERT INTO score_ranks (id, name, score) VALUES (3, "Mark", 78)');
-	tx.executeSql('INSERT INTO score_ranks (id, name, score) VALUES (4, "Mark", 88)');
+	tx.executeSql('INSERT INTO score_ranks (id, name, score) VALUES (4, "Mark", 88)');*/
 	tx.executeSql('INSERT INTO score_ranks (id, name, score) VALUES (5, "' + $('#score_rank_name').val() + '", ' + $('span#points').html() + ')');
 }
 
