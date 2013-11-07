@@ -70,7 +70,7 @@ function onDeviceReady()
 // Create score_ranks table
 function createScoreRanksTable(tx)
 {
-	tx.executeSql('DROP TABLE IF EXISTS score_ranks');
+	//tx.executeSql('DROP TABLE IF EXISTS score_ranks');
 	tx.executeSql('CREATE TABLE IF NOT EXISTS score_ranks (name, score, difficulty)');
 }
 
