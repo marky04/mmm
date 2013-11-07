@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="css/style.css">
 <style>
 .title-holder{
-	display:block;	
+	display:block;
 	border-bottom:1px solid #333;
 	height:26px;
 	margin-bottom:10px;
@@ -35,9 +35,6 @@ button.maincss3button{
 	width:250px;
 	margin-left:26px;
 }
-#tutorial-memorygame{
-	display:none;
-}
 </style>
 </head>
 <body>
@@ -46,19 +43,13 @@ button.maincss3button{
 	<a href="index.html">
 		<button type="button" name="" value="" class="backcss3button"><</button>
 	</a>
-	<div class="title">Memory Game</div>
+	<div class="title">Memory Game (difficult)</div>
 	<div class="score-holder">
 		<span>Score:</span>
 		<span id="points">0</span>
 	</div>
 </div>
 <div id="main" role="main">
-	<div id="overlay-holder">
-		<button type="button" value="" class="commoncss3button" onClick="closeOverlay();">Easy</button>
-		<a href="difficult.html">
-			<button type="button" name="" value="" class="maincss3button">Difficult</button>
-		</a>	
-	</div>
 	<div id="tutorial-memorygame" class="quizy-memorygame">
 		<ul>
 		  <li class="match1">
@@ -158,7 +149,7 @@ function addScore()
 
 function insertScore(tx)
 {
-	tx.executeSql('INSERT INTO score_ranks (name, score, difficulty) VALUES ("' + $('#score_rank_name').val() + '", ' + $('span#points').html() + ', "easy")');
+	tx.executeSql('INSERT INTO score_ranks (name, score, difficulty) VALUES ("' + $('#score_rank_name').val() + '", ' + $('span#points').html() + ', "difficult")');
 }
 </script>
 </body>

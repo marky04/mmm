@@ -96,7 +96,7 @@ function onDeviceReady()
 // Query the database
 function queryDB(tx)
 {
-	tx.executeSql('SELECT * FROM score_ranks WHERE 1 ORDER BY score DESC', [], querySuccess, errorCB);
+	tx.executeSql('SELECT * FROM score_ranks WHERE difficulty = "easy" ORDER BY score DESC', [], querySuccess, errorCB);
 }
 
 // Query the success callback
