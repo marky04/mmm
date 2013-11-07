@@ -145,7 +145,6 @@ document.addEventListener("deviceready", onDeviceReady, false);
 // Populate the database
 function populateDB(tx)
 {
-	tx.executeSql('DROP TABLE IF EXISTS DEMO');
 	tx.executeSql('DROP TABLE IF EXISTS score_ranks');
 	tx.executeSql('CREATE TABLE IF NOT EXISTS score_ranks (id unique, name, score)');
 }
@@ -163,7 +162,7 @@ function querySuccess(tx, results)
 	var strRows = 'Score Ranks table: " + len + " rows found. <br />';
 	for (var i = 0; i < resultCount; i++)
 	{
-		strRows = 'Row = ' + i + ' ID = ' + results.rows.item(i).id + ' Data =  ' + results.rows.item(i).data + '<br />';
+		strRows += 'Row = ' + i + ' ID = ' + results.rows.item(i).id + ' Name =  ' + results.rows.item(i).name  + ' Score =  ' + results.rows.item(i).score + '<br />';
 	}
 	
 	$('#test').html(strRows);
