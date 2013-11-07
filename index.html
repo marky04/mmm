@@ -215,7 +215,7 @@ function insertScore(tx)
 	tx.executeSql('INSERT INTO score_ranks (id, name, score) VALUES (2, "Tazki", 21)');
 	tx.executeSql('INSERT INTO score_ranks (id, name, score) VALUES (3, "Mark", 78)');
 	tx.executeSql('INSERT INTO score_ranks (id, name, score) VALUES (4, "Mark", 88)');*/
-	tx.executeSql('INSERT INTO score_ranks (id, name, score) VALUES (5, "' + $('#score_rank_name').val() + '", ' + $('span#points').html() + ')');
+	tx.executeSql('INSERT INTO score_ranks (id, name, score) VALUES ("", "' + $('#score_rank_name').val() + '", ' + $('span#points').html() + ')');
 }
 
 </script>
