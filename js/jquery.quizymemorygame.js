@@ -145,7 +145,7 @@ if(!Array.indexOf)
 					var totalPoints = $('span#points').html();
 					if(totalPoints > 0)
 					{
-						$('span#points').html(totalPoints - 1);
+						$('span#points').html(totalPoints - 3);
 					}
 					
 					showResIcon('wrong');

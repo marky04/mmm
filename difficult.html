@@ -2,9 +2,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>jQuery memory card / concentration / pairs game</title>
-<meta name="description" content="Quizy jquery plugin for creating memory game (concentration gaim, pairs game)">
-<meta name="keywords" content="jquery plugin, memory game, concentration, pairs game, javascript, jquery" />
+<title>Memory Game</title>
 
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
@@ -12,24 +10,6 @@
 <link rel="stylesheet" href="css/quizymemorygame.css">
 <link rel="stylesheet" href="css/style.css">
 <style>
-.title-holder{
-	display:block;
-	border-bottom:1px solid #333;
-	height:26px;
-	margin-bottom:10px;
-	padding-bottom:5px;
-	font-size:100%;
-}
-.title-holder .title{
-	float:left;
-	margin:3px 0 0;
-	font-weight:bold;
-}
-.score-holder{
-	float:right;
-	font-size:90%;
-	line-height:24px;
-}
 button.commoncss3button,
 button.maincss3button{
 	width:250px;
@@ -41,9 +21,11 @@ button.maincss3button{
 <div id="debug"></div>
 <div class="title-holder">
 	<a href="index.html">
-		<button type="button" name="" value="" class="backcss3button"><</button>
+		<button type="button" name="" value="" class="backcss3button">
+			<img src="img/home_icon.png" />
+		</button>
 	</a>
-	<div class="title">Memory Game (difficult)</div>
+	<div class="title">Difficult</div>
 	<div class="score-holder">
 		<span>Score:</span>
 		<span id="points">0</span>
@@ -58,13 +40,13 @@ button.maincss3button{
 		  <li class="match2">
 			<img src="img/flag-Cuba.png">
 		  </li>
-		  <!--li class="match3">
+		  <li class="match3">
 			<img src="img/flag-Sweden.png">
 		  </li>
 		  <li class="match4">
 			<img src="img/flag-NewZealand.png">
 		  </li>
-		  <li class="match5">
+		  <!--li class="match5">
 			<img src="img/flag-Uruguay.png">
 		  </li>
 		  <li class="match6">
@@ -88,13 +70,13 @@ button.maincss3button{
 		  <li class="match2">
 			<p class="text-style1">Cuba</p>
 		  </li>
-		  <!--li class="match3">
+		  <li class="match3">
 			<p class="text-style1">Sweden</p>
 		  </li>
 		  <li class="match4">
 			<p class="text-style1">New<br>Zealand</p>
 		  </li>
-		  <li class="match5">
+		  <!--li class="match5">
 			<p class="text-style1">Uruguay</p>
 		  </li>
 		  <li class="match6">

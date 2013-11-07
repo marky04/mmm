@@ -1,0 +1,108 @@
+<!doctype html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Memory Game</title>
+
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+<link rel="stylesheet" href="css/quizymemorygame.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="debug"></div>
+<div class="title-holder">
+	<a href="index.html">
+		<button type="button" name="" value="" class="backcss3button">
+			<img src="img/home_icon.png" />
+		</button>
+	</a>
+	<div class="title">
+		<a href="score_easy.html">Easy</a>
+		&nbsp;|&nbsp;
+		<span style="color:#fff;">Difficult</span>
+	</div>
+	<div class="score-holder">
+		Score List
+	</div>
+</div>
+<div id="main">
+	<table class="score-table" border="0" cellpadding="0" cellspacing="0">
+		<thead>
+			<tr>
+				<th>Rank</th>
+				<th width="200">Name</th>
+				<th>Score</th>
+			</tr>
+		</thead>
+		<tbody id="score_content">
+			<tr>
+				<td align="center">1</td>
+				<td>tazki</td>
+				<td align="center">60</td>
+			</tr>
+			<tr>
+				<td align="center">1</td>
+				<td>mark</td>
+				<td align="center">30</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/jquery-1.7.1.min.js"><\/script>')</script>
+<script src="js/jquery-ui-1.8.17.custom.min.js"></script>
+
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+<script type="text/javascript" charset="utf-8">
+// Wait for device API libraries to load
+document.addEventListener("deviceready", onDeviceReady, false);
+
+// device APIs are available
+function onDeviceReady()
+{
+	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
+	successCB();
+}
+
+// Query the database
+function queryDB(tx)
+{
+	tx.executeSql('SELECT * FROM score_ranks WHERE difficulty = "difficult" ORDER BY score DESC', [], querySuccess, errorCB);
+}
+
+// Query the success callback
+function querySuccess(tx, results)
+{
+	var resultCount = results.rows.length;
+	var strRows = '';
+	for (var i = 0; i < resultCount; i++)
+	{
+		strRows += '<tr>' +
+			'<td align="center">' + (i + 1) + '</td>' +
+			'<td>' + results.rows.item(i).name + '</td>' +
+			'<td align="center">' + results.rows.item(i).score + '</td>' +
+		'</tr>';
+		//strRows += (i + 1) + ' ' + results.rows.item(i).name  + ' ' + results.rows.item(i).score + '<br />';
+	}
+	
+	$('#score_content').html(strRows);
+}
+
+// Transaction error callback
+function errorCB(err)
+{
+	$('#debug').html('Local Database Connection Success');
+}
+
+// Transaction success callback
+function successCB()
+{
+	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
+	db.transaction(queryDB, errorCB);
+	//$('#debug').html('Local Database Connection Success');
+}
+</script>
+</body>
+</html>

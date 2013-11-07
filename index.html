@@ -2,9 +2,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>jQuery memory card / concentration / pairs game</title>
-<meta name="description" content="Quizy jquery plugin for creating memory game (concentration gaim, pairs game)">
-<meta name="keywords" content="jquery plugin, memory game, concentration, pairs game, javascript, jquery" />
+<title>Memory Game</title>
 
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
@@ -13,36 +11,30 @@
 <link rel="stylesheet" href="css/style.css">
 <style>
 .title-holder{
-	display:block;	
-	border-bottom:1px solid #333;
-	height:37px;
-	margin-bottom:30px;
-	padding-bottom:10px;
-	font-size:200%;
-}
-.title-holder .title{
-	float:left;
-	width:100%;
-	margin:0;
+	background:none;
+	height:77px;
+	margin:25px 0 15px;
 	text-align:center;
-	font-weight:bold;
 }
 </style>
 </head>
 <body>
 <div id="debug"></div>
 <div class="title-holder">
-	<div class="title">Memory Game</div>
+	<img src="img/home_logo.jpg" />
 </div>
 <div id="main">
 	<a href="easy.html">
 		<button type="button" name="" value="" class="maincss3button">Start Game</button>
 	</a>
-	<a href="score.html">
-		<button type="button" name="" value="" class="commoncss3button">High Score</button>
-	</a>
 	<a href="#"><!--settings.html-->
 		<button type="button" name="" value="" class="commoncss3button">Settings</button>
+	</a>
+	<a href="score_easy.html">
+		<button type="button" name="" value="" class="commoncss3button">Score</button>
+	</a>
+	<a href="#">
+		<button type="button" name="" value="" class="commoncss3button">Package</button>
 	</a>
 </div>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>

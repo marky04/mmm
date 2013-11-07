@@ -1,7 +1,10 @@
 body{
+  background:#cbcbcb;
   font-family:Helvetica, Arial, Verdana;
+  margin:0;
 }
 a{
+	color:#000;
 	text-decoration:none;
 }
 #main{
@@ -12,6 +15,25 @@ a{
 #tutorial-memorygame{
   margin:auto;
   width:305px;
+}
+.title-holder{
+	display:block;
+	background:#909090;
+	height:26px;
+	margin-bottom:10px;
+	padding-bottom:5px;
+	font-size:100%;
+	line-height:28px;
+}
+.title-holder .title{
+	float:left;
+	margin:0;
+	font-weight:bold;
+}
+.score-holder{
+	float:right;
+	font-size:90%;
+	margin-right:5px;
 }
 .text-style1{
   font-size:12pt;
@@ -119,7 +141,7 @@ button.commoncss3button {
 
 button.backcss3button {
 	float:left;
-	margin-right:8px;
+	margin:2px 8px 0 3px;
 	font-weight:bold;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
@@ -153,4 +175,17 @@ button.backcss3button {
 	text-shadow:
 		0px -1px 0px rgba(000,000,000,0.2),
 		0px 1px 0px rgba(255,255,255,1);
+}
+
+.score-table{
+	background:#fff;
+	border:1px solid #333;
+	border-right:none;
+	border-bottom:none;
+}
+.score-table th,
+.score-table td{
+	border-right:1px solid #333;
+	border-bottom:1px solid #333;
+	padding:10px;
 }
