@@ -125,6 +125,7 @@ body{
 		</ul>
 	</div>
 </div>
+<input type="button" onClick="addScore();" value="Add Score" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/jquery-1.7.1.min.js"><\/script>')</script>
 <script src="js/jquery-ui-1.8.17.custom.min.js"></script>
@@ -187,6 +188,20 @@ function onDeviceReady()
 	var db = window.openDatabase("Database", "1.0", "Cordova Demo", 200000);
 	db.transaction(populateDB, errorCB, successCB);
 }
+
+
+
+function addScore()
+{
+	var db = window.openDatabase("Database", "1.0", "Cordova Demo", 200000);	
+	db.transaction(insertScore, errorCB, successCB);
+}
+
+function insertScore(tx)
+{
+	tx.executeSql('INSERT INTO DEMO (id, data) VALUES (3, "Tazki row")');
+}
+
 </script>
 </body>
 </html>
