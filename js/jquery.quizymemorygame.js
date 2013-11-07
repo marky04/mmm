@@ -124,12 +124,10 @@ if(!Array.indexOf)
 						// if game summary is set, adds the info to it and shows it.
 						if(opts.gameSummary)
 						{
-							$('div#quizy-game-summary').
-							children('div#gs-column2').
-							html(numSeconds+'<br>'+opts.textSummaryTime);
-							$('div#quizy-game-summary').
-							children('div#gs-column3').
-							html(numTotalClicks+'<br>'+opts.textSummaryClicks);
+							$('div#quizy-game-summary').children('div#gs-column-score').html(numTotalClicks + '<br />tazki' + totalPoints);
+							
+							$('div#quizy-game-summary').children('div#gs-column2').html(numSeconds+'<br>'+opts.textSummaryTime);
+							$('div#quizy-game-summary').children('div#gs-column3').html(numTotalClicks+'<br>'+opts.textSummaryClicks);
 							$('div#quizy-game-summary').delay(2000).fadeIn(1000);
 						}
 
@@ -368,10 +366,15 @@ if(!Array.indexOf)
 		// Appends game summary div if set in the opts.
 		if(opts.gameSummary)
 		{
-			$(this).append('<div id="quizy-game-summary"><div id="gs-column1">'+
-			opts.textSummaryTitle+
-			'</div><div id="gs-column2"></div>'+
-			'<div id="gs-column3"></div></div>');
+			$(this).append('<div id="quizy-game-summary">' +
+				'<div id="gs-column1">' +
+					opts.textSummaryTitle +
+			    '</div>' +
+				'<div id="gs-column2"></div>' +
+				'<div id="gs-column3"></div>' +
+				'<div id="gs-column-score"></div>' +
+			'</div>');
+			
 			// positions the summary div in the middle of the div wrapper
 			var xMid = $(this).width()/2 -
 			$('div#quizy-game-summary').width()/2;
@@ -379,6 +382,7 @@ if(!Array.indexOf)
 			$('div#quizy-game-summary').height()/2 -
 			opts.itemsMargin/2;
 			$('div#quizy-game-summary').css({top:yMid+'px',left:xMid+'px'});
+			
 			// adds a click event to the summary div to be removed on click
 			$('div#quizy-game-summary').click(function()
 			{
