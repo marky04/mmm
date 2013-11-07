@@ -124,7 +124,7 @@ if(!Array.indexOf)
 						// if game summary is set, adds the info to it and shows it.
 						if(opts.gameSummary)
 						{
-							$('div#quizy-game-summary').children('div#gs-column-score').html('Your Score: ' + $('span#points').html() + 'points');
+							$('div#quizy-game-summary').children('div#gs-column-score').html('Your Score: ' + $('span#points').html() + ' points');
 							
 							$('div#quizy-game-summary').children('div#gs-column2').html(numSeconds+'<br>'+opts.textSummaryTime);
 							$('div#quizy-game-summary').children('div#gs-column3').html(numTotalClicks+'<br>'+opts.textSummaryClicks);
