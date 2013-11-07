@@ -152,7 +152,7 @@ function populateDB(tx)
 // Query the database
 function queryDB(tx)
 {
-	tx.executeSql('SELECT * FROM score_ranks', [], querySuccess, errorCB);
+	tx.executeSql('SELECT * FROM score_ranks WHERE 1 ORDER BY score DESC', [], querySuccess, errorCB);
 }
 
 // Query the success callback
@@ -199,7 +199,10 @@ function addScore()
 
 function insertScore(tx)
 {
-	tx.executeSql('INSERT INTO score_ranks (id, name, score) VALUES (3, "Tazki", 55)');
+	tx.executeSql('INSERT INTO score_ranks (id, name, score) VALUES (1, "Mhean", 55)');
+	tx.executeSql('INSERT INTO score_ranks (id, name, score) VALUES (2, "Tazki", 21)');
+	tx.executeSql('INSERT INTO score_ranks (id, name, score) VALUES (3, "Mark", 78)');
+	tx.executeSql('INSERT INTO score_ranks (id, name, score) VALUES (4, "Mark", 88)');
 }
 
 </script>
