@@ -375,7 +375,10 @@ if(!Array.indexOf)
 				'<div id="gs-column-score"></div>' +
 				'<div id="gs-column-input">' +
 					'<input type="text" id="score_rank_name" placeholder="Enter your Name" />' +
-					'<input type="button" id="score_rank_add" value="Save" onClick="addScore()" />' +
+					'<input type="button" id="score_rank_add" value="Save" onClick="addScore();" />' +
+				'</div>' +
+				'<div id="gs-column-play">' +
+					'<input type="button" id="score_rank_add" value="Play Again" onClick="playAgain();" />' +
 				'</div>' +
 			'</div>');
 			
@@ -390,7 +393,9 @@ if(!Array.indexOf)
 			// adds a click event to the summary div to be removed on click
 			$('#score_rank_add').click(function()
 			{
-				$('div#quizy-game-summary').remove();
+				//$('div#quizy-game-summary').remove();
+				$('#gs-column-input').hide();
+				$('#gs-column-play').fadeIn();
 			});
 		}
 

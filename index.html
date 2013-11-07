@@ -10,12 +10,13 @@
 <meta name="MobileOptimized" content="320">
 <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 <link rel="stylesheet" href="css/quizymemorygame.css">
+<link rel="stylesheet" href="css/style.css">
 <style>
 body{
   font-family:Helvetica, Arial, Verdana;
 }
 
-#tutorial-memorygame{
+#main{
   margin:auto;
   width:305px;
 }
@@ -33,167 +34,45 @@ body{
 .title-holder{
 	display:block;	
 	border-bottom:1px solid #333;
-	height:20px;
-	margin-bottom:10px;
+	height:37px;
+	margin-bottom:30px;
 	padding-bottom:10px;
-	font-size:100%;
+	font-size:200%;
 }
 .title-holder .title{
 	float:left;
+	width:100%;
 	margin:0;
+	text-align:center;
 	font-weight:bold;
-}
-.score-holder{
-	float:right;
-	font-size:90%;
-	line-height:24px;
-}
-#quizy-game-summary #gs-column2,
-#quizy-game-summary #gs-column3{
-	display:none;
-}
-#quizy-game-summary #gs-column-score{
-	width:100%;
-	padding:5px 0;
-	font-size:14px;
-}
-#quizy-game-summary #gs-column-input{
-	width:100%;
-	padding:5px 0;
-	font-size:14px;
 }
 </style>
 </head>
 <body>
 <div class="title-holder">
 	<div class="title">Memory Game</div>
-	<div class="score-holder">
-		<span>Score:</span>
-		<span id="points">0</span>
-	</div>
 </div>
-<div id="test">taz</div>
-<div id="main" role="main">
-	<div id="tutorial-memorygame" class="quizy-memorygame">
-		<ul>
-		  <li class="match1">
-			<img src="img/flag-Bulgaria.png">
-		  </li>
-		  <li class="match2">
-			<img src="img/flag-Cuba.png">
-		  </li>
-		  <!--li class="match3">
-			<img src="img/flag-Sweden.png">
-		  </li>
-		  <li class="match4">
-			<img src="img/flag-NewZealand.png">
-		  </li>
-		  <li class="match5">
-			<img src="img/flag-Uruguay.png">
-		  </li>
-		  <li class="match6">
-			<img src="img/flag-Tunisia.png">
-		  </li>
-		  <li class="match7">
-			<p class="text-style1">Pair 7</p>
-		  </li>
-		  <li class="match8">
-			<p class="text-style1">Pair 8</p>
-		  </li>
-		  <li class="match9">
-			<p class="text-style1">Pair 9</p>
-		  </li>
-		  <li class="match10">
-			<p class="text-style1">Pair 10</p>
-		  </li-->
-		  <li class="match1">
-			<p class="text-style1">Bulgaria</p>
-		  </li>
-		  <li class="match2">
-			<p class="text-style1">Cuba</p>
-		  </li>
-		  <!--li class="match3">
-			<p class="text-style1">Sweden</p>
-		  </li>
-		  <li class="match4">
-			<p class="text-style1">New<br>Zealand</p>
-		  </li>
-		  <li class="match5">
-			<p class="text-style1">Uruguay</p>
-		  </li>
-		  <li class="match6">
-			<p class="text-style1">Tunisia</p>
-		  </li>
-		  <li class="match7">
-			<p class="text-style1">Pair 7</p>
-		  </li>
-		  <li class="match8">
-			<p class="text-style1">Pair 8</p>
-		  </li>
-		  <li class="match9">
-			<p class="text-style1">Pair 9</p>
-		  </li>
-		  <li class="match10">
-			<p class="text-style1">Pair 10</p>
-		  </li-->
-		</ul>
-	</div>
+<div id="main">
+	<a href="easy.html">
+		<button type="button" name="" value="" class="maincss3button">Start Game</button>
+	</a>
+	<a href="score.html">
+		<button type="button" name="" value="" class="commoncss3button">High Score</button>
+	</a>
+	<a href="settings.html">
+		<button type="button" name="" value="" class="commoncss3button">Settings</button>
+	</a>
 </div>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/jquery-1.7.1.min.js"><\/script>')</script>
 <script src="js/jquery-ui-1.8.17.custom.min.js"></script>
 
 <script src="js/jquery.flip.min.js"></script>
-<script src="js/jquery.quizymemorygame.js"></script>
-
-<script type="text/javascript">
-$('#tutorial-memorygame').quizyMemoryGame({itemWidth: 67, itemHeight: 67, itemsMargin:10, colCount:2, animType:'flip' , flipAnim:'tb', animSpeed:250, resultIcons:true });
-</script>
 
 <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 <script type="text/javascript" charset="utf-8">
 // Wait for device API libraries to load
 document.addEventListener("deviceready", onDeviceReady, false);
-
-// Populate the database
-function createScoreRanksTable(tx)
-{
-	tx.executeSql('DROP TABLE IF EXISTS score_ranks');
-	tx.executeSql('CREATE TABLE IF NOT EXISTS score_ranks (name, score)');
-}
-
-// Query the database
-function queryDB(tx)
-{
-	tx.executeSql('SELECT * FROM score_ranks WHERE 1 ORDER BY score DESC', [], querySuccess, errorCB);
-}
-
-// Query the success callback
-function querySuccess(tx, results)
-{
-	var resultCount = results.rows.length;
-	var strRows = 'Score Ranks table: ' + resultCount + ' rows found. <br />';
-	for (var i = 0; i < resultCount; i++)
-	{
-		strRows += 'Row = ' + i + ' Name =  ' + results.rows.item(i).name  + ' Score =  ' + results.rows.item(i).score + '<br />';
-	}
-	
-	$('#test').html(strRows);
-}
-
-// Transaction error callback
-function errorCB(err)
-{
-	$('#test').append('Error processing SQL: ' + err.code);
-}
-
-// Transaction success callback
-function successCB()
-{
-	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
-	db.transaction(queryDB, errorCB);
-	alert('tazki success!');
-}
 
 // device APIs are available
 function onDeviceReady()
@@ -202,19 +81,24 @@ function onDeviceReady()
 	db.transaction(createScoreRanksTable, errorCB, successCB);
 }
 
-
-
-function addScore()
+// Create score_ranks table
+function createScoreRanksTable(tx)
 {
-	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
-	db.transaction(insertScore, errorCB, successCB);
+	tx.executeSql('DROP TABLE IF EXISTS score_ranks');
+	tx.executeSql('CREATE TABLE IF NOT EXISTS score_ranks (name, score, difficulty)');
 }
 
-function insertScore(tx)
+// Transaction error callback
+function errorCB(err)
 {
-	tx.executeSql('INSERT INTO score_ranks (id, name, score) VALUES ("' + $('#score_rank_name').val() + '", ' + $('span#points').html() + ')');
+	$('body').append('<div id="debug">').html('Error processing SQL: ' + err.code);
 }
 
+// Transaction success callback
+function successCB()
+{
+	$('body').append('<div id="debug">').html('Local Database Connection Success');
+}
 </script>
 </body>
 </html>
