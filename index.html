@@ -146,46 +146,47 @@ document.addEventListener("deviceready", onDeviceReady, false);
 function populateDB(tx)
 {
 	tx.executeSql('DROP TABLE IF EXISTS DEMO');
-	tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO (id unique, data)');
-	tx.executeSql('INSERT INTO DEMO (id, data) VALUES (1, "First row")');
-	tx.executeSql('INSERT INTO DEMO (id, data) VALUES (2, "Second row")');
+	tx.executeSql('DROP TABLE IF EXISTS score_ranks');
+	tx.executeSql('CREATE TABLE IF NOT EXISTS score_ranks (id unique, name, score)');
 }
 
 // Query the database
 function queryDB(tx)
 {
-	tx.executeSql('SELECT * FROM DEMO', [], querySuccess, errorCB);
+	tx.executeSql('SELECT * FROM score_ranks', [], querySuccess, errorCB);
 }
 
 // Query the success callback
 function querySuccess(tx, results)
 {
-	var len = results.rows.length;
-	$('#test').append("DEMO table: " + len + " rows found.");
-	for (var i=0; i<len; i++)
+	var resultCount = results.rows.length;
+	var strRows = 'Score Ranks table: " + len + " rows found. <br />';
+	for (var i = 0; i < resultCount; i++)
 	{
-		$('#test').append("Row = " + i + " ID = " + results.rows.item(i).id + " Data =  " + results.rows.item(i).data);
+		strRows = 'Row = ' + i + ' ID = ' + results.rows.item(i).id + ' Data =  ' + results.rows.item(i).data + '<br />';
 	}
+	
+	$('#test').html(strRows);
 }
 
 // Transaction error callback
 function errorCB(err)
 {
-	$('#test').append("Error processing SQL: "+err.code);
+	$('#test').append('Error processing SQL: ' + err.code);
 }
 
 // Transaction success callback
 function successCB()
 {
-	var db = window.openDatabase("Database", "1.0", "Cordova Demo", 200000);
+	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
 	db.transaction(queryDB, errorCB);
-	alert("tazki success!");
+	alert('tazki success!');
 }
 
 // device APIs are available
 function onDeviceReady()
 {
-	var db = window.openDatabase("Database", "1.0", "Cordova Demo", 200000);
+	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
 	db.transaction(populateDB, errorCB, successCB);
 }
 
@@ -193,13 +194,13 @@ function onDeviceReady()
 
 function addScore()
 {
-	var db = window.openDatabase("Database", "1.0", "Cordova Demo", 200000);	
+	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
 	db.transaction(insertScore, errorCB, successCB);
 }
 
 function insertScore(tx)
 {
-	tx.executeSql('INSERT INTO DEMO (id, data) VALUES (3, "Tazki row")');
+	tx.executeSql('INSERT INTO score_ranks (id, name, score) VALUES (3, "Tazki", 55)');
 }
 
 </script>
