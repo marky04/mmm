@@ -41,8 +41,8 @@ button.commoncss3button{
 					<div class="onoffswitch-inner"></div>
 					<div class="onoffswitch-switch"></div>
 				</label>
-			</div> 
-		</div> 
+			</div>
+		</div>
 	</div>
 	<div class="content-holder">
 		<div class="content-title">Music Tracks</div>
@@ -53,10 +53,10 @@ button.commoncss3button{
 					<div class="onoffswitch-inner"></div>
 					<div class="onoffswitch-switch"></div>
 				</label>
-			</div> 
-		</div> 
+			</div>
+		</div>
 	</div>
-	<a href="how-to-play.html">
+	<a href="how_to_play.html">
 		<button type="button" name="" value="" class="commoncss3button">How To Play</button>
 	</a>
 </div>
@@ -89,12 +89,12 @@ function querySuccess(tx, results)
 	var strRows = '';
 	for (var i = 0; i < resultCount; i++)
 	{
-		strRows += '<tr>' +
+		/*strRows += '<tr>' +
 			'<td align="center">' + (i + 1) + '</td>' +
 			'<td>' + results.rows.item(i).config_key + '</td>' +
 			'<td align="center">' + results.rows.item(i).config_value + '</td>' +
-		'</tr>';
-		
+		'</tr>';*/
+
 		if(results.rows.item(i).config_value == 'on')
 		{
 			$('#' + results.rows.item(i).config_key).attr('checked', 'checked');
@@ -104,7 +104,7 @@ function querySuccess(tx, results)
 			$('#' + results.rows.item(i).config_key).removeAttr('checked');
 		}
 	}
-	
+
 	$('#debug').html(strRows);
 }
 
@@ -153,7 +153,6 @@ function updateConfigMusic(tx)
 	{
 		configValue = 'on';
 	}
-	alert('taz' + configValue);
 
 	tx.executeSql('UPDATE config SET config_value = "' + configValue + '" WHERE config_key = "music_tracks"');
 }

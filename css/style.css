@@ -8,6 +8,9 @@ a{
 	color:#000;
 	text-decoration:none;
 }
+p{
+	padding:0 5px;
+}
 #main{
 	position:relative;
     width: 305px;
