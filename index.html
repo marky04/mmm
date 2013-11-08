@@ -27,7 +27,7 @@
 	<a href="easy.html">
 		<button type="button" name="" value="" class="maincss3button">Start Game</button>
 	</a>
-	<a href="#"><!--settings.html-->
+	<a href="settings.html">
 		<button type="button" name="" value="" class="commoncss3button">Settings</button>
 	</a>
 	<a href="score_easy.html">
@@ -60,6 +60,9 @@ function createScoreRanksTable(tx)
 {
 	//tx.executeSql('DROP TABLE IF EXISTS score_ranks');
 	tx.executeSql('CREATE TABLE IF NOT EXISTS score_ranks (name, score, difficulty)');
+	tx.executeSql('CREATE TABLE IF NOT EXISTS config (config_key, config_value)');
+	tx.executeSql('INSERT INTO config (config_key, config_value) VALUES ("sound_effects", "on")');
+	tx.executeSql('INSERT INTO config (config_key, config_value) VALUES ("music_tracks", "on")');
 }
 
 // Transaction error callback
