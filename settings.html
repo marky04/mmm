@@ -141,13 +141,13 @@ function updateConfigSound(tx)
 function updateConfigMusic(tx)
 {
 	var configValue = 'off';
-	if($('#sound_effects').prop('checked'))
+	if($('#music_tracks').prop('checked'))
 	{
 		configValue = 'on';
 	}
 	alert('taz' + configValue);
 
-	tx.executeSql('UPDATE config SET config_value = "' + configValue + '" WHERE config_key = "sound_effects"');
+	tx.executeSql('UPDATE config SET config_value = "' + configValue + '" WHERE config_key = "music_tracks"');
 }
 </script>
 </body>
