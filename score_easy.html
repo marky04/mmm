@@ -9,33 +9,35 @@
 <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 <link rel="stylesheet" href="css/quizymemorygame.css">
 <link rel="stylesheet" href="css/style.css">
-<style>
-.title-holder{
-	background:none;
-	height:77px;
-	margin:25px 0 15px;
-	text-align:center;
-}
-</style>
 </head>
 <body>
 <div id="debug"></div>
 <div class="title-holder">
-	<img src="img/home_logo.jpg" />
+	<a href="index.html">
+		<button type="button" name="" value="" class="backcss3button">
+			<img src="img/home_icon.png" />
+		</button>
+	</a>
+	<div class="title">
+		<span style="color:#fff;">Easy</span>
+		&nbsp;|&nbsp;
+		<a href="score_difficult.html">Difficult</a>
+	</div>
+	<div class="score-holder">
+		Score List
+	</div>
 </div>
 <div id="main">
-	<a href="easy.html">
-		<button type="button" name="" value="" class="maincss3button">Start Game</button>
-	</a>
-	<a href="settings.html">
-		<button type="button" name="" value="" class="commoncss3button">Settings</button>
-	</a>
-	<a href="score_easy.html">
-		<button type="button" name="" value="" class="commoncss3button">Score</button>
-	</a>
-	<a href="package.html">
-		<button type="button" name="" value="" class="commoncss3button">Package</button>
-	</a>
+	<table class="score-table" border="0" cellpadding="0" cellspacing="0">
+		<thead>
+			<tr>
+				<th>Rank</th>
+				<th width="200">Name</th>
+				<th>Score</th>
+			</tr>
+		</thead>
+		<tbody id="score_content"></tbody>
+	</table>
 </div>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/jquery-1.7.1.min.js"><\/script>')</script>
@@ -54,29 +56,44 @@ document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady()
 {
 	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
-	db.transaction(createScoreRanksTable, errorCB, successCB);
+	successCB();
 }
 
-// Create score_ranks table
-function createScoreRanksTable(tx)
+// Query the database
+function queryDB(tx)
 {
-	//tx.executeSql('DROP TABLE IF EXISTS score_ranks');
-	tx.executeSql('CREATE TABLE IF NOT EXISTS score_ranks (name, score, difficulty)');
-	//tx.executeSql('DROP TABLE IF EXISTS config');
-	tx.executeSql('CREATE TABLE IF NOT EXISTS config (config_id unique, config_key, config_value)');
-	tx.executeSql('INSERT INTO config (config_id, config_key, config_value) VALUES (1, "sound_effects", "on")');
-	tx.executeSql('INSERT INTO config (config_id, config_key, config_value) VALUES (2, "music_tracks", "on")');
+	tx.executeSql('SELECT * FROM score_ranks WHERE difficulty = "easy" ORDER BY score DESC', [], querySuccess, errorCB);
+}
+
+// Query the success callback
+function querySuccess(tx, results)
+{
+	var resultCount = results.rows.length;
+	var strRows = '';
+	for (var i = 0; i < resultCount; i++)
+	{
+		strRows += '<tr>' +
+			'<td align="center">' + (i + 1) + '</td>' +
+			'<td>' + results.rows.item(i).name + '</td>' +
+			'<td align="center">' + results.rows.item(i).score + '</td>' +
+		'</tr>';
+		//strRows += (i + 1) + ' ' + results.rows.item(i).name  + ' ' + results.rows.item(i).score + '<br />';
+	}
+	
+	$('#score_content').html(strRows);
 }
 
 // Transaction error callback
 function errorCB(err)
 {
-	//$('#debug').html('Error processing SQL: ' + err.code);
+	$('#debug').html('Local Database Connection Success');
 }
 
 // Transaction success callback
 function successCB()
 {
+	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
+	db.transaction(queryDB, errorCB);
 	//$('#debug').html('Local Database Connection Success');
 }
 </script>

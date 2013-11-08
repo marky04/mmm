@@ -1,0 +1,112 @@
+<!doctype html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Memory Game</title>
+
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+<link rel="stylesheet" href="css/quizymemorygame.css">
+<link rel="stylesheet" href="css/flexslider.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="debug"></div>
+<div class="title-holder">
+	<a href="settings.html">
+		<button type="button" name="" value="" class="backcss3button"><</button>
+	</a>
+	<div class="title">How To Play</div>
+	<div class="score-holder"></div>
+</div>
+<div id="main">
+	<div id="slider" class="flexslider">
+		<ul class="slides">
+			<li>
+				<img src="img/howto1.jpg" />
+				<p>
+					1st description goes here
+					description goes here
+					description goes here
+					description goes here
+					description goes here
+				</p>
+			</li>
+			<li>
+				<img src="img/howto2.jpg" />
+				<p>
+					2nd description goes here
+					description goes here
+					description goes here
+					description goes here
+					description goes here
+				</p>
+			</li>
+			<li>
+				<img src="img/howto3.jpg" />
+				<p>
+					3rd description goes here
+					description goes here
+					description goes here
+					description goes here
+					description goes here
+				</p>
+			</li>
+			<li>
+				<img src="img/howto4.jpg" />
+				<p>
+					4th description goes here
+					description goes here
+					description goes here
+					description goes here
+					description goes here
+				</p>
+			</li>
+			<li>
+				<img src="img/howto5.jpg" />
+				<p>
+					5th description goes here
+					description goes here
+					description goes here
+					description goes here
+					description goes here
+				</p>
+			</li>
+			<li>
+				<img src="img/howto6.jpg" />
+				<p>
+					6th description goes here
+					description goes here
+					description goes here
+					description goes here
+					description goes here
+				</p>
+			</li>
+		</ul>
+	</div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/jquery-1.7.1.min.js"><\/script>')</script>
+<script src="js/jquery-ui-1.8.17.custom.min.js"></script>
+<script src="js/common.js"></script>
+<script type="text/javascript" src="js/jquery.flexslider.min.js"></script>
+<script src="js/jquery.easing.js"></script>
+<script type="text/javascript">
+//play background music
+playMusic();
+
+$(window).load(function(){
+
+	$('#slider').flexslider({
+		animation: "slide",
+		animationLoop: false,
+		slideshow: false,
+		start: function(slider){
+			$('body').removeClass('loading');
+		}
+	});
+});
+</script>
+</body>
+</html>
