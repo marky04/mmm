@@ -94,6 +94,15 @@ function querySuccess(tx, results)
 			'<td>' + results.rows.item(i).config_key + '</td>' +
 			'<td align="center">' + results.rows.item(i).config_value + '</td>' +
 		'</tr>';
+		
+		if(results.rows.item(i).config_value == 'on')
+		{
+			$('#' + results.rows.item(i).config_key).attr('checked', 'checked');
+		}
+		else
+		{
+			$('#' + results.rows.item(i).config_key).removeAttr('checked');
+		}
 	}
 	
 	$('#debug').html(strRows);
@@ -133,7 +142,6 @@ function updateConfigSound(tx)
 	{
 		configValue = 'on';
 	}
-	alert('taz' + configValue);
 
 	tx.executeSql('UPDATE config SET config_value = "' + configValue + '" WHERE config_key = "sound_effects"');
 }
