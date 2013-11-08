@@ -21,11 +21,12 @@ function confirmBackHome()
 }
 
 function playMusic()
-{alert('playMusic loaded');
+{
 	//playback sound
 	var playCompleteAudio = new Audio('sound/background_music.mp3');
 	playCompleteAudio.currentTime == 0;
 	playCompleteAudio.play();
+	playCompleteAudio.prop('volume', 0.1);
 }
 
 // Wait for device API libraries to load

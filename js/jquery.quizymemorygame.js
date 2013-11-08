@@ -109,9 +109,9 @@ if(!Array.indexOf)
 					$('span#points').html(parseInt(totalPoints) + 10);
 					
 					//playback sound
-					var playAudio = new Audio('sound/achievement.mp3');
+					/*var playAudio = new Audio('sound/achievement.mp3');
 					playAudio.currentTime == 0;
-					playAudio.play();
+					playAudio.play();*/
 				
 					showResIcon('correct');
 					unbindClick($('.'+tClass));
@@ -136,9 +136,9 @@ if(!Array.indexOf)
 							$('div#quizy-game-summary').delay(2000).fadeIn(1000,function()
 							{
 								//playback sound
-								var playCompleteAudio = new Audio('sound/game_complete.mp3');
+								/*var playCompleteAudio = new Audio('sound/game_complete.mp3');
 								playCompleteAudio.currentTime == 0;
-								playCompleteAudio.play();
+								playCompleteAudio.play();*/
 							});
 						}						
 
@@ -160,9 +160,9 @@ if(!Array.indexOf)
 					}
 					
 					//playback sound
-					var playAudio = new Audio('sound/lostitem.mp3');
+					/*var playAudio = new Audio('sound/lostitem.mp3');
 					playAudio.currentTime == 0;
-					playAudio.play();
+					playAudio.play();*/
 					
 					showResIcon('wrong');
 					unbindClick($('div.'+itemsClass));
