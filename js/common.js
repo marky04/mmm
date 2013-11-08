@@ -10,3 +10,12 @@ function playAgain()
 {
 	location.href = 'easy.html';
 }
+
+function confirmBackHome()
+{
+	var r = confirm("Are you Sure?");
+	if(r==true)
+	{
+		location.href = 'index.html';
+	}
+}
