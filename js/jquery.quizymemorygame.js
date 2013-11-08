@@ -107,6 +107,11 @@ if(!Array.indexOf)
 					// This will add 10 and return num remaining points
 					var totalPoints = $('span#points').html();
 					$('span#points').html(parseInt(totalPoints) + 10);
+					
+					//playback sound
+					var playAudio = new Audio('sound/achievement.mp3');
+					playAudio.currentTime == 0;
+					playAudio.play();
 				
 					showResIcon('correct');
 					unbindClick($('.'+tClass));
@@ -123,13 +128,19 @@ if(!Array.indexOf)
 						clearInterval(gameTimer);
 						// if game summary is set, adds the info to it and shows it.
 						if(opts.gameSummary)
-						{
+						{							
 							$('div#quizy-game-summary').children('div#gs-column-score').html('Your Score: ' + $('span#points').html() + ' points');
 							
 							$('div#quizy-game-summary').children('div#gs-column2').html(numSeconds+'<br>'+opts.textSummaryTime);
 							$('div#quizy-game-summary').children('div#gs-column3').html(numTotalClicks+'<br>'+opts.textSummaryClicks);
-							$('div#quizy-game-summary').delay(2000).fadeIn(1000);
-						}
+							$('div#quizy-game-summary').delay(2000).fadeIn(1000,function()
+							{
+								//playback sound
+								var playCompleteAudio = new Audio('sound/game_complete.mp3');
+								playCompleteAudio.currentTime == 0;
+								playCompleteAudio.play();
+							});
+						}						
 
 						// if is set makes an AJAX call and sends the the necessary params
 						if(opts.onFinishCall!='')
@@ -147,6 +158,11 @@ if(!Array.indexOf)
 					{
 						$('span#points').html(totalPoints - 3);
 					}
+					
+					//playback sound
+					var playAudio = new Audio('sound/lostitem.mp3');
+					playAudio.currentTime == 0;
+					playAudio.play();
 					
 					showResIcon('wrong');
 					unbindClick($('div.'+itemsClass));
@@ -206,6 +222,11 @@ if(!Array.indexOf)
 							addInHTML(el,id);
 						}
 					});
+					
+						//playback sound
+						var playCompleteAudio = new Audio('sound/flip_panel.mp3');
+						playCompleteAudio.currentTime == 0;
+						playCompleteAudio.play();
 				break;
 				case 'scroll':
 					addInFullHTML(el,id);

@@ -51,7 +51,7 @@ button.maincss3button{
 		  <li class="match2">
 			<img src="img/flag-Cuba.png">
 		  </li>
-		  <li class="match3">
+		  <!--li class="match3">
 			<img src="img/flag-Sweden.png">
 		  </li>
 		  <li class="match4">
@@ -74,14 +74,14 @@ button.maincss3button{
 		  </li>
 		  <li class="match10">
 			<p class="text-style1">Pair 10</p>
-		  </li>
+		  </li-->
 		  <li class="match1">
 			<p class="text-style1">Bulgaria</p>
 		  </li>
 		  <li class="match2">
 			<p class="text-style1">Cuba</p>
 		  </li>
-		  <li class="match3">
+		  <!--li class="match3">
 			<p class="text-style1">Sweden</p>
 		  </li>
 		  <li class="match4">
@@ -104,7 +104,7 @@ button.maincss3button{
 		  </li>
 		  <li class="match10">
 			<p class="text-style1">Pair 10</p>
-		  </li>
+		  </li-->
 		</ul>
 	</div>
 </div>
@@ -117,11 +117,15 @@ button.maincss3button{
 <script src="js/common.js"></script>
 
 <script type="text/javascript">
+
 $('#tutorial-memorygame').quizyMemoryGame({itemWidth: 67, itemHeight: 67, itemsMargin:10, colCount:4, animType:'flip' , flipAnim:'tb', animSpeed:250, resultIcons:true });
 </script>
 
 <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 <script type="text/javascript" charset="utf-8">
+//play background music
+playMusic();
+
 // Transaction error callback
 function errorCB(err)
 {
