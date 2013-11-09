@@ -1,10 +1,13 @@
-function getPhoneGapPath() {
-
+//this will return
+//iOS: /var/mobile/Applications/{GUID}/{appName}/www/
+//Android: /android_asset/www/
+getPhoneGapPath: function ()
+{
+    'use strict';
     var path = window.location.pathname;
-    path = path.substr( path, path.length - 10 );
-    return 'file://' + path;
-
-};
+    var phoneGapPath = path.substring(0, path.lastIndexOf('/') + 1);
+    return phoneGapPath;
+}
 
 function closeOverlay()
 {
