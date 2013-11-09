@@ -30,7 +30,6 @@ function confirmBackHome()
 
 function playMusic()
 {
-	alert(getPhoneGapPath() + ' taz');
 	//playback sound
 	/*var playCompleteAudio = new Audio('sound/background_music.mp3');
 	playCompleteAudio.currentTime == 0;
@@ -45,7 +44,7 @@ function onDeviceReady()
 {
 	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
 	successCB();
-	playAudio('sound/background_music.mp3');
+	playAudio(getPhoneGapPath() + 'sound/background_music.mp3');
 }
 
 // Query the database
