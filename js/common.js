@@ -44,7 +44,6 @@ document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady()
 {
 	document.addEventListener("menubutton", onMenuKeyDown, false);
-	document.addEventListener("backbutton", onBackKeyDown, false);
 	document.addEventListener("pause", onPause, false);
 
 	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
@@ -55,11 +54,6 @@ function onDeviceReady()
 }
 
 function onMenuKeyDown()
-{
-    stopAudio();
-}
-
-function onBackKeyDown()
 {
     stopAudio();
 }

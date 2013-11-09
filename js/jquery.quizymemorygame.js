@@ -224,9 +224,10 @@ if(!Array.indexOf)
 					});
 					
 						//playback sound
-						var playCompleteAudio = new Audio('sound/flip_panel.mp3');
+						playAudio(getPhoneGapPath() + 'sound/flip_panel.mp3');
+						/*var playCompleteAudio = new Audio('sound/flip_panel.mp3');
 						playCompleteAudio.currentTime == 0;
-						playCompleteAudio.play();
+						playCompleteAudio.play();*/
 				break;
 				case 'scroll':
 					addInFullHTML(el,id);
