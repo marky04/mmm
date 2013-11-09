@@ -44,8 +44,8 @@ function onDeviceReady()
 {
 	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
 	successCB();
-	alert(getPhoneGapPath() + '/sound/background_music.mp3');
-	playAudio(getPhoneGapPath() + '/sound/background_music.mp3');
+	alert(getPhoneGapPath() + 'background_music.mp3');
+	playAudio(getPhoneGapPath() + 'background_music.mp3');
 }
 
 // Query the database
