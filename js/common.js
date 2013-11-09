@@ -41,14 +41,18 @@ function playMusic()
 
 // Wait for device API libraries to load
 document.addEventListener("deviceready", onDeviceReady, false);
-
-// device APIs are available
 function onDeviceReady()
 {
 	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
 	successCB();
 	alert(getPhoneGapPath() + 'background_music.mp3');
 	playAudio(getPhoneGapPath() + 'background_music.mp3');
+}
+
+document.addEventListener("pause", onPause, false);
+function onPause()
+{
+    stopAudio();
 }
 
 // Query the database
