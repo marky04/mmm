@@ -1,4 +1,4 @@
-//this will return
+//this will return the following phonegap path
 //iOS: /var/mobile/Applications/{GUID}/{appName}/www/
 //Android: /android_asset/www/
 function getPhoneGapPath()
@@ -43,17 +43,33 @@ function playMusic()
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady()
 {
+	document.addEventListener("menubutton", onMenuKeyDown, false);
+	document.addEventListener("backbutton", onBackKeyDown, false);
+	document.addEventListener("pause", onPause, false);
+
 	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
 	successCB();
+	
 	alert(getPhoneGapPath() + 'background_music.mp3');
 	playAudio(getPhoneGapPath() + 'background_music.mp3');
 }
 
-document.addEventListener("pause", onPause, false);
+function onMenuKeyDown()
+{
+    stopAudio();
+}
+
+function onBackKeyDown()
+{
+    stopAudio();
+}
+
 function onPause()
 {
     stopAudio();
 }
+
+
 
 // Query the database
 function queryDB(tx)
@@ -141,8 +157,8 @@ var my_media = null;
 var mediaTimer = null;
 
 // Play audio
-//
-function playAudio(src) {
+function playAudio(src)
+{
 	// Create Media object from src
 	my_media = new Media(src, onSuccess, onError);
 
@@ -171,16 +187,16 @@ function playAudio(src) {
 }
 
 // Pause audio
-//
-function pauseAudio() {
+function pauseAudio()
+{
 	if (my_media) {
 		my_media.pause();
 	}
 }
 
 // Stop audio
-//
-function stopAudio() {
+function stopAudio()
+{
 	if (my_media) {
 		my_media.stop();
 	}
@@ -189,20 +205,20 @@ function stopAudio() {
 }
 
 // onSuccess Callback
-//
-function onSuccess() {
+function onSuccess()
+{
 	console.log("playAudio():Audio Success");
 }
 
 // onError Callback
-//
-function onError(error) {
+function onError(error)
+{
 	alert('code: '    + error.code    + '\n' +
 		  'message: ' + error.message + '\n');
 }
 
 // Set audio position
-//
-function setAudioPosition(position) {
+function setAudioPosition(position)
+{
 	document.getElementById('audio_position').innerHTML = position;
 }
