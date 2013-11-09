@@ -1,7 +1,7 @@
 //this will return
 //iOS: /var/mobile/Applications/{GUID}/{appName}/www/
 //Android: /android_asset/www/
-getPhoneGapPath: function ()
+function getPhoneGapPath()
 {
     'use strict';
     var path = window.location.pathname;
