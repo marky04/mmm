@@ -1,3 +1,11 @@
+function getPhoneGapPath() {
+
+    var path = window.location.pathname;
+    path = path.substr( path, path.length - 10 );
+    return 'file://' + path;
+
+};
+
 function closeOverlay()
 {
 	$('#overlay-holder').fadeOut('fast');
@@ -22,6 +30,7 @@ function confirmBackHome()
 
 function playMusic()
 {
+	alert(getPhoneGapPath() + ' taz');
 	//playback sound
 	/*var playCompleteAudio = new Audio('sound/background_music.mp3');
 	playCompleteAudio.currentTime == 0;
