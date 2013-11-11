@@ -79,7 +79,7 @@ function queryConfigSuccess(tx, results)
 		}		
 	}
 
-	$('#debug').html(strRows);
+	//$('#debug').html(strRows);
 }
 
 // Transaction error callback
