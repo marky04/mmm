@@ -21,6 +21,8 @@ function closeOverlay()
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady()
 {
+	playAudio(getPhoneGapPath() + 'sound/background_music.mp3');
+
 	document.addEventListener("menubutton", onMenuKeyDown, false);
 	document.addEventListener("pause", onPause, false);
 
@@ -76,7 +78,7 @@ function queryConfigSuccess(tx, results)
 			$('#sound_effects_text').val(results.rows.item(i).config_value);
 			if(results.rows.item(i).config_value == 'on')
 			{
-				playAudio(getPhoneGapPath() + 'sound/background_music.mp3');
+				playAgain();
 			}
 		}
 	}
@@ -126,6 +128,14 @@ function playAudio(src)
 				}
 			);
 		}, 1000);
+	}
+}
+
+function playAgain()
+{
+	if (my_media)
+	{
+		my_media.play();
 	}
 }
 
