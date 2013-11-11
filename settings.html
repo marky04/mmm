@@ -103,7 +103,7 @@ function updateConfigSound(tx)
 	if($('#sound_effects').prop('checked'))
 	{
 		configValue = 'on';
-		playAudio(getPhoneGapPath() + 'sound/background_music.mp3');
+		playAgain();
 	}
 
 	$('#sound_effects_text').val(configValue);
