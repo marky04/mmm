@@ -98,10 +98,12 @@ function editConfig(id)
 
 function updateConfigSound(tx)
 {
-	var configValue = 'off';
+	var configValue = 'off';	
+	stopAudio();
 	if($('#sound_effects').prop('checked'))
 	{
-		configValue = 'on';
+		configValue = 'on';		
+		playAudio(getPhoneGapPath() + 'sound/background_music.mp3');
 	}
 
 	tx.executeSql('UPDATE config SET config_value = "' + configValue + '" WHERE config_key = "sound_effects"');
@@ -110,11 +112,9 @@ function updateConfigSound(tx)
 function updateConfigHint(tx)
 {
 	var configValue = 'off';
-	stopAudio();
 	if($('#level_hint').prop('checked'))
 	{
 		configValue = 'on';
-		playAudio(getPhoneGapPath() + 'sound/background_music.mp3');
 	}
 
 	tx.executeSql('UPDATE config SET config_value = "' + configValue + '" WHERE config_key = "level_hint"');
