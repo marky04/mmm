@@ -48,6 +48,41 @@ button.commoncss3button{
 	<button type="button" class="commoncss3button" onClick="PageLoader('how_to_play');">How To Play</button>
 </div>
 <script type="text/javascript">
+// Wait for device API libraries to load
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady()
+{
+	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
+	db.transaction(queryConfig, errorCB);
+}
+
+// Query the database
+function queryConfig(tx)
+{
+	tx.executeSql('SELECT * FROM config WHERE 1', [], queryConfigSuccess, errorCB);
+}
+
+// Query the success callback
+function queryConfigSuccess(tx, results)
+{
+	var resultCount = results.rows.length;
+	var strRows = '';
+	for (var i = 0; i < resultCount; i++)
+	{
+		strRows += (i + 1) + ' ' + results.rows.item(i).config_key  + ' ' + results.rows.item(i).config_value + '<br />';
+		if(results.rows.item(i).config_value == 'on')
+		{
+			$('#' + results.rows.item(i).config_key).attr('checked', 'checked');
+		}
+		else
+		{
+			$('#' + results.rows.item(i).config_key).removeAttr('checked');
+		}
+	}
+
+	$('#debug').html(strRows);
+}
+
 function editConfig(id)
 {
 	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
