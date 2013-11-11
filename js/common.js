@@ -82,7 +82,7 @@ function queryConfigSuccess(tx, results)
 			$('#sound_effects_text').val(results.rows.item(i).config_value);
 			if(results.rows.item(i).config_value == 'on')
 			{
-				playAgain();
+				playAudio(getPhoneGapPath() + 'sound/background_music.mp3');
 			}
 		}
 	}
@@ -132,14 +132,6 @@ function playAudio(src)
 				}
 			);
 		}, 1000);
-	}
-}
-
-function playAgain()
-{
-	if (my_media)
-	{
-		my_media.play();
 	}
 }
 
