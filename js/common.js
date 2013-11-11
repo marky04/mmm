@@ -27,6 +27,8 @@ function onDeviceReady()
 	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
 	db.transaction(createTable, errorCB, successCB);
 	db.transaction(queryConfig, errorCB);
+	
+	playAudio(getPhoneGapPath() + 'sound/background_music.mp3');
 }
 
 function onMenuKeyDown()
