@@ -9,6 +9,7 @@
 <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 <link rel="stylesheet" href="css/quizymemorygame.css">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/flexslider.css" />
 </head>
 <body>
 <div id="debug"></div>
@@ -19,13 +20,9 @@
 	</div>
 	<div id="main">
 		<button type="button" class="maincss3button" onClick="PageLoader('easy');">Start Game</button>
-		<a href="settings.html">
-			<button type="button" class="commoncss3button">Settings</button>
-		</a>
+		<button type="button" class="commoncss3button" onClick="PageLoader('settings');">Settings</button>
 		<button type="button" class="commoncss3button" onClick="PageLoader('score_easy');">Score</button>
-		<a href="package.html">
-			<button type="button" class="commoncss3button">Package</button>
-		</a>
+		<button type="button" class="commoncss3button" onClick="PageLoader('package');">Package</button>
 	</div>
 </div>
 <script src="js/jquery-1.7.1.min.js"></script>
@@ -33,6 +30,8 @@
 <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 <script src="js/jquery.flip.min.js"></script>
 <script src="js/jquery.quizymemorygame.js"></script>
+<script type="text/javascript" src="js/jquery.flexslider.min.js"></script>
+<script src="js/jquery.easing.js"></script>
 <script src="js/common.js"></script>
 <script type="text/javascript" charset="utf-8">
 PageLoader('');

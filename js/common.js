@@ -12,9 +12,9 @@ function getPhoneGapPath()
 function closeOverlay()
 {
 	$('#overlay-holder').fadeOut('fast');
-	$('#tutorial-memorygame').fadeIn();
-	$('.title-holder .title').fadeIn();
-	$('.score-holder').fadeIn();
+	$('#tutorial-memorygame').show();
+	$('.title-holder .title').show();
+	$('.score-holder').show();
 }
 
 function playAgain()
