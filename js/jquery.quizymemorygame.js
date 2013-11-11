@@ -224,7 +224,7 @@ if(!Array.indexOf)
 					});
 
 					//playback sound
-					if($('#sound_effects').val() == 'on')
+					if($('#sound_effects_text').val() == 'on')
 					{
 						playAudio(getPhoneGapPath() + 'sound/flip_panel.mp3');
 					}

@@ -64,19 +64,21 @@ function queryConfigSuccess(tx, results)
 	for (var i = 0; i < resultCount; i++)
 	{
 		strRows += (i + 1) + ' ' + results.rows.item(i).config_key  + ' ' + results.rows.item(i).config_value + '<br />';
+
+		if(results.rows.item(i).config_key == 'level_hint')
+		{
+			$('#level_hint_text').val(results.rows.item(i).config_value);
+		}
+
 		if(results.rows.item(i).config_key == 'sound_effects')
 		{
+			stopAudio();
+			$('#sound_effects_text').val(results.rows.item(i).config_value);
 			if(results.rows.item(i).config_value == 'on')
 			{
 				playAudio(getPhoneGapPath() + 'sound/background_music.mp3');
-				$('#sound_effects').val('on');
 			}
-			else
-			{
-				stopAudio();
-				$('#sound_effects').val('off');
-			}
-		}		
+		}
 	}
 
 	//$('#debug').html(strRows);
