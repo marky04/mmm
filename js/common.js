@@ -21,7 +21,11 @@ function closeOverlay()
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady()
 {
-	playAudio(getPhoneGapPath() + 'sound/background_music.mp3');
+	//playback sound
+	if($('#sound_effects_text').val() == 'on')
+	{
+		playAudio(getPhoneGapPath() + 'sound/background_music.mp3');
+	}
 
 	document.addEventListener("menubutton", onMenuKeyDown, false);
 	document.addEventListener("pause", onPause, false);
