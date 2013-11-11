@@ -226,7 +226,7 @@ if(!Array.indexOf)
 					//playback sound
 					if($('#sound_effects_text').val() == 'on')
 					{
-						playAudio(getPhoneGapPath() + 'sound/flip_panel.mp3');
+						playAudioEffects(getPhoneGapPath() + 'sound/flip_panel.mp3');
 					}
 				break;
 				case 'scroll':

@@ -170,3 +170,69 @@ function setAudioPosition(position)
 	document.getElementById('audio_position').innerHTML = position;
 }
 /***********************EOF Audio Player Functions***********************/
+
+
+/***********************Audio Effect Functions***********************/
+var effects_media = null;
+var effectsMediaTimer = null;
+
+function playAudioEffects(src)
+{
+	// Create Media object from src
+	effects_media = new Media(src, onSuccessEffects, onErrorEffects);
+
+	// Play audio
+	effects_media.play();
+
+	// Update effects_media position every second
+	if (effectsMediaTimer == null) {
+		effectsMediaTimer = setInterval(function() {
+			// get effects_media position
+			effects_media.getCurrentPosition(
+				// success callback
+				function(position) {
+					if (position > -1) {
+						setAudioPositionEffects((position) + " sec");
+					}
+				},
+				// error callback
+				function(e) {
+					//$('#debug').html('Error getting pos=' + e);
+					setAudioPositionEffects("Error: " + e);
+				}
+			);
+		}, 1000);
+	}
+}
+
+function pauseAudioEffects()
+{
+	if (effects_media) {
+		effects_media.pause();
+	}
+}
+
+function stopAudioEffects()
+{
+	if (effects_media) {
+		effects_media.stop();
+	}
+	clearInterval(effectsMediaTimer);
+	effectsMediaTimer = null;
+}
+
+function onSuccessEffects()
+{
+	//$('#debug').html('playAudio():Audio Success');
+}
+
+function onErrorEffects(error)
+{
+	//alert('code: '    + error.code    + '\n' + 'message: ' + error.message + '\n');
+}
+
+function setAudioPositionEffects(position)
+{
+	document.getElementById('audio_position_effects').innerHTML = position;
+}
+/***********************EOF Audio Effect Functions***********************/
