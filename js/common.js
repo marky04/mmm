@@ -25,8 +25,8 @@ function onDeviceReady()
 	document.addEventListener("pause", onPause, false);
 
 	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
-	db.transaction(createScoreRanksTable, errorCB, successCB);
-	successCB();
+	db.transaction(createTable, errorCB, successCB);
+	db.transaction(queryConfig, errorCB);
 
 	playAudio(getPhoneGapPath() + 'sound/background_music.mp3');
 }
@@ -42,35 +42,29 @@ function onPause()
 }
 
 // Create score_ranks table
-function createScoreRanksTable(tx)
+function createTable(tx)
 {
 	//tx.executeSql('DROP TABLE IF EXISTS score_ranks');
 	tx.executeSql('CREATE TABLE IF NOT EXISTS score_ranks (name, score, difficulty)');
-	//tx.executeSql('DROP TABLE IF EXISTS config');
+	tx.executeSql('DROP TABLE IF EXISTS config');
 	tx.executeSql('CREATE TABLE IF NOT EXISTS config (config_id unique, config_key, config_value)');
 	tx.executeSql('INSERT INTO config (config_id, config_key, config_value) VALUES (1, "sound_effects", "on")');
-	tx.executeSql('INSERT INTO config (config_id, config_key, config_value) VALUES (2, "music_tracks", "on")');
+	tx.executeSql('INSERT INTO config (config_id, config_key, config_value) VALUES (2, "level_hint", "on")');
 }
 
 // Query the database
-function queryDB(tx)
+function queryConfig(tx)
 {
-	tx.executeSql('SELECT * FROM config WHERE 1', [], querySuccess, errorCB);
+	tx.executeSql('SELECT * FROM config WHERE 1', [], queryConfigSuccess, errorCB);
 }
 
 // Query the success callback
-function querySuccess(tx, results)
+function queryConfigSuccess(tx, results)
 {
 	var resultCount = results.rows.length;
 	var strRows = '';
 	for (var i = 0; i < resultCount; i++)
 	{
-		/*strRows += '<tr>' +
-			'<td align="center">' + (i + 1) + '</td>' +
-			'<td>' + results.rows.item(i).config_key + '</td>' +
-			'<td align="center">' + results.rows.item(i).config_value + '</td>' +
-		'</tr>';*/
-
 		if(results.rows.item(i).config_value == 'on')
 		{
 			$('#' + results.rows.item(i).config_key).attr('checked', 'checked');
@@ -93,44 +87,7 @@ function errorCB(err)
 // Transaction success callback
 function successCB()
 {
-	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
-	db.transaction(queryDB, errorCB);
 	//$('#debug').html('Local Database Connection Success');
-}
-
-function editConfig(id)
-{
-	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
-	if(id == 'sound_effects')
-	{
-		db.transaction(updateConfigSound, errorCB, successCB);
-	}
-	else
-	{
-		db.transaction(updateConfigMusic, errorCB, successCB);
-	}
-}
-
-function updateConfigSound(tx)
-{
-	var configValue = 'off';
-	if($('#sound_effects').prop('checked'))
-	{
-		configValue = 'on';
-	}
-
-	tx.executeSql('UPDATE config SET config_value = "' + configValue + '" WHERE config_key = "sound_effects"');
-}
-
-function updateConfigMusic(tx)
-{
-	var configValue = 'off';
-	if($('#music_tracks').prop('checked'))
-	{
-		configValue = 'on';
-	}
-
-	tx.executeSql('UPDATE config SET config_value = "' + configValue + '" WHERE config_key = "music_tracks"');
 }
 
 /***********************Audio Player Functions***********************/

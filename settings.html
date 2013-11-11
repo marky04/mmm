@@ -20,7 +20,19 @@ button.commoncss3button{
 	</div>
 	<div class="score-holder"></div>
 </div>
-<div id="main">
+<div id="main">	
+	<div class="content-holder">
+		<div class="content-title">Level Hint</div>
+		<div class="content-description">
+			<div class="onoffswitch">
+				<input type="checkbox" class="onoffswitch-checkbox" id="level_hint" checked onClick="editConfig('level_hint');" />
+				<label class="onoffswitch-label" for="level_hint">
+					<div class="onoffswitch-inner"></div>
+					<div class="onoffswitch-switch"></div>
+				</label>
+			</div>
+		</div>
+	</div>
 	<div class="content-holder">
 		<div class="content-title">Sound Effects</div>
 		<div class="content-description">
@@ -33,19 +45,43 @@ button.commoncss3button{
 			</div>
 		</div>
 	</div>
-	<div class="content-holder">
-		<div class="content-title">Music Tracks</div>
-		<div class="content-description">
-			<div class="onoffswitch">
-				<input type="checkbox" class="onoffswitch-checkbox" id="music_tracks" checked onClick="editConfig('music_tracks');" />
-				<label class="onoffswitch-label" for="music_tracks">
-					<div class="onoffswitch-inner"></div>
-					<div class="onoffswitch-switch"></div>
-				</label>
-			</div>
-		</div>
-	</div>
 	<button type="button" class="commoncss3button" onClick="PageLoader('how_to_play');">How To Play</button>
 </div>
+<script type="text/javascript">
+function editConfig(id)
+{
+	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
+	if(id == 'sound_effects')
+	{
+		db.transaction(updateConfigSound, errorCB, successCB);
+	}
+	else
+	{
+		db.transaction(updateConfigMusic, errorCB, successCB);
+	}
+}
+
+function updateConfigSound(tx)
+{
+	var configValue = 'off';
+	if($('#sound_effects').prop('checked'))
+	{
+		configValue = 'on';
+	}
+
+	tx.executeSql('UPDATE config SET config_value = "' + configValue + '" WHERE config_key = "sound_effects"');
+}
+
+function updateConfigMusic(tx)
+{
+	var configValue = 'off';
+	if($('#level_hint').prop('checked'))
+	{
+		configValue = 'on';
+	}
+
+	tx.executeSql('UPDATE config SET config_value = "' + configValue + '" WHERE config_key = "level_hint"');
+}
+</script>
 </body>
 </html>

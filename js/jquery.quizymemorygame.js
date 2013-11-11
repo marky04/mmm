@@ -398,6 +398,7 @@ if(!Array.indexOf)
 				'</div>' +
 				'<div id="gs-column-play">' +
 					'<input type="button" id="score_rank_add" value="Play Again" onClick="PageLoader(\'easy\');" />' +
+					'<input type="button" value="Score" onClick="PageLoader(\'score_easy\');" />' +
 				'</div>' +
 			'</div>');
 
