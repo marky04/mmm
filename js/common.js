@@ -28,7 +28,6 @@ function onDeviceReady()
 	db.transaction(createScoreRanksTable, errorCB, successCB);
 	successCB();
 
-	//alert(getPhoneGapPath() + 'background_music.mp3');
 	playAudio(getPhoneGapPath() + 'sound/background_music.mp3');
 }
 
