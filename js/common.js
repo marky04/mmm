@@ -114,7 +114,7 @@ function playAudio(src)
 				},
 				// error callback
 				function(e) {
-					console.log("Error getting pos=" + e);
+					$('#debug').html('Error getting pos=' + e);
 					setAudioPosition("Error: " + e);
 				}
 			);
@@ -140,7 +140,7 @@ function stopAudio()
 
 function onSuccess()
 {
-	console.log("playAudio():Audio Success");
+	$('#debug').html('playAudio():Audio Success');
 }
 
 function onError(error)
