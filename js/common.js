@@ -65,7 +65,7 @@ function queryConfigSuccess(tx, results)
 	var strRows = '';
 	for (var i = 0; i < resultCount; i++)
 	{
-		strRows += (i + 1) + ' ' + results.rows.item(i).name  + ' ' + results.rows.item(i).score + '<br />';
+		strRows += (i + 1) + ' ' + results.rows.item(i).config_key  + ' ' + results.rows.item(i).config_value + '<br />';
 		if(results.rows.item(i).config_value == 'on')
 		{
 			$('#' + results.rows.item(i).config_key).attr('checked', 'checked');
