@@ -17,11 +17,6 @@ function closeOverlay()
 	$('.score-holder').show();
 }
 
-function playAgain()
-{
-	location.href = 'easy.html';
-}
-
 // Wait for device API libraries to load
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady()
