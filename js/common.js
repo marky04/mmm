@@ -22,15 +22,6 @@ function playAgain()
 	location.href = 'easy.html';
 }
 
-function confirmBackHome()
-{
-	var r = confirm("Are you Sure?");
-	if(r==true)
-	{
-		location.href = 'index.html';
-	}
-}
-
 // Wait for device API libraries to load
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady()
