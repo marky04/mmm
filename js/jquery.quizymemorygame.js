@@ -224,7 +224,10 @@ if(!Array.indexOf)
 					});
 
 					//playback sound
-					playAudio(getPhoneGapPath() + 'sound/flip_panel.mp3');
+					if($('#sound_effects').val() == 'on')
+					{
+						playAudio(getPhoneGapPath() + 'sound/flip_panel.mp3');
+					}
 				break;
 				case 'scroll':
 					addInFullHTML(el,id);

@@ -20,7 +20,7 @@ button.commoncss3button{
 	</div>
 	<div class="score-holder"></div>
 </div>
-<div id="main">	
+<div id="main">
 	<div class="content-holder">
 		<div class="content-title">Level Hint</div>
 		<div class="content-description">
@@ -98,12 +98,14 @@ function editConfig(id)
 
 function updateConfigSound(tx)
 {
-	var configValue = 'off';	
+	var configValue = 'off';
 	stopAudio();
+	$('#sound_effects').val('off');
 	if($('#sound_effects').prop('checked'))
 	{
-		configValue = 'on';		
+		configValue = 'on';
 		playAudio(getPhoneGapPath() + 'sound/background_music.mp3');
+		$('#sound_effects').val('on');
 	}
 
 	tx.executeSql('UPDATE config SET config_value = "' + configValue + '" WHERE config_key = "sound_effects"');

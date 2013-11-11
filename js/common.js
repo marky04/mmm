@@ -27,8 +27,6 @@ function onDeviceReady()
 	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
 	db.transaction(createTable, errorCB, successCB);
 	db.transaction(queryConfig, errorCB);
-	
-	//playAudio(getPhoneGapPath() + 'sound/background_music.mp3');
 }
 
 function onMenuKeyDown()
@@ -71,10 +69,12 @@ function queryConfigSuccess(tx, results)
 			if(results.rows.item(i).config_value == 'on')
 			{
 				playAudio(getPhoneGapPath() + 'sound/background_music.mp3');
+				$('#sound_effects').val('on');
 			}
 			else
 			{
 				stopAudio();
+				$('#sound_effects').val('off');
 			}
 		}		
 	}
@@ -119,7 +119,7 @@ function playAudio(src)
 				},
 				// error callback
 				function(e) {
-					$('#debug').html('Error getting pos=' + e);
+					//$('#debug').html('Error getting pos=' + e);
 					setAudioPosition("Error: " + e);
 				}
 			);
@@ -145,13 +145,12 @@ function stopAudio()
 
 function onSuccess()
 {
-	$('#debug').html('playAudio():Audio Success');
+	//$('#debug').html('playAudio():Audio Success');
 }
 
 function onError(error)
 {
-	alert('code: '    + error.code    + '\n' +
-		  'message: ' + error.message + '\n');
+	//alert('code: '    + error.code    + '\n' + 'message: ' + error.message + '\n');
 }
 
 function setAudioPosition(position)
