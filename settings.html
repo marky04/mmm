@@ -69,7 +69,7 @@ function queryConfigSuccess(tx, results)
 	var strRows = '';
 	for (var i = 0; i < resultCount; i++)
 	{
-		strRows += (i + 1) + ' ' + results.rows.item(i).config_key  + ' ' + results.rows.item(i).config_value + '<br />';
+		//strRows += (i + 1) + ' ' + results.rows.item(i).config_key  + ' ' + results.rows.item(i).config_value + '<br />';
 		if(results.rows.item(i).config_value == 'on')
 		{
 			$('#' + results.rows.item(i).config_key).attr('checked', 'checked');
@@ -80,7 +80,7 @@ function queryConfigSuccess(tx, results)
 		}
 	}
 
-	$('#debug').html(strRows);
+	//$('#debug').html(strRows);
 }
 
 function editConfig(id)
@@ -92,7 +92,7 @@ function editConfig(id)
 	}
 	else
 	{
-		db.transaction(updateConfigMusic, errorCB, successCB);
+		db.transaction(updateConfigHint, errorCB, successCB);
 	}
 }
 
@@ -107,12 +107,14 @@ function updateConfigSound(tx)
 	tx.executeSql('UPDATE config SET config_value = "' + configValue + '" WHERE config_key = "sound_effects"');
 }
 
-function updateConfigMusic(tx)
+function updateConfigHint(tx)
 {
 	var configValue = 'off';
+	stopAudio();
 	if($('#level_hint').prop('checked'))
 	{
 		configValue = 'on';
+		playAudio(getPhoneGapPath() + 'sound/background_music.mp3');
 	}
 
 	tx.executeSql('UPDATE config SET config_value = "' + configValue + '" WHERE config_key = "level_hint"');

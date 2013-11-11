@@ -27,8 +27,6 @@ function onDeviceReady()
 	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
 	db.transaction(createTable, errorCB, successCB);
 	db.transaction(queryConfig, errorCB);
-
-	playAudio(getPhoneGapPath() + 'sound/background_music.mp3');
 }
 
 function onMenuKeyDown()
@@ -65,14 +63,14 @@ function queryConfigSuccess(tx, results)
 	var strRows = '';
 	for (var i = 0; i < resultCount; i++)
 	{
-		strRows += (i + 1) + ' ' + results.rows.item(i).config_key  + ' ' + results.rows.item(i).config_value + '<br />';
-		if(results.rows.item(i).config_value == 'on')
+		//strRows += (i + 1) + ' ' + results.rows.item(i).config_key  + ' ' + results.rows.item(i).config_value + '<br />';
+		if(results.rows.item(i).config_key == 'sound_effects' results.rows.item(i).config_value == 'on')
 		{
-			$('#' + results.rows.item(i).config_key).attr('checked', 'checked');
+			playAudio(getPhoneGapPath() + 'sound/background_music.mp3');
 		}
 		else
 		{
-			$('#' + results.rows.item(i).config_key).removeAttr('checked');
+			stopAudio();
 		}
 	}
 
