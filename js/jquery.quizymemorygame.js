@@ -107,12 +107,12 @@ if(!Array.indexOf)
 					// This will add 10 and return num remaining points
 					var totalPoints = $('span#points').html();
 					$('span#points').html(parseInt(totalPoints) + 10);
-					
+
 					//playback sound
 					/*var playAudio = new Audio('sound/achievement.mp3');
 					playAudio.currentTime == 0;
 					playAudio.play();*/
-				
+
 					showResIcon('correct');
 					unbindClick($('.'+tClass));
 					// Adds the turned cards to the correct items array
@@ -128,9 +128,9 @@ if(!Array.indexOf)
 						clearInterval(gameTimer);
 						// if game summary is set, adds the info to it and shows it.
 						if(opts.gameSummary)
-						{							
+						{
 							$('div#quizy-game-summary').children('div#gs-column-score').html('Your Score: ' + $('span#points').html() + ' points');
-							
+
 							$('div#quizy-game-summary').children('div#gs-column2').html(numSeconds+'<br>'+opts.textSummaryTime);
 							$('div#quizy-game-summary').children('div#gs-column3').html(numTotalClicks+'<br>'+opts.textSummaryClicks);
 							$('div#quizy-game-summary').delay(2000).fadeIn(1000,function()
@@ -140,7 +140,7 @@ if(!Array.indexOf)
 								playCompleteAudio.currentTime == 0;
 								playCompleteAudio.play();*/
 							});
-						}						
+						}
 
 						// if is set makes an AJAX call and sends the the necessary params
 						if(opts.onFinishCall!='')
@@ -158,12 +158,12 @@ if(!Array.indexOf)
 					{
 						$('span#points').html(totalPoints - 3);
 					}
-					
+
 					//playback sound
 					/*var playAudio = new Audio('sound/lostitem.mp3');
 					playAudio.currentTime == 0;
 					playAudio.play();*/
-					
+
 					showResIcon('wrong');
 					unbindClick($('div.'+itemsClass));
 					// turns the cards back
@@ -222,12 +222,9 @@ if(!Array.indexOf)
 							addInHTML(el,id);
 						}
 					});
-					
-						//playback sound
-						playAudio(getPhoneGapPath() + 'sound/flip_panel.mp3');
-						/*var playCompleteAudio = new Audio('sound/flip_panel.mp3');
-						playCompleteAudio.currentTime == 0;
-						playCompleteAudio.play();*/
+
+					//playback sound
+					playAudio(getPhoneGapPath() + 'sound/flip_panel.mp3');
 				break;
 				case 'scroll':
 					addInFullHTML(el,id);
@@ -403,7 +400,7 @@ if(!Array.indexOf)
 					'<input type="button" id="score_rank_add" value="Play Again" onClick="playAgain();" />' +
 				'</div>' +
 			'</div>');
-			
+
 			// positions the summary div in the middle of the div wrapper
 			var xMid = $(this).width()/2 -
 			$('div#quizy-game-summary').width()/2;
@@ -411,7 +408,7 @@ if(!Array.indexOf)
 			$('div#quizy-game-summary').height()/2 -
 			opts.itemsMargin/2;
 			$('div#quizy-game-summary').css({top:yMid+'px',left:xMid+'px'});
-			
+
 			// adds a click event to the summary div to be removed on click
 			$('#score_rank_add').click(function()
 			{

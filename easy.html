@@ -1,14 +1,3 @@
-<!doctype html>
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>Memory Game</title>
-
-<meta name="HandheldFriendly" content="True">
-<meta name="MobileOptimized" content="320">
-<meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
-<link rel="stylesheet" href="css/quizymemorygame.css">
-<link rel="stylesheet" href="css/style.css">
 <style>
 .title-holder .title,
 .score-holder,
@@ -21,15 +10,10 @@ button.maincss3button{
 	margin-left:26px;
 }
 </style>
-</head>
-<body>
-<div id="debug"></div>
 <div class="title-holder">
-	<a href="index.html">
-		<button type="button" name="" value="" class="backcss3button">
-			<img src="img/home_icon.png" />
-		</button>
-	</a>
+	<button type="button" class="backcss3button" onClick="PageLoader('');">
+		<img src="img/home_icon.png" />
+	</button>
 	<div class="title">Easy</div>
 	<div class="score-holder">
 		<span>Score:</span>
@@ -41,7 +25,7 @@ button.maincss3button{
 		<button type="button" value="" class="commoncss3button" onClick="closeOverlay();">Easy</button>
 		<a href="difficult.html">
 			<button type="button" name="" value="" class="maincss3button">Difficult</button>
-		</a>	
+		</a>
 	</div>
 	<div id="tutorial-memorygame" class="quizy-memorygame">
 		<ul>
@@ -108,36 +92,10 @@ button.maincss3button{
 		</ul>
 	</div>
 </div>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/jquery-1.7.1.min.js"><\/script>')</script>
-<script src="js/jquery-ui-1.8.17.custom.min.js"></script>
-
-<script src="js/jquery.flip.min.js"></script>
-<script src="js/jquery.quizymemorygame.js"></script>
-<script src="js/common.js"></script>
-
 <script type="text/javascript">
-
 $('#tutorial-memorygame').quizyMemoryGame({itemWidth: 67, itemHeight: 67, itemsMargin:10, colCount:4, animType:'flip' , flipAnim:'tb', animSpeed:250, resultIcons:true });
 </script>
-
-<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 <script type="text/javascript" charset="utf-8">
-//play background music
-playMusic();
-
-// Transaction error callback
-function errorCB(err)
-{
-	$('#debug').html('Error processing SQL: ' + err.code);
-}
-
-// Transaction success callback
-function successCB()
-{
-	//$('#debug').html('Local Database Connection Success');
-}
-
 function addScore()
 {
 	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
@@ -149,5 +107,3 @@ function insertScore(tx)
 	tx.executeSql('INSERT INTO score_ranks (name, score, difficulty) VALUES ("' + $('#score_rank_name').val() + '", ' + $('span#points').html() + ', "easy")');
 }
 </script>
-</body>
-</html>

@@ -1,83 +1,55 @@
-<!doctype html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title>Memory Game</title>
-
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
 <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 <link rel="stylesheet" href="css/quizymemorygame.css">
 <link rel="stylesheet" href="css/style.css">
-<style>
-.title-holder{
-	background:none;
-	height:77px;
-	margin:25px 0 15px;
-	text-align:center;
-}
-</style>
 </head>
 <body>
 <div id="debug"></div>
-<div class="title-holder">
-	<img src="img/home_logo.jpg" />
+<div id="mobile-body"></div>
+<div class="index-content">
+	<div id="home" class="title-holder">
+		<img src="img/home_logo.jpg" />
+	</div>
+	<div id="main">
+		<button type="button" class="maincss3button" onClick="PageLoader('easy');">Start Game</button>
+		<a href="settings.html">
+			<button type="button" class="commoncss3button">Settings</button>
+		</a>
+		<a href="score_easy.html">
+			<button type="button" class="commoncss3button">Score</button>
+		</a>
+		<a href="package.html">
+			<button type="button" class="commoncss3button">Package</button>
+		</a>
+	</div>
 </div>
-<div id="main">
-	<a href="easy.html">
-		<button type="button" name="" value="" class="maincss3button">Start Game</button>
-	</a>
-	<a href="settings.html">
-		<button type="button" name="" value="" class="commoncss3button">Settings</button>
-	</a>
-	<a href="score_easy.html">
-		<button type="button" name="" value="" class="commoncss3button">Score</button>
-	</a>
-	<a href="package.html">
-		<button type="button" name="" value="" class="commoncss3button">Package</button>
-	</a>
-</div>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/jquery-1.7.1.min.js"><\/script>')</script>
+<script src="js/jquery-1.7.1.min.js"></script>
 <script src="js/jquery-ui-1.8.17.custom.min.js"></script>
-<script src="js/common.js"></script>
-
 <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+<script src="js/jquery.flip.min.js"></script>
+<script src="js/jquery.quizymemorygame.js"></script>
+<script src="js/common.js"></script>
 <script type="text/javascript" charset="utf-8">
-//play background music
-playMusic();
-
-// Wait for device API libraries to load
-document.addEventListener("deviceready", onDeviceReady, false);
-
-// device APIs are available
-function onDeviceReady()
+PageLoader('');
+function PageLoader(page_name)
 {
-	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
-	db.transaction(createScoreRanksTable, errorCB, successCB);
-}
-
-// Create score_ranks table
-function createScoreRanksTable(tx)
-{
-	//tx.executeSql('DROP TABLE IF EXISTS score_ranks');
-	tx.executeSql('CREATE TABLE IF NOT EXISTS score_ranks (name, score, difficulty)');
-	//tx.executeSql('DROP TABLE IF EXISTS config');
-	tx.executeSql('CREATE TABLE IF NOT EXISTS config (config_id unique, config_key, config_value)');
-	tx.executeSql('INSERT INTO config (config_id, config_key, config_value) VALUES (1, "sound_effects", "on")');
-	tx.executeSql('INSERT INTO config (config_id, config_key, config_value) VALUES (2, "music_tracks", "on")');
-}
-
-// Transaction error callback
-function errorCB(err)
-{
-	//$('#debug').html('Error processing SQL: ' + err.code);
-}
-
-// Transaction success callback
-function successCB()
-{
-	//$('#debug').html('Local Database Connection Success');
+	//Load Index content
+	if(page_name == '')
+	{
+		$('#mobile-body').html($('.index-content').html());
+	}
+	else
+	{
+		//alert(page_name + '.html');		
+		$('#mobile-body').load(page_name + '.html');
+	}
 }
 </script>
 </body>

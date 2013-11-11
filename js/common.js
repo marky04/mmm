@@ -31,14 +31,6 @@ function confirmBackHome()
 	}
 }
 
-function playMusic()
-{
-	//playback sound
-	/*var playCompleteAudio = new Audio('sound/background_music.mp3');
-	playCompleteAudio.currentTime == 0;
-	playCompleteAudio.play();*/
-}
-
 // Wait for device API libraries to load
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady()
@@ -47,8 +39,9 @@ function onDeviceReady()
 	document.addEventListener("pause", onPause, false);
 
 	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
+	db.transaction(createScoreRanksTable, errorCB, successCB);
 	successCB();
-	
+
 	//alert(getPhoneGapPath() + 'background_music.mp3');
 	playAudio(getPhoneGapPath() + 'sound/background_music.mp3');
 }
@@ -63,7 +56,16 @@ function onPause()
     stopAudio();
 }
 
-
+// Create score_ranks table
+function createScoreRanksTable(tx)
+{
+	//tx.executeSql('DROP TABLE IF EXISTS score_ranks');
+	tx.executeSql('CREATE TABLE IF NOT EXISTS score_ranks (name, score, difficulty)');
+	//tx.executeSql('DROP TABLE IF EXISTS config');
+	tx.executeSql('CREATE TABLE IF NOT EXISTS config (config_id unique, config_key, config_value)');
+	tx.executeSql('INSERT INTO config (config_id, config_key, config_value) VALUES (1, "sound_effects", "on")');
+	tx.executeSql('INSERT INTO config (config_id, config_key, config_value) VALUES (2, "music_tracks", "on")');
+}
 
 // Query the database
 function queryDB(tx)
@@ -146,11 +148,10 @@ function updateConfigMusic(tx)
 	tx.executeSql('UPDATE config SET config_value = "' + configValue + '" WHERE config_key = "music_tracks"');
 }
 
-// Audio player
+/***********************Audio Player Functions***********************/
 var my_media = null;
 var mediaTimer = null;
 
-// Play audio
 function playAudio(src)
 {
 	// Create Media object from src
@@ -180,7 +181,6 @@ function playAudio(src)
 	}
 }
 
-// Pause audio
 function pauseAudio()
 {
 	if (my_media) {
@@ -188,7 +188,6 @@ function pauseAudio()
 	}
 }
 
-// Stop audio
 function stopAudio()
 {
 	if (my_media) {
@@ -198,21 +197,19 @@ function stopAudio()
 	mediaTimer = null;
 }
 
-// onSuccess Callback
 function onSuccess()
 {
 	console.log("playAudio():Audio Success");
 }
 
-// onError Callback
 function onError(error)
 {
 	alert('code: '    + error.code    + '\n' +
 		  'message: ' + error.message + '\n');
 }
 
-// Set audio position
 function setAudioPosition(position)
 {
 	document.getElementById('audio_position').innerHTML = position;
 }
+/***********************EOF Audio Player Functions***********************/

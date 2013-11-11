@@ -11,6 +11,9 @@ a{
 p{
 	padding:0 5px;
 }
+.index-content{
+	display:none;
+}
 #main{
 	position:relative;
     width: 305px;
@@ -28,6 +31,12 @@ p{
 	padding-bottom:5px;
 	font-size:100%;
 	line-height:28px;
+}
+#home.title-holder{
+	background:none;
+	height:77px;
+	margin:25px 0 15px;
+	text-align:center;
 }
 .title-holder .title{
 	float:left;
