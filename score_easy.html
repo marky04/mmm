@@ -1,17 +1,8 @@
-<!doctype html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>Memory Game</title>
-
-<meta name="HandheldFriendly" content="True">
-<meta name="MobileOptimized" content="320">
-<meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
-<link rel="stylesheet" href="css/quizymemorygame.css">
-<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div id="debug"></div>
 <div class="title-holder">
 	<a href="index.html">
 		<button type="button" name="" value="" class="backcss3button">
@@ -39,16 +30,7 @@
 		<tbody id="score_content"></tbody>
 	</table>
 </div>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/jquery-1.7.1.min.js"><\/script>')</script>
-<script src="js/jquery-ui-1.8.17.custom.min.js"></script>
-<script src="js/common.js"></script>
-
-<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 <script type="text/javascript" charset="utf-8">
-//play background music
-playMusic();
-
 // Wait for device API libraries to load
 document.addEventListener("deviceready", onDeviceReady, false);
 
@@ -56,7 +38,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady()
 {
 	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
-	successCB();
+	db.transaction(queryDB, errorCB);
 }
 
 // Query the database
@@ -81,20 +63,6 @@ function querySuccess(tx, results)
 	}
 	
 	$('#score_content').html(strRows);
-}
-
-// Transaction error callback
-function errorCB(err)
-{
-	$('#debug').html('Local Database Connection Success');
-}
-
-// Transaction success callback
-function successCB()
-{
-	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
-	db.transaction(queryDB, errorCB);
-	//$('#debug').html('Local Database Connection Success');
 }
 </script>
 </body>

@@ -1,3 +1,6 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
 <style>
 .title-holder .title,
 .score-holder,
@@ -10,6 +13,8 @@ button.maincss3button{
 	margin-left:26px;
 }
 </style>
+</head>
+<body>
 <div class="title-holder">
 	<button type="button" class="backcss3button" onClick="PageLoader('');">
 		<img src="img/home_icon.png" />
@@ -30,22 +35,22 @@ button.maincss3button{
 	<div id="tutorial-memorygame" class="quizy-memorygame">
 		<ul>
 		  <li class="match1">
-			<img src="img/flag-Bulgaria.png">
+			<img src="img/flag-Bulgaria.png" />
 		  </li>
 		  <li class="match2">
-			<img src="img/flag-Cuba.png">
+			<img src="img/flag-Cuba.png" />
 		  </li>
 		  <!--li class="match3">
-			<img src="img/flag-Sweden.png">
+			<img src="img/flag-Sweden.png" />
 		  </li>
 		  <li class="match4">
-			<img src="img/flag-NewZealand.png">
+			<img src="img/flag-NewZealand.png" />
 		  </li>
 		  <li class="match5">
-			<img src="img/flag-Uruguay.png">
+			<img src="img/flag-Uruguay.png" />
 		  </li>
 		  <li class="match6">
-			<img src="img/flag-Tunisia.png">
+			<img src="img/flag-Tunisia.png" />
 		  </li>
 		  <li class="match7">
 			<p class="text-style1">Pair 7</p>
@@ -107,3 +112,5 @@ function insertScore(tx)
 	tx.executeSql('INSERT INTO score_ranks (name, score, difficulty) VALUES ("' + $('#score_rank_name').val() + '", ' + $('span#points').html() + ', "easy")');
 }
 </script>
+</body>
+</html>
