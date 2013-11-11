@@ -28,7 +28,7 @@ function onDeviceReady()
 	db.transaction(createTable, errorCB, successCB);
 	db.transaction(queryConfig, errorCB);
 	
-	playAudio(getPhoneGapPath() + 'sound/background_music.mp3');
+	//playAudio(getPhoneGapPath() + 'sound/background_music.mp3');
 }
 
 function onMenuKeyDown()
@@ -66,14 +66,17 @@ function queryConfigSuccess(tx, results)
 	for (var i = 0; i < resultCount; i++)
 	{
 		strRows += (i + 1) + ' ' + results.rows.item(i).config_key  + ' ' + results.rows.item(i).config_value + '<br />';
-		if(results.rows.item(i).config_key == 'sound_effects' results.rows.item(i).config_value == 'on')
+		if(results.rows.item(i).config_key == 'sound_effects')
 		{
-			playAudio(getPhoneGapPath() + 'sound/background_music.mp3');
-		}
-		else
-		{
-			stopAudio();
-		}
+			if(results.rows.item(i).config_value == 'on')
+			{
+				playAudio(getPhoneGapPath() + 'sound/background_music.mp3');
+			}
+			else
+			{
+				stopAudio();
+			}
+		}		
 	}
 
 	$('#debug').html(strRows);
