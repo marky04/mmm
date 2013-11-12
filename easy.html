@@ -95,10 +95,16 @@ button.maincss3button{
 		</ul>
 	</div>
 </div>
-<script type="text/javascript">
-$('#tutorial-memorygame').quizyMemoryGame({itemWidth: 67, itemHeight: 67, itemsMargin:10, colCount:4, animType:'flip' , flipAnim:'tb', animSpeed:250, resultIcons:true });
-</script>
 <script type="text/javascript" charset="utf-8">
+function closeOverlay()
+{
+	$('#overlay-holder').fadeOut('fast');
+	$('#tutorial-memorygame').show();
+	$('.title-holder .title').show();
+	$('.score-holder').show();
+	$('#tutorial-memorygame').quizyMemoryGame({itemWidth: 67, itemHeight: 67, itemsMargin:10, colCount:4, animType:'flip' , flipAnim:'rl', animSpeed:250, resultIcons:true });
+}
+
 function addScore()
 {
 	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);

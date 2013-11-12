@@ -9,14 +9,6 @@ function getPhoneGapPath()
     return phoneGapPath;
 }
 
-function closeOverlay()
-{
-	$('#overlay-holder').fadeOut('fast');
-	$('#tutorial-memorygame').show();
-	$('.title-holder .title').show();
-	$('.score-holder').show();
-}
-
 // Wait for device API libraries to load
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady()

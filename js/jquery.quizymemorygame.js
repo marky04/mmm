@@ -331,7 +331,6 @@ if(!Array.indexOf)
 
 		// Generates all the elements, based on the data in the <li> elements
 		var i=0;
-		var test = new Array();
 		while(i<itemsNum)
 		{
 			// randomizes the card - picks an item with a random key and
@@ -351,13 +350,20 @@ if(!Array.indexOf)
 
 			// Adds the innerHtml to the array
 			inHtml[j] = inEl.html();
-			// console.log(j, inEl.html());
-			test[i] = j;
+			//console.log(j, inEl.html());
+
+			/*************Add tile content if true*************/
+			var tileContent = '';
+			if($('#level_hint_text').val() == 'on')
+			{
+				tileContent = inEl.html();
+			}
+			/*************EOF Add tile content if true*************/
 
 			// appends the cards to the element
-			$(this).append('<div id="'+itemsClass+j+'" class="'+itemsClass+ '" style="width:'+ w+'px; height:'+h+'px; left:'+l+'px; top:'+t+'px">' +
+			$(this).append('<div id="' + itemsClass + j + '" class="' + itemsClass + '" style="width:' + w + 'px; height:' + h + 'px; left:' + l + 'px; top:' + t + 'px">' +
 				'<div class="quizy-mg-item-bottom">' +
-					'<div class="mgcard-show"></div>' +
+					'<div class="mgcard-show">' + tileContent + '</div>' +
 				'</div>' +
 				'<div id="quizy-mg-item-top' + j + '" class="quizy-mg-item-top" style="width:'+ w + 'px; height:' + h + 'px;"></div>' +
 			'</div>');
@@ -365,29 +371,32 @@ if(!Array.indexOf)
 
 			// Adds the element match id to the array of matches
 			matches[j] = inEl.attr('class');
-		}
-		
-		/*while(i<itemsNum)
-		{
-			addInHTML(el,id);
-		}*/
-		/*for(i=0; i<test.length; i++)
-		{
-			//addInHTML(el, test[i]);
-			alert(test[i]);
-			el.flip(
+
+			/*************Show tile content if true*************/
+			if($('#level_hint_text').val() == 'on')
 			{
-				direction:opts.flipAnim,
-				speed: opts.animSpeed,
-				content: el.children('div.quizy-mg-item-bottom'),
-				color:'#777',
-				onEnd: function()
+				$('.quizy-mg-item-top').hide();
+				if(i == itemsNum)
 				{
-					addInHTML(el, test[i]);
+					setTimeout( function()
+					{
+						$('.quizy-mg-item').flip(
+						{
+							direction:opts.flipAnim,
+							speed: opts.animSpeed,
+							content: $('.quizy-mg-item-top').children('div.quizy-mg-item-bottom'),
+							color:'#777',
+							onEnd: function()
+							{
+								$('.quizy-mg-item-top').show();
+								removeInHTML($('.quizy-mg-item'));
+							}
+						});
+					}, 1500);
 				}
-			});
-			i++;
-		}*/
+			}
+			/*************EOF Show tile content if true*************/
+		}
 
 		// removes the initial <li> elements
 		$(this).children('ul').remove();
