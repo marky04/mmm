@@ -318,7 +318,7 @@ if(!Array.indexOf)
 		$(this).children('ul').hide();
 
 		// makes the div wrapper big enough
-		$(this).css({height:rowNum*(h+m)+'px'});
+		$(this).css({height:rowNum * (h + m) + 'px'});
 
 		// creates an array for randomising the items
 		// and creates an empty inner html array
@@ -331,11 +331,12 @@ if(!Array.indexOf)
 
 		// Generates all the elements, based on the data in the <li> elements
 		var i=0;
+		var test = new Array();
 		while(i<itemsNum)
 		{
-			// randozises the card - picks an item with a random key and
+			// randomizes the card - picks an item with a random key and
 			// removes it from the random array
-			var pick = Math.floor(Math.random()*ranArr.length);
+			var pick = Math.floor(Math.random() * ranArr.length);
 			var j = ranArr[pick];
 			ranArr.splice(pick,1);
 
@@ -351,20 +352,42 @@ if(!Array.indexOf)
 			// Adds the innerHtml to the array
 			inHtml[j] = inEl.html();
 			// console.log(j, inEl.html());
+			test[i] = j;
 
 			// appends the cards to the element
-			$(this).append('<div id="'+itemsClass+j+'" class="'+itemsClass+
-			'" style="width:'+
-			w+'px; height:'+h+'px; left:'+l+'px; top:'+t+'px">' +
-			'<div class="quizy-mg-item-bottom"><div class="mgcard-show">'+
-			'</div></div><div id="quizy-mg-item-top'+j+
-			'" class="quizy-mg-item-top" style="width:'+
-			w+'px; height:'+h+'px;"></div></div>');
+			$(this).append('<div id="'+itemsClass+j+'" class="'+itemsClass+ '" style="width:'+ w+'px; height:'+h+'px; left:'+l+'px; top:'+t+'px">' +
+				'<div class="quizy-mg-item-bottom">' +
+					'<div class="mgcard-show"></div>' +
+				'</div>' +
+				'<div id="quizy-mg-item-top' + j + '" class="quizy-mg-item-top" style="width:'+ w + 'px; height:' + h + 'px;"></div>' +
+			'</div>');
 			i++;
 
 			// Adds the element match id to the array of matches
 			matches[j] = inEl.attr('class');
 		}
+		
+		/*while(i<itemsNum)
+		{
+			addInHTML(el,id);
+		}*/
+		/*for(i=0; i<test.length; i++)
+		{
+			//addInHTML(el, test[i]);
+			alert(test[i]);
+			el.flip(
+			{
+				direction:opts.flipAnim,
+				speed: opts.animSpeed,
+				content: el.children('div.quizy-mg-item-bottom'),
+				color:'#777',
+				onEnd: function()
+				{
+					addInHTML(el, test[i]);
+				}
+			});
+			i++;
+		}*/
 
 		// removes the initial <li> elements
 		$(this).children('ul').remove();
