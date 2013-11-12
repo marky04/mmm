@@ -14,7 +14,31 @@ p{
 .index-content{
 	display:none;
 }
-#main{
+.popup-home-box{
+	display:none;
+	z-index:1005;
+	position:absolute;
+	top:88px;
+	left:21px;
+	border:1px solid #fff;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	background:#5b5b5b;
+	width:220px;
+	padding:20px;
+	color:#fff;
+}
+.popup-home-box p{
+	margin:0 0 10px;
+	text-align:center;
+}
+.popup-home-box button{
+	width:101px;
+	height:36px;
+	margin:0 3px;
+}
+#wrapper, #main{
 	position:relative;
     width: 305px;
 	margin: auto;
