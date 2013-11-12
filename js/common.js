@@ -93,7 +93,7 @@ function queryConfigSuccess(tx, results)
 // Transaction error callback
 function errorCB(err)
 {
-	$('#debug').html('Local Database Connection Success');
+	//$('#debug').html('Error processing SQL: ' + err.code);
 }
 
 // Transaction success callback
