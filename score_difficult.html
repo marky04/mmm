@@ -1,6 +1,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head></head>
+<head>
+<style>
+button.commoncss3button,
+button.maincss3button{
+	width:140px;
+	margin:26px 5px;
+	padding:5px;
+}
+</style>
+</head>
 <body>
 <div class="title-holder">
 	<button type="button" class="backcss3button" onClick="PageLoader('home');">
@@ -17,15 +26,21 @@
 </div>
 <div id="main">
 	<table class="score-table" border="0" cellpadding="0" cellspacing="0">
-		<thead>
-			<tr>
-				<th>Rank</th>
-				<th width="200">Name</th>
-				<th>Score</th>
-			</tr>
-		</thead>
-		<tbody id="score_content"></tbody>
+		<tr>
+			<th width="280">Current Score</th>
+			<td id="current_score">0</td>
+		</tr>
+		<tr>
+			<th>Last Score</th>
+			<td id="last_score">0</td>
+		</tr>
+		<tr>
+			<th>High Score</th>
+			<td id="high_score">0</td>
+		</tr>
 	</table>
+	<button type="button" class="maincss3button" onClick="PageLoader('easy');">Play Again</button>
+	<button type="button" class="commoncss3button" onClick="PageLoader('home');">Home</button>
 </div>
 <script type="text/javascript" charset="utf-8">
 // Wait for device API libraries to load
@@ -35,30 +50,29 @@ document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady()
 {
 	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
-	db.transaction(queryDB, errorCB);
+	db.transaction(currentScore, errorCB);
+	db.transaction(highScore, errorCB);
 }
 
-// Query the database
-function queryDB(tx)
+function currentScore(tx)
 {
-	tx.executeSql('SELECT * FROM score_ranks WHERE difficulty = "difficult" ORDER BY score DESC', [], querySuccess, errorCB);
+	tx.executeSql('SELECT * FROM score_ranks WHERE difficulty = "difficult" ORDER BY date_added DESC', [], currentScoreSuccess, errorCB);
 }
 
-// Query the success callback
-function querySuccess(tx, results)
+function currentScoreSuccess(tx, results)
 {
-	var resultCount = results.rows.length;
-	var strRows = '';
-	for (var i = 0; i < resultCount; i++)
-	{
-		strRows += '<tr>' +
-			'<td align="center">' + (i + 1) + '</td>' +
-			'<td>' + results.rows.item(i).name + '</td>' +
-			'<td align="center">' + results.rows.item(i).score + '</td>' +
-		'</tr>';
-	}
-	
-	$('#score_content').html(strRows);
+	$('#current_score').html(results.rows.item(0).score);
+	$('#last_score').html(results.rows.item(1).score);
+}
+
+function highScore(tx)
+{
+	tx.executeSql('SELECT * FROM score_ranks WHERE difficulty = "difficult" ORDER BY score DESC', [], highScoreSuccess, errorCB);
+}
+
+function highScoreSuccess(tx, results)
+{
+	$('#high_score').html(results.rows.item(0).score);
 }
 </script>
 </body>

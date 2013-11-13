@@ -40,7 +40,7 @@ function onPause()
 // Create score_ranks table
 function createTable(tx)
 {
-	tx.executeSql('DROP TABLE IF EXISTS score_ranks');
+	//tx.executeSql('DROP TABLE IF EXISTS score_ranks');
 	//tx.executeSql('CREATE TABLE IF NOT EXISTS score_ranks (name, score, difficulty)');
 	tx.executeSql('CREATE TABLE IF NOT EXISTS score_ranks (score, difficulty, date_added)');
 	//tx.executeSql('DROP TABLE IF EXISTS config');
@@ -86,7 +86,7 @@ function queryConfigSuccess(tx, results)
 // Transaction error callback
 function errorCB(err)
 {
-	$('#debug').html('Error processing SQL: ' + err.code);
+	//$('#debug').html('Error processing SQL: ' + err.code);
 }
 
 // Transaction success callback
