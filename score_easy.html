@@ -48,8 +48,8 @@ function currentScore(tx)
 	tx.executeSql('SELECT * FROM score_ranks WHERE difficulty = "easy" ORDER BY date_added DESC', [], currentScoreSuccess, errorCB);
 }
 
-function currentScore(tx, results)
-{alert(results.rows.length);
+function currentScoreSuccess(tx, results)
+{
 	$('#current_score').html(results.rows.item(0).score);
 	$('#last_score').html(results.rows.item(1).score);
 }
