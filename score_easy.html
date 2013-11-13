@@ -49,7 +49,7 @@ function currentScore(tx)
 }
 
 function currentScore(tx, results)
-{
+{alert(results.rows.length);
 	$('#current_score').html(results.rows.item(0).score);
 	$('#last_score').html(results.rows.item(1).score);
 }
