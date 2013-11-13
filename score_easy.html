@@ -17,14 +17,18 @@
 </div>
 <div id="main">
 	<table class="score-table" border="0" cellpadding="0" cellspacing="0">
-		<thead>
-			<tr>
-				<th>Rank</th>
-				<th width="200">Name</th>
-				<th>Score</th>
-			</tr>
-		</thead>
-		<tbody id="score_content"></tbody>
+		<tr>
+			<th width="280">Current Score</th>
+			<td id="current_score">0</td>
+		</tr>
+		<tr>
+			<th>Last Score</th>
+			<td id="last_score">0</td>
+		</tr>
+		<tr>
+			<th>High Score</th>
+			<td id="high_score">0</td>
+		</tr>
 	</table>
 </div>
 <script type="text/javascript" charset="utf-8">
@@ -35,31 +39,29 @@ document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady()
 {
 	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
-	db.transaction(queryDB, errorCB);
+	db.transaction(currentScore, errorCB);
+	db.transaction(highScore, errorCB);
 }
 
-// Query the database
-function queryDB(tx)
+function currentScore(tx)
 {
-	tx.executeSql('SELECT * FROM score_ranks WHERE difficulty = "easy" ORDER BY score DESC', [], querySuccess, errorCB);
+	tx.executeSql('SELECT * FROM score_ranks WHERE difficulty = "easy" ORDER BY date_added DESC', [], currentScoreSuccess, errorCB);
 }
 
-// Query the success callback
-function querySuccess(tx, results)
+function currentScore(tx, results)
 {
-	var resultCount = results.rows.length;
-	var strRows = '';
-	for (var i = 0; i < resultCount; i++)
-	{
-		strRows += '<tr>' +
-			'<td align="center">' + (i + 1) + '</td>' +
-			'<td>' + results.rows.item(i).date_added + '</td>' +
-			'<td align="center">' + results.rows.item(i).score + '</td>' +
-		'</tr>';
-		//strRows += (i + 1) + ' ' + results.rows.item(i).name  + ' ' + results.rows.item(i).score + '<br />';
-	}
-	
-	$('#score_content').html(strRows);
+	$('#current_score').html(results.rows.item(0).score);
+	$('#last_score').html(results.rows.item(1).score);
+}
+
+function highScore(tx)
+{
+	tx.executeSql('SELECT * FROM score_ranks WHERE difficulty = "easy" ORDER BY score DESC', [], highScoreSuccess, errorCB);
+}
+
+function highScoreSuccess(tx, results)
+{
+	$('#high_score').html(results.rows.item(0).score);
 }
 </script>
 </body>

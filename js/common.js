@@ -40,7 +40,7 @@ function onPause()
 // Create score_ranks table
 function createTable(tx)
 {
-	tx.executeSql('DROP TABLE IF EXISTS score_ranks');
+	//tx.executeSql('DROP TABLE IF EXISTS score_ranks');
 	//tx.executeSql('CREATE TABLE IF NOT EXISTS score_ranks (name, score, difficulty)');
 	tx.executeSql('CREATE TABLE IF NOT EXISTS score_ranks (score, difficulty, date_added datetime)');
 	//tx.executeSql('DROP TABLE IF EXISTS config');

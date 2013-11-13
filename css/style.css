@@ -281,6 +281,9 @@ button.backcss3button {
 	border-bottom:1px solid #333;
 	padding:10px;
 }
+.score-table th{
+	text-align:left;
+}
 .content-holder{
 	display:block;
 	margin-bottom:15px;

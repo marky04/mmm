@@ -420,6 +420,8 @@ if(!Array.indexOf)
 		// Appends game summary div if set in the opts.
 		if(opts.gameSummary)
 		{
+			addScore();
+
 			$(this).append('<div id="quizy-game-summary">' +
 				'<div id="gs-column1">' +
 					opts.textSummaryTitle +
@@ -427,10 +429,10 @@ if(!Array.indexOf)
 				'<div id="gs-column2"></div>' +
 				'<div id="gs-column3"></div>' +
 				'<div id="gs-column-score"></div>' +
-				'<div id="gs-column-input">' +
+				'<!--div id="gs-column-input">' +
 					'<input type="text" id="score_rank_name" placeholder="Enter your Name" />' +
 					'<input type="button" id="score_rank_add" value="Save" onClick="addScore();" />' +
-				'</div>' +
+				'</div-->' +
 				'<div id="gs-column-play">' +
 					'<input type="button" id="score_rank_add" value="Play Again" onClick="PageLoader(\'easy\');" />' +
 					'<input type="button" value="Score" onClick="PageLoader(\'score_easy\');" />' +
@@ -446,6 +448,7 @@ if(!Array.indexOf)
 			$('div#quizy-game-summary').css({top:yMid+'px',left:xMid+'px'});
 
 			// adds a click event to the summary div to be removed on click
+			$('#gs-column-play').fadeIn();
 			$('#score_rank_add').click(function()
 			{
 				//$('div#quizy-game-summary').remove();
