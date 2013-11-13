@@ -135,6 +135,8 @@ if(!Array.indexOf)
 							$('div#quizy-game-summary').children('div#gs-column3').html(numTotalClicks+'<br>'+opts.textSummaryClicks);
 							$('div#quizy-game-summary').delay(2000).fadeIn(1000,function()
 							{
+								addScore();
+								
 								//playback sound
 								/*var playCompleteAudio = new Audio('sound/game_complete.mp3');
 								playCompleteAudio.currentTime == 0;
@@ -420,8 +422,6 @@ if(!Array.indexOf)
 		// Appends game summary div if set in the opts.
 		if(opts.gameSummary)
 		{
-			addScore();
-
 			$(this).append('<div id="quizy-game-summary">' +
 				'<div id="gs-column1">' +
 					opts.textSummaryTitle +
