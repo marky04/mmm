@@ -118,7 +118,7 @@ function insertScore(tx)
 	alert(dateAdded);
 
 	//tx.executeSql('INSERT INTO score_ranks (name, score, difficulty) VALUES ("' + $('#score_rank_name').val() + '", ' + $('span#points').html() + ', "easy")');
-	tx.executeSql('INSERT INTO score_ranks (score, difficulty, date_added) VALUES ("' + $('#score_rank_name').val() + '", ' + $('span#points').html() + ', "easy", "' + dateAdded + '")');
+	tx.executeSql('INSERT INTO score_ranks (score, difficulty, date_added) VALUES (' + $('span#points').html() + ', "easy", "' + dateAdded + '")');
 }
 </script>
 </body>
