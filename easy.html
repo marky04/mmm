@@ -16,83 +16,85 @@ button.maincss3button{
 </head>
 <body>
 <div class="title-holder">
-	<button type="button" class="backcss3button" onClick="PageLoader('home');">
-		<img src="img/home_icon.png" />
-	</button>
-	<div class="title">Easy</div>
-	<div class="score-holder">
-		<span>Score:</span>
+	<div class="title">Score: <span id="points">0</span></div>
+	<!--div class="score-holder">
+		<span></span>
 		<span id="points">0</span>
-	</div>
+	</div-->
+	<a class="home-button" onClick="PageLoader('home');">
+		<img src="img/home_btn.png" />
+	</a>
 </div>
-<div id="main" role="main">
-	<div id="overlay-holder">
-		<button type="button" class="commoncss3button" onClick="closeOverlay();">Easy</button>
-		<button type="button" class="maincss3button" onClick="PageLoader('difficult');">Difficult</button>
-	</div>
-	<div id="tutorial-memorygame" class="quizy-memorygame">
-		<ul>
-		  <li class="match1">
-			<img src="img/flag-Bulgaria.png" />
-		  </li>
-		  <li class="match2">
-			<img src="img/flag-Cuba.png" />
-		  </li>
-		  <li class="match3">
-			<img src="img/flag-Sweden.png" />
-		  </li>
-		  <li class="match4">
-			<img src="img/flag-NewZealand.png" />
-		  </li>
-		  <li class="match5">
-			<img src="img/flag-Uruguay.png" />
-		  </li>
-		  <li class="match6">
-			<img src="img/flag-Tunisia.png" />
-		  </li>
-		  <li class="match7">
-			<p class="text-style1">Pair 7</p>
-		  </li>
-		  <li class="match8">
-			<p class="text-style1">Pair 8</p>
-		  </li>
-		  <li class="match9">
-			<p class="text-style1">Pair 9</p>
-		  </li>
-		  <li class="match10">
-			<p class="text-style1">Pair 10</p>
-		  </li>
-		  <li class="match1">
-			<p class="text-style1">Bulgaria</p>
-		  </li>
-		  <li class="match2">
-			<p class="text-style1">Cuba</p>
-		  </li>
-		  <li class="match3">
-			<p class="text-style1">Sweden</p>
-		  </li>
-		  <li class="match4">
-			<p class="text-style1">New<br>Zealand</p>
-		  </li>
-		  <li class="match5">
-			<p class="text-style1">Uruguay</p>
-		  </li>
-		  <li class="match6">
-			<p class="text-style1">Tunisia</p>
-		  </li>
-		  <li class="match7">
-			<p class="text-style1">Pair 7</p>
-		  </li>
-		  <li class="match8">
-			<p class="text-style1">Pair 8</p>
-		  </li>
-		  <li class="match9">
-			<p class="text-style1">Pair 9</p>
-		  </li>
-		  <li class="match10">
-			<p class="text-style1">Pair 10</p>
-		  </li>
-		</ul>
+<div class="tutorial-memorygame-holder">
+	<div id="main" role="main">
+		<div id="overlay-holder">
+			<button type="button" class="commoncss3button" onClick="closeOverlay();">Easy</button>
+			<button type="button" class="maincss3button" onClick="PageLoader('difficult');">Difficult</button>
+		</div>
+		<div id="tutorial-memorygame" class="quizy-memorygame">
+			<ul>
+			  <li class="match1">
+				<img src="img/flag-Bulgaria.png" />
+			  </li>
+			  <li class="match2">
+				<img src="img/flag-Cuba.png" />
+			  </li>
+			  <li class="match3">
+				<img src="img/flag-Sweden.png" />
+			  </li>
+			  <li class="match4">
+				<img src="img/flag-NewZealand.png" />
+			  </li>
+			  <li class="match5">
+				<img src="img/flag-Uruguay.png" />
+			  </li>
+			  <li class="match6">
+				<img src="img/flag-Tunisia.png" />
+			  </li>
+			  <li class="match7">
+				<p class="text-style1">Pair 7</p>
+			  </li>
+			  <li class="match8">
+				<p class="text-style1">Pair 8</p>
+			  </li>
+			  <li class="match9">
+				<p class="text-style1">Pair 9</p>
+			  </li>
+			  <li class="match10">
+				<p class="text-style1">Pair 10</p>
+			  </li>
+			  <li class="match1">
+				<p class="text-style1">Bulgaria</p>
+			  </li>
+			  <li class="match2">
+				<p class="text-style1">Cuba</p>
+			  </li>
+			  <li class="match3">
+				<p class="text-style1">Sweden</p>
+			  </li>
+			  <li class="match4">
+				<p class="text-style1">New<br>Zealand</p>
+			  </li>
+			  <li class="match5">
+				<p class="text-style1">Uruguay</p>
+			  </li>
+			  <li class="match6">
+				<p class="text-style1">Tunisia</p>
+			  </li>
+			  <li class="match7">
+				<p class="text-style1">Pair 7</p>
+			  </li>
+			  <li class="match8">
+				<p class="text-style1">Pair 8</p>
+			  </li>
+			  <li class="match9">
+				<p class="text-style1">Pair 9</p>
+			  </li>
+			  <li class="match10">
+				<p class="text-style1">Pair 10</p>
+			  </li>
+			</ul>
+		</div>
 	</div>
 </div>
 <script type="text/javascript" charset="utf-8">

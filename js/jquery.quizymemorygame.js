@@ -218,7 +218,7 @@ if(!Array.indexOf)
 						direction:opts.flipAnim,
 						speed: opts.animSpeed,
 						content: el.children('div.quizy-mg-item-bottom'),
-						color:'#777',
+						color:'#000',
 						onEnd: function()
 						{
 							addInHTML(el,id);
@@ -387,7 +387,7 @@ if(!Array.indexOf)
 							direction:opts.flipAnim,
 							speed: opts.animSpeed,
 							content: $('.quizy-mg-item-top').children('div.quizy-mg-item-bottom'),
-							color:'#777',
+							color:'#000',
 							onEnd: function()
 							{
 								$('.quizy-mg-item-top').show();
