@@ -1,5 +1,5 @@
 body{
-  background:#cbcbcb;
+  background:#00aaff;
   font-family:Helvetica, Arial, Verdana;
   margin:0;
   font-size:100%;
@@ -10,6 +10,9 @@ a{
 }
 p{
 	padding:0 5px;
+}
+img{
+	max-width:100%;
 }
 .index-content{
 	display:none;
@@ -60,16 +63,42 @@ p{
 	font-size:100%;
 	line-height:28px;
 }
-#home.title-holder{
+/*#home.title-holder{
 	background:none;
 	height:77px;
 	margin:25px 0 15px;
 	text-align:center;
-}
+}*/
 .title-holder .title{
 	float:left;
 	margin:0;
 	font-weight:bold;
+}
+.footer-nav{
+	list-style:none;
+	background:#ffeb00;
+	float:left;
+	width:100%;
+	margin:5px 0 0;
+	padding:5px 0;
+}
+.footer-nav li{
+	float:left;
+	border-right:3px solid #00aaff;
+}
+.footer-nav li:last-child{
+	border-right:none;
+}
+.footer-nav li a{
+	float:left;
+	width:100px;
+	padding:25px 0;
+	color:#00aaff;
+	font-size:18px;
+	text-align:center;
+}
+.footer-nav li:last-child a{
+	padding:14px 6px;
 }
 .score-holder{
 	float:right;
@@ -126,7 +155,7 @@ button.maincss3button {
 		#ff2819 0%,
 		#ab0000);
 	background: -webkit-gradient(
-		linear, left top, left bottom, 
+		linear, left top, left bottom,
 		from(#ff2819),
 		to(#ab0000));
 	-moz-border-radius: 0px;
@@ -160,7 +189,7 @@ button.commoncss3button {
 		#dbdbdb 50%,
 		#b5b5b5);
 	background: -webkit-gradient(
-		linear, left top, left bottom, 
+		linear, left top, left bottom,
 		from(#ffffff),
 		color-stop(0.50, #ebebeb),
 		color-stop(0.50, #dbdbdb),
@@ -195,7 +224,7 @@ button.backcss3button {
 		#dbdbdb 50%,
 		#b5b5b5);
 	background: -webkit-gradient(
-		linear, left top, left bottom, 
+		linear, left top, left bottom,
 		from(#ffffff),
 		color-stop(0.50, #ebebeb),
 		color-stop(0.50, #dbdbdb),

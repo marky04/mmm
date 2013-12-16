@@ -24,15 +24,31 @@
 	</div>
 </div>
 <div class="index-content">
-	<div id="home" class="title-holder">
-		<img src="img/home_logo.jpg" />
-	</div>
-	<div id="main">
+	<img src="img/home.png" />
+	<ul class="footer-nav">
+		<li>
+			<a onClick="PageLoader('settings');">
+				<img src="img/btn1.png" /><!--Settings/設定-->
+			</a>
+		</li>
+		<li>
+			<a onClick="PageLoader('score_easy');">
+				<img src="img/btn2.png" /><!--Score/成績-->
+			</a>
+		</li>
+		<li>
+			<a onClick="PageLoader('package');">
+				<img src="img/btn3.png" /><!--Package/歴代パッケージ-->
+			</a>
+		</li>
+	</ul>
+
+	<!--div id="main">
 		<button type="button" class="maincss3button" onClick="PageLoader('easy');">Start Game</button>
 		<button type="button" class="commoncss3button" onClick="PageLoader('settings');">Settings</button>
 		<button type="button" class="commoncss3button" onClick="PageLoader('score_easy');">Score</button>
 		<button type="button" class="commoncss3button" onClick="PageLoader('package');">Package</button>
-	</div>
+	</div-->
 </div>
 <script src="js/jquery-1.7.1.min.js"></script>
 <script src="js/jquery-ui-1.8.17.custom.min.js"></script>
