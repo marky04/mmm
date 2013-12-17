@@ -66,7 +66,7 @@ function onDeviceReady()
 
 function currentScore(tx)
 {
-	tx.executeSql('SELECT * FROM score_ranks WHERE difficulty = "easy" ORDER BY date_added DESC', [], currentScoreSuccess, errorCB);
+	tx.executeSql('SELECT * FROM score_ranks WHERE difficulty = "easy" ORDER BY score DESC', [], currentScoreSuccess, errorCB);
 }
 
 function currentScoreSuccess(tx, results)
