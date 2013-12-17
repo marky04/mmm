@@ -77,7 +77,7 @@ img{
 	font-size:120%;
 	line-height:36px;
 }
-.title-holder span{
+.title-holder span.yellow{
 	float:left;
 	background:#ffeb00;
     width:68px;

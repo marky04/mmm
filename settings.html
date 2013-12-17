@@ -34,7 +34,7 @@ button.commoncss3button{
 	</tr>
 	<tr class="orange bg-spark">
 		<th>
-			<span class="orange">Sound Effects</span>
+			<span class="orange">Music</span>
 		</th>
 	</tr>
 	<tr class="dark-orange">
@@ -80,7 +80,7 @@ function queryConfigSuccess(tx, results)
 	{
 		//strRows += (i + 1) + ' ' + results.rows.item(i).config_key  + ' ' + results.rows.item(i).config_value + '<br />';
 		if(results.rows.item(i).config_value == 'on')
-		{
+		{alert('#' + results.rows.item(i).config_key + '_on');
 			$('#' + results.rows.item(i).config_key + '_on').attr('checked', 'checked');
 		}
 		else
@@ -110,7 +110,7 @@ function updateConfigSound(tx)
 	var configValue = 'off';
 	stopAudio();
 	if($('#sound_effects_on').prop('checked'))
-	{
+	{alert('taz');
 		configValue = 'on';
 		playAudio(getPhoneGapPath() + 'sound/background_music.mp3');
 	}
