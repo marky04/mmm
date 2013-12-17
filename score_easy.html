@@ -75,10 +75,10 @@ function currentScoreSuccess(tx, results)
 	var strRows = '';
 	for (var i = 0; i < resultCount; i++)
 	{
-		strRows += (i + 1) + ' ' + results.rows.item(i).score  + ' ' + results.rows.item(i).difficulty  + ' ' + results.rows.item(i).date_added + '<br />';
+		strRows += (i + 1) + ' ' + results.rows.item(i).id + ' ' + results.rows.item(i).score  + ' ' + results.rows.item(i).difficulty  + ' ' + results.rows.item(i).date_added + '<br />';
 	}
 
-	$('#debug').html(strRows);
+	$('#debug').html(resultCount + strRows);
 
 	$('#current_score').html(results.rows.item(0).score);
 	$('#last_score').html(results.rows.item(1).score);
