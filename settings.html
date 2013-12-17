@@ -26,10 +26,10 @@ button.commoncss3button{
 	<tr class="yellow">
 		<td style="text-align:center;">
 			<input type="radio" name="level_hint" id="level_hint_on" class="css-checkbox" onClick="editConfig('level_hint');" />
-			<label for="sound_radio_on" class="css-label">On</label>
+			<label for="level_hint_on" class="css-label">On</label>
 			&nbsp;&nbsp;
 			<input type="radio" name="level_hint" id="level_hint_off" class="css-checkbox" checked="checked" onClick="editConfig('level_hint');" />
-			<label for="sound_radio_off" class="css-label">Off</label>
+			<label for="level_hint_off" class="css-label">Off</label>
 		</td>
 	</tr>
 	<tr class="orange bg-spark">
@@ -40,10 +40,10 @@ button.commoncss3button{
 	<tr class="dark-orange">
 		<td style="text-align:center;">
 			<input type="radio" name="sound_radio" id="sound_effects_on" class="css-checkbox" onClick="editConfig('sound_effects');" />
-			<label for="sound_radio_on" class="css-label">On</label>
+			<label for="sound_effects_on" class="css-label">On</label>
 			&nbsp;&nbsp;
 			<input type="radio" name="sound_radio" id="sound_effects_off" class="css-checkbox" checked="checked" onClick="editConfig('sound_effects');" />
-			<label for="sound_radio_off" class="css-label">Off</label>
+			<label for="sound_effects_off" class="css-label">Off</label>
 		</td>
 	</tr>
 	<tr class="red">
@@ -80,7 +80,7 @@ function queryConfigSuccess(tx, results)
 	{
 		//strRows += (i + 1) + ' ' + results.rows.item(i).config_key  + ' ' + results.rows.item(i).config_value + '<br />';
 		if(results.rows.item(i).config_value == 'on')
-		{alert('#' + results.rows.item(i).config_key + '_on');
+		{
 			$('#' + results.rows.item(i).config_key + '_on').attr('checked', 'checked');
 		}
 		else
