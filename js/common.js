@@ -86,7 +86,7 @@ function queryConfigSuccess(tx, results)
 // Transaction error callback
 function errorCB(err)
 {
-	//$('#debug').html('Error processing SQL: ' + err.code);
+	$('#debug').html('Error processing SQL: ' + err.code);
 }
 
 // Transaction success callback
