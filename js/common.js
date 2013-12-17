@@ -42,7 +42,7 @@ function createTable(tx)
 {alert('taz create table');
 	tx.executeSql('DROP TABLE IF EXISTS score_ranks');
 	//tx.executeSql('CREATE TABLE IF NOT EXISTS score_ranks (name, score, difficulty)');
-	tx.executeSql('CREATE TABLE IF NOT EXISTS score_ranks (id unique increment, score, difficulty, date_added)');
+	tx.executeSql('CREATE TABLE IF NOT EXISTS score_ranks (id INTEGER PRIMARY KEY AUTOINCREMENT, score, difficulty, date_added)');
 	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
 	db.transaction(testInsertScore, errorCB, successCB);
 	//tx.executeSql('DROP TABLE IF EXISTS config');
