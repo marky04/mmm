@@ -12,33 +12,46 @@ button.maincss3button{
 </head>
 <body>
 <div class="title-holder">
-	<div class="title">
-		<span style="color:#fff;">Easy</span>
-		&nbsp;|&nbsp;
-		<a onClick="PageLoader('score_difficult');">Difficult</a>
+	<span>成績</span>
+	<div class="title center">
+		<a onClick="PageLoader('score_difficult');">かんたん</a>
 	</div>
 	<a class="home-button" onClick="PageLoader('home');">
 		<img src="img/home_btn.png" />
 	</a>
 </div>
-<div id="main">
-	<table class="score-table" border="0" cellpadding="0" cellspacing="0">
-		<tr>
-			<th width="280">Current Score</th>
-			<td id="current_score">0</td>
-		</tr>
-		<tr>
-			<th>Last Score</th>
-			<td id="last_score">0</td>
-		</tr>
-		<tr>
-			<th>High Score</th>
-			<td id="high_score">0</td>
-		</tr>
-	</table>
+<table class="score-table" border="0" cellpadding="0" cellspacing="0">
+	<tr class="green bg-spark">
+		<th>
+			<span>今回のスコア</span>
+		</th>
+	</tr>
+	<tr class="yellow">
+		<td id="current_score">0</td>
+	</tr>
+	<tr class="orange bg-spark">
+		<th>
+			<span class="orange">前回のスコア</span>
+		</th>
+	</tr>
+	<tr class="dark-orange">
+		<td id="last_score">0</td>
+	</tr>
+	<tr class="red bg-spark">
+		<th>
+			<img src="img/crown_icon.png" class="crown-icon" />
+			<span class="red">最高スコア</span>
+		</th>
+	</tr>
+	<tr class="pink">
+		<td id="high_score">0</td>
+	</tr>
+	<tr class="violet"><td>&nbsp;</td></tr>
+</table>
+<!--div id="main">
 	<button type="button" class="maincss3button" onClick="PageLoader('easy');">Play Again</button>
 	<button type="button" class="commoncss3button" onClick="PageLoader('home');">Home</button>
-</div>
+</div-->
 <script type="text/javascript" charset="utf-8">
 // Wait for device API libraries to load
 document.addEventListener("deviceready", onDeviceReady, false);

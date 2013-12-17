@@ -12,40 +12,50 @@ button.commoncss3button{
 </head>
 <body>
 <div class="title-holder">
-	<div class="title">
-		Settings
-	</div>
+	<div class="title">Settings</div>
 	<a class="home-button" onClick="PageLoader('home');">
 		<img src="img/home_btn.png" />
 	</a>
 </div>
-<div id="main">
-	<div class="content-holder">
-		<div class="content-title">Level Hint</div>
-		<div class="content-description">
-			<div class="onoffswitch">
-				<input type="checkbox" class="onoffswitch-checkbox" id="level_hint" checked onClick="editConfig('level_hint');" />
-				<label class="onoffswitch-label" for="level_hint">
-					<div class="onoffswitch-inner"></div>
-					<div class="onoffswitch-switch"></div>
-				</label>
-			</div>
-		</div>
-	</div>
-	<div class="content-holder">
-		<div class="content-title">Sound Effects</div>
-		<div class="content-description">
-			<div class="onoffswitch">
-				<input type="checkbox" class="onoffswitch-checkbox" id="sound_effects" checked onClick="editConfig('sound_effects');" />
-				<label class="onoffswitch-label" for="sound_effects">
-					<div class="onoffswitch-inner"></div>
-					<div class="onoffswitch-switch"></div>
-				</label>
-			</div>
-		</div>
-	</div>
-	<button type="button" class="commoncss3button" onClick="PageLoader('how_to_play');">How To Play</button>
-</div>
+<table class="score-table" border="0" cellpadding="0" cellspacing="0">
+	<tr class="green bg-spark">
+		<th>
+			<span>Level Hint</span>
+		</th>
+	</tr>
+	<tr class="yellow">
+		<td style="text-align:center;">
+			<input type="radio" name="level_hint" id="level_hint_on" class="css-checkbox" onClick="editConfig('level_hint');" />
+			<label for="sound_radio_on" class="css-label">On</label>
+			&nbsp;&nbsp;
+			<input type="radio" name="level_hint" id="level_hint_off" class="css-checkbox" checked="checked" onClick="editConfig('level_hint');" />
+			<label for="sound_radio_off" class="css-label">Off</label>
+		</td>
+	</tr>
+	<tr class="orange bg-spark">
+		<th>
+			<span class="orange">Sound Effects</span>
+		</th>
+	</tr>
+	<tr class="dark-orange">
+		<td style="text-align:center;">
+			<input type="radio" name="sound_radio" id="sound_effects_on" class="css-checkbox" onClick="editConfig('sound_effects');" />
+			<label for="sound_radio_on" class="css-label">On</label>
+			&nbsp;&nbsp;
+			<input type="radio" name="sound_radio" id="sound_effects_off" class="css-checkbox" checked="checked" onClick="editConfig('sound_effects');" />
+			<label for="sound_radio_off" class="css-label">Off</label>
+		</td>
+	</tr>
+	<tr class="red">
+		<th>&nbsp;</th>
+	</tr>
+	<tr class="pink">
+		<td style="text-align:center;">
+			<button type="button" class="commoncss3button" onClick="PageLoader('how_to_play');" style="width:159px; font-size:62%;">How To Play</button>
+		</td>
+	</tr>
+	<tr class="violet"><td>&nbsp;</td></tr>
+</table>
 <script type="text/javascript">
 // Wait for device API libraries to load
 document.addEventListener("deviceready", onDeviceReady, false);
@@ -71,11 +81,11 @@ function queryConfigSuccess(tx, results)
 		//strRows += (i + 1) + ' ' + results.rows.item(i).config_key  + ' ' + results.rows.item(i).config_value + '<br />';
 		if(results.rows.item(i).config_value == 'on')
 		{
-			$('#' + results.rows.item(i).config_key).attr('checked', 'checked');
+			$('#' + results.rows.item(i).config_key + '_on').attr('checked', 'checked');
 		}
 		else
 		{
-			$('#' + results.rows.item(i).config_key).removeAttr('checked');
+			$('#' + results.rows.item(i).config_key + '_off').removeAttr('checked');
 		}
 	}
 
@@ -99,7 +109,7 @@ function updateConfigSound(tx)
 {
 	var configValue = 'off';
 	stopAudio();
-	if($('#sound_effects').prop('checked'))
+	if($('#sound_effects_on').prop('checked'))
 	{
 		configValue = 'on';
 		playAudio(getPhoneGapPath() + 'sound/background_music.mp3');
@@ -112,7 +122,7 @@ function updateConfigSound(tx)
 function updateConfigHint(tx)
 {
 	var configValue = 'off';
-	if($('#level_hint').prop('checked'))
+	if($('#level_hint_on').prop('checked'))
 	{
 		configValue = 'on';
 	}
