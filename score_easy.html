@@ -70,7 +70,7 @@ function currentScore(tx)
 }
 
 function currentScoreSuccess(tx, results)
-{
+{alert(results.rows.item(0).score + ' taz');alert(results.rows.item(1).score + ' tazki');
 	$('#current_score').html(results.rows.item(0).score);
 	$('#last_score').html(results.rows.item(1).score);
 }
