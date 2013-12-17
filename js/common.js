@@ -40,13 +40,24 @@ function onPause()
 // Create score_ranks table
 function createTable(tx)
 {
-	//tx.executeSql('DROP TABLE IF EXISTS score_ranks');
+	tx.executeSql('DROP TABLE IF EXISTS score_ranks');
 	//tx.executeSql('CREATE TABLE IF NOT EXISTS score_ranks (name, score, difficulty)');
 	tx.executeSql('CREATE TABLE IF NOT EXISTS score_ranks (score, difficulty, date_added)');
+	db.transaction(testInsertScore, errorCB, successCB);
 	//tx.executeSql('DROP TABLE IF EXISTS config');
 	tx.executeSql('CREATE TABLE IF NOT EXISTS config (config_id unique, config_key, config_value)');
 	tx.executeSql('INSERT INTO config (config_id, config_key, config_value) VALUES (1, "sound_effects", "on")');
 	tx.executeSql('INSERT INTO config (config_id, config_key, config_value) VALUES (2, "level_hint", "on")');
+}
+
+function testInsertScore(tx)
+{
+	var dateToday = new Date();
+	var dateAdded = dateToday.getFullYear() + '-' + (dateToday.getMonth() + 1) + '-' + dateToday.getDate() + ' ' + dateToday.getHours() + ':' + dateToday.getMinutes() + ':' + dateToday.getSeconds();
+
+	//tx.executeSql('INSERT INTO score_ranks (name, score, difficulty) VALUES ("' + $('#score_rank_name').val() + '", ' + $('span#points').html() + ', "easy")');
+	alert(dateAdded);
+	tx.executeSql('INSERT INTO score_ranks (score, difficulty, date_added) VALUES ("21", "easy", "' + dateAdded + '")');
 }
 
 // Query the database
