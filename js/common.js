@@ -39,10 +39,11 @@ function onPause()
 
 // Create score_ranks table
 function createTable(tx)
-{
+{alert('taz create table');
 	tx.executeSql('DROP TABLE IF EXISTS score_ranks');
 	//tx.executeSql('CREATE TABLE IF NOT EXISTS score_ranks (name, score, difficulty)');
 	tx.executeSql('CREATE TABLE IF NOT EXISTS score_ranks (score, difficulty, date_added)');
+	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
 	db.transaction(testInsertScore, errorCB, successCB);
 	//tx.executeSql('DROP TABLE IF EXISTS config');
 	tx.executeSql('CREATE TABLE IF NOT EXISTS config (config_id unique, config_key, config_value)');
