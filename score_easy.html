@@ -65,12 +65,21 @@ function onDeviceReady()
 }
 
 function currentScore(tx)
-{alert('tazkicurrentScore');
+{
 	tx.executeSql('SELECT * FROM score_ranks WHERE difficulty = "easy" ORDER BY date_added DESC', [], currentScoreSuccess, errorCB);
 }
 
 function currentScoreSuccess(tx, results)
-{alert(results.rows.item(0).score + ' taz');alert(results.rows.item(1).score + ' tazki');
+{
+	var resultCount = results.rows.length;
+	var strRows = '';
+	for (var i = 0; i < resultCount; i++)
+	{
+		strRows += (i + 1) + ' ' + results.rows.item(i).score  + ' ' + results.rows.item(i).difficulty  + ' ' + results.rows.item(i).date_added + '<br />';
+	}
+
+	$('#debug').html(strRows);
+
 	$('#current_score').html(results.rows.item(0).score);
 	$('#last_score').html(results.rows.item(1).score);
 }
