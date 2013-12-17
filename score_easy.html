@@ -65,7 +65,7 @@ function onDeviceReady()
 }
 
 function currentScore(tx)
-{
+{alert('tazkicurrentScore');
 	tx.executeSql('SELECT * FROM score_ranks WHERE difficulty = "easy" ORDER BY date_added DESC', [], currentScoreSuccess, errorCB);
 }
 
