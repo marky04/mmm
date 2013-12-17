@@ -110,7 +110,7 @@ function updateConfigSound(tx)
 	var configValue = 'off';
 	stopAudio();
 	if($('#sound_effects_on').prop('checked'))
-	{alert('taz');
+	{
 		configValue = 'on';
 		playAudio(getPhoneGapPath() + 'sound/background_music.mp3');
 	}
