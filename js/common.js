@@ -23,7 +23,7 @@ function onDeviceReady()
 	document.addEventListener("pause", onPause, false);
 
 	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
-	//db.transaction(createTable, errorCB, successCB);
+	db.transaction(createTable, errorCB, successCB);
 	db.transaction(queryConfig, errorCB);
 }
 
@@ -46,9 +46,9 @@ function createTable(tx)
 	//tx.executeSql('INSERT INTO score_ranks (score, difficulty) VALUES ("21", "easy")');
 
 	//tx.executeSql('DROP TABLE IF EXISTS config');
-	tx.executeSql('CREATE TABLE IF NOT EXISTS config (config_id unique, config_key, config_value)');
-	tx.executeSql('INSERT INTO config (config_id, config_key, config_value) VALUES (1, "sound_effects", "on")');
-	tx.executeSql('INSERT INTO config (config_id, config_key, config_value) VALUES (2, "level_hint", "on")');
+	//tx.executeSql('CREATE TABLE IF NOT EXISTS config (config_id unique, config_key, config_value)');
+	//tx.executeSql('INSERT INTO config (config_id, config_key, config_value) VALUES (1, "sound_effects", "on")');
+	//tx.executeSql('INSERT INTO config (config_id, config_key, config_value) VALUES (2, "level_hint", "on")');
 }
 
 // Query the database
@@ -88,13 +88,13 @@ function queryConfigSuccess(tx, results)
 // Transaction error callback
 function errorCB(err)
 {
-	$('#debug').html('Error processing SQL: ' + err.code);
+	$('#debug').html('Error processing SQL: ' + err.code + ' ' + err.message);
 }
 
 // Transaction success callback
 function successCB()
 {
-	//$('#debug').html('Local Database Connection Success');
+	$('#debug').html('Local Database Connection Success');
 }
 
 /***********************Audio Player Functions***********************/
