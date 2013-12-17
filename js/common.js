@@ -41,14 +41,14 @@ function onPause()
 function createTable(tx)
 {//alert('taz create table');
 	tx.executeSql('DROP TABLE IF EXISTS score_ranks');
-	//tx.executeSql('CREATE TABLE IF NOT EXISTS score_ranks (name, score, difficulty)');
-	//tx.executeSql('CREATE TABLE IF NOT EXISTS score_ranks (id INTEGER PRIMARY KEY AUTOINCREMENT, score, difficulty)');
-	//tx.executeSql('INSERT INTO score_ranks (score, difficulty) VALUES ("21", "easy")');
+	tx.executeSql('CREATE TABLE IF NOT EXISTS score_ranks (name, score, difficulty)');
+	tx.executeSql('CREATE TABLE IF NOT EXISTS score_ranks (id INTEGER PRIMARY KEY AUTOINCREMENT, score, difficulty)');
+	tx.executeSql('INSERT INTO score_ranks (score, difficulty) VALUES ("21", "easy")');
 
-	//tx.executeSql('DROP TABLE IF EXISTS config');
-	//tx.executeSql('CREATE TABLE IF NOT EXISTS config (config_id unique, config_key, config_value)');
-	//tx.executeSql('INSERT INTO config (config_id, config_key, config_value) VALUES (1, "sound_effects", "on")');
-	//tx.executeSql('INSERT INTO config (config_id, config_key, config_value) VALUES (2, "level_hint", "on")');
+	tx.executeSql('DROP TABLE IF EXISTS config');
+	tx.executeSql('CREATE TABLE IF NOT EXISTS config (config_id unique, config_key, config_value)');
+	tx.executeSql('INSERT INTO config (config_id, config_key, config_value) VALUES (1, "sound_effects", "on")');
+	tx.executeSql('INSERT INTO config (config_id, config_key, config_value) VALUES (2, "level_hint", "on")');
 }
 
 // Query the database
