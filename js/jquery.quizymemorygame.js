@@ -429,6 +429,8 @@ if(!Array.indexOf)
 		// Appends game summary div if set in the opts.
 		if(opts.gameSummary)
 		{
+			$('#score_button').attr('onClick', 'PageLoader("' + $('#game_difficulty').val() + '");');
+			
 			$(this).append('<div id="quizy-game-summary">' +
 				'<div id="gs-column1">' +
 					opts.textSummaryTitle +
@@ -442,7 +444,7 @@ if(!Array.indexOf)
 				'</div-->' +
 				'<div id="gs-column-play">' +
 					'<input type="button" id="score_rank_add" value="Play Again" onClick="PageLoader(\'easy\');" />' +
-					'<input type="button" value="Score" onClick="PageLoader(\'score_easy\');" />' +
+					'<input type="button" id="score_button" value="Score" />' +
 				'</div>' +
 			'</div>');
 
