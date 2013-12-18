@@ -154,8 +154,6 @@ if(!Array.indexOf)
 				}
 				else
 				{
-					
-
 					//playback sound
 					/*var playAudio = new Audio('sound/lostitem.mp3');
 					playAudio.currentTime == 0;
@@ -182,7 +180,14 @@ if(!Array.indexOf)
 						var totalPoints = $('span#points').html();
 						if(totalPoints > 0)
 						{
-							$('span#points').html(totalPoints - 3);
+							var remainingPoints = totalPoints - 3;
+							
+							if(remainingPoints < 0)
+							{
+								remainingPoints = 0;
+							}
+							
+							$('span#points').html(remainingPoints);
 						}
 					}, delayShow+opts.animSpeed+250);
 				}
