@@ -42,7 +42,7 @@ button.maincss3button{
 			  <li class="match3">
 				<img src="img/flag-Sweden.png" />
 			  </li>
-			  <li class="match4">
+			  <!--li class="match4">
 				<img src="img/flag-NewZealand.png" />
 			  </li>
 			  <li class="match5">
@@ -62,7 +62,7 @@ button.maincss3button{
 			  </li>
 			  <li class="match10">
 				<p class="text-style1">Pair 10</p>
-			  </li>
+			  </li-->
 			  <li class="match1">
 				<p class="text-style1">Bulgaria</p>
 			  </li>
@@ -72,7 +72,7 @@ button.maincss3button{
 			  <li class="match3">
 				<p class="text-style1">Sweden</p>
 			  </li>
-			  <li class="match4">
+			  <!--li class="match4">
 				<p class="text-style1">New<br>Zealand</p>
 			  </li>
 			  <li class="match5">
@@ -92,7 +92,7 @@ button.maincss3button{
 			  </li>
 			  <li class="match10">
 				<p class="text-style1">Pair 10</p>
-			  </li>
+			  </li-->
 			</ul>
 		</div>
 	</div>
@@ -115,11 +115,8 @@ function addScore()
 
 function insertScore(tx)
 {
-	var dateToday = new Date();
-	var dateAdded = dateToday.getFullYear() + '-' + (dateToday.getMonth() + 1) + '-' + dateToday.getDate() + ' ' + dateToday.getHours() + ':' + dateToday.getMinutes() + ':' + dateToday.getSeconds();
-
 	//tx.executeSql('INSERT INTO score_ranks (name, score, difficulty) VALUES ("' + $('#score_rank_name').val() + '", ' + $('span#points').html() + ', "easy")');
-	tx.executeSql('INSERT INTO score_ranks (score, difficulty, date_added) VALUES (' + $('span#points').html() + ', "easy", "' + dateAdded + '")');
+	tx.executeSql('INSERT INTO score_ranks (score, difficulty, date_added) VALUES (' + $('span#points').html() + ', "easy", "' + new Date().getTime() + '")');
 }
 </script>
 </body>
