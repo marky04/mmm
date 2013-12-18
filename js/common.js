@@ -44,6 +44,8 @@ function createTable(tx)
 	//tx.executeSql('CREATE TABLE IF NOT EXISTS score_ranks (name, score, difficulty)');
 	tx.executeSql('CREATE TABLE IF NOT EXISTS score_ranks (id INTEGER PRIMARY KEY AUTOINCREMENT, score, difficulty, date_added DATE)');
 	tx.executeSql('INSERT INTO score_ranks (score, difficulty, date_added) VALUES ("21", "easy", "' + new Date().getTime() + '")');
+	tx.executeSql('INSERT INTO score_ranks (score, difficulty, date_added) VALUES ("29", "easy", "' + new Date().getTime() + '")');
+	tx.executeSql('INSERT INTO score_ranks (score, difficulty, date_added) VALUES ("33", "easy", "' + new Date().getTime() + '")');
 
 	tx.executeSql('DROP TABLE IF EXISTS config');
 	tx.executeSql('CREATE TABLE IF NOT EXISTS config (config_id unique, config_key, config_value)');
