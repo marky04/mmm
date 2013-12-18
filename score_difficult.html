@@ -69,6 +69,10 @@ function currentScoreSuccess(tx, results)
 {
 	$('#current_score').html(results.rows.item(0).score);
 	$('#last_score').html(results.rows.item(1).score);
+	if($('#last_score').html() == 0)
+	{
+		$('#last_score').html(results.rows.item(0).score);
+	}
 }
 
 function highScore(tx)
