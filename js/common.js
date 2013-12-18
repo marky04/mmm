@@ -87,13 +87,13 @@ function queryConfigSuccess(tx, results)
 // Transaction error callback
 function errorCB(err)
 {
-	$('#debug').html('Error processing SQL: ' + err.code + ' ' + err.message);
+	//$('#debug').html('Error processing SQL: ' + err.code + ' ' + err.message);
 }
 
 // Transaction success callback
 function successCB()
 {
-	$('#debug').html('Local Database Connection Success');
+	//$('#debug').html('Local Database Connection Success');
 }
 
 /***********************Audio Player Functions***********************/
