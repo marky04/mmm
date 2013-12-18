@@ -154,12 +154,7 @@ if(!Array.indexOf)
 				}
 				else
 				{
-					// This will deduct 1 and return num remaining points
-					var totalPoints = $('span#points').html();
-					if(totalPoints > 0)
-					{
-						$('span#points').html(totalPoints - 3);
-					}
+					
 
 					//playback sound
 					/*var playAudio = new Audio('sound/lostitem.mp3');
@@ -182,6 +177,13 @@ if(!Array.indexOf)
 								bindClick($(this));
 							}
 						});
+						
+						// This will deduct 1 and return num remaining points
+						var totalPoints = $('span#points').html();
+						if(totalPoints > 0)
+						{
+							$('span#points').html(totalPoints - 3);
+						}
 					}, delayShow+opts.animSpeed+250);
 				}
 			}
