@@ -428,7 +428,7 @@ if(!Array.indexOf)
 
 		// Appends game summary div if set in the opts.
 		if(opts.gameSummary)
-		{
+		{alert('PageLoader("' + $('#game_difficulty').val() + '");');
 			$('#score_button').attr('onClick', 'PageLoader("' + $('#game_difficulty').val() + '");');
 			
 			$(this).append('<div id="quizy-game-summary">' +
