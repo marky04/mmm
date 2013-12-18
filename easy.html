@@ -109,7 +109,7 @@ function closeOverlay()
 
 function addScore()
 {
-	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
+	var db = window.openDatabase('gari_gari_centre', '1.0', 'Memory Game Local Storage', 200000);
 	db.transaction(insertScore, errorCB, successCB);
 }
 

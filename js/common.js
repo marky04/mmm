@@ -22,7 +22,7 @@ function onDeviceReady()
 	document.addEventListener("menubutton", onMenuKeyDown, false);
 	document.addEventListener("pause", onPause, false);
 
-	var db = window.openDatabase('memory_game_centre', '1.1', 'Memory Game Local Storage', 200000);
+	var db = window.openDatabase('gari_gari_centre', '1.0', 'Memory Game Local Storage', 200000);
 	db.transaction(createTable, errorCB, successCB);
 	db.transaction(queryConfig, errorCB);
 }
@@ -44,7 +44,7 @@ function createTable(tx)
 	//tx.executeSql('CREATE TABLE IF NOT EXISTS score_ranks (name, score, difficulty)');
 	tx.executeSql('CREATE TABLE IF NOT EXISTS score_ranks (id INTEGER PRIMARY KEY AUTOINCREMENT, score INTEGER, difficulty, date_added DATE)');
 
-	tx.executeSql('DROP TABLE IF EXISTS config');
+	//tx.executeSql('DROP TABLE IF EXISTS config');
 	tx.executeSql('CREATE TABLE IF NOT EXISTS config (config_id unique, config_key, config_value)');
 	tx.executeSql('INSERT INTO config (config_id, config_key, config_value) VALUES (1, "sound_effects", "on")');
 	tx.executeSql('INSERT INTO config (config_id, config_key, config_value) VALUES (2, "level_hint", "on")');

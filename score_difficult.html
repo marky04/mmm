@@ -55,7 +55,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 // device APIs are available
 function onDeviceReady()
 {
-	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
+	var db = window.openDatabase('gari_gari_centre', '1.0', 'Memory Game Local Storage', 200000);
 	db.transaction(currentScore, errorCB);
 	db.transaction(highScore, errorCB);
 }

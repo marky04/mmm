@@ -92,7 +92,7 @@ button.maincss3button{
 $('#tutorial-memorygame').quizyMemoryGame({itemWidth: 67, itemHeight: 67, itemsMargin:10, colCount:4, animType:'flip' , flipAnim:'rl', animSpeed:250, resultIcons:true });
 function addScore()
 {
-	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
+	var db = window.openDatabase('gari_gari_centre', '1.0', 'Memory Game Local Storage', 200000);
 	db.transaction(insertScore, errorCB, successCB);
 }
 

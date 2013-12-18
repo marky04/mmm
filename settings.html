@@ -61,7 +61,7 @@ button.commoncss3button{
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady()
 {
-	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
+	var db = window.openDatabase('gari_gari_centre', '1.0', 'Memory Game Local Storage', 200000);
 	db.transaction(queryConfig, errorCB);
 }
 
@@ -94,7 +94,7 @@ function queryConfigSuccess(tx, results)
 
 function editConfig(id)
 {
-	var db = window.openDatabase('memory_game_centre', '1.0', 'Memory Game Local Storage', 200000);
+	var db = window.openDatabase('gari_gari_centre', '1.0', 'Memory Game Local Storage', 200000);
 	if(id == 'sound_effects')
 	{
 		db.transaction(updateConfigSound, errorCB, successCB);
