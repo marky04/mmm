@@ -136,7 +136,7 @@ if(!Array.indexOf)
 							$('div#quizy-game-summary').delay(2000).fadeIn(1000,function()
 							{
 								addScore();
-								
+
 								//playback sound
 								/*var playCompleteAudio = new Audio('sound/game_complete.mp3');
 								playCompleteAudio.currentTime == 0;
@@ -175,20 +175,22 @@ if(!Array.indexOf)
 								bindClick($(this));
 							}
 						});
-						
+
 						// This will deduct 1 and return num remaining points
 						var totalPoints = $('span#points').html();
-						if(totalPoints > 0)
+						var remainingPoints = totalPoints - 3;
+						$('span#points').html(remainingPoints);
+						/*if(totalPoints > 0)
 						{
 							var remainingPoints = totalPoints - 3;
-							
+
 							if(remainingPoints < 0)
 							{
 								remainingPoints = 0;
 							}
-							
+
 							$('span#points').html(remainingPoints);
-						}
+						}*/
 					}, delayShow+opts.animSpeed+250);
 				}
 			}
@@ -428,7 +430,7 @@ if(!Array.indexOf)
 
 		// Appends game summary div if set in the opts.
 		if(opts.gameSummary)
-		{			
+		{
 			$(this).append('<div id="quizy-game-summary">' +
 				'<div id="gs-column1">' +
 					opts.textSummaryTitle +
